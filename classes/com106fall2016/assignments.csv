@@ -1,0 +1,39 @@
+title,tags,duedate,prettydate,project,component,daysfromprevious,points,text,created,startdate,enddate
+Concept,[[Project Components]],,,,,,0.16,"Using words and images as needed, describe the project that is being planned, in terms of its purpose, possible design, and type of implementation imagined. Share the project concept in the appropriate Google form.",20160824193651741,,
+Design,[[Project Components]],,,,,,0.34,"Write and illustrate with images, sketches, figures, flowcharts, etc. a description of how you will build an information product to bring your [[Product Concept]] to life. Include whatever spec work you have developed. Your design can be shared in any format, as long as it is visible on the web (i.e. you may build it in a wiki, present it as a slide show, or a single document saved in google drive). 
+
+Identify the specific software you will use to implement your design, and the way you will make your project accessible to the class.
+
+Save a link to your project design in your course wiki.",20160824193651741,,
+Production,[[Project Components]],,,,,,0.34,,20160824193651741,,
+Evaluation,[[Project Components]],,,,,,0.16,Write a 200-300 word entry in your course wiki examining the extent to which the [[Production]] matched the [[Design]] and [[Concept]]. Consider ways in which the [[Production]] could have been improved or refined. Use images to enhance your evaluation as desired.,20160824193651741,,
+Project1,Projects,2016008029000008,,,,,50,,20160824193651741,201608290000,201609050000
+Project2,Projects,,,,,,100,,20160824193651741,201609050000,201609160000
+Project3,Projects,,,,,,150,,20160824193651741,201609160000,201609300000
+Project4,Projects,,,,,,200,,20160824193651741,201609300000,201610190000
+Project5,Projects,,,1, ,,250,,20160824193651741,201610190000,201611160000
+Project6,Projects,,,2,,,250,,20160824193651741,201611160000,201612140000
+Project1 Concept,[[Project1]] [[Concept]],2016008029000008,Mon Aug29 ,1,Concept,0,8,,20160824193651741,,
+Project1 Design,[[Project1]] [[Design]],2016008031000008,Wed Aug31 ,1,Design,2,17,,20160824193651741,,
+Project1 Production,[[Project1]] [[Production]],2016009002000009,Fri Sep02 ,1,Production,2,17,,20160824193651741,,
+Project1 Evaluation,[[Project1]] [[Evaluation]],2016009005000009,Mon Sep05 ,1,Evaluation,3,8,,20160824193651741,,
+Project2 Concept,[[Project2]] [[Concept]],2016009005000009,Mon Sep05 ,2,Concept,0,16,,20160824193651741,,
+Project2 Design,[[Project2]] [[Design]],2016009009000009,Fri Sep09 ,2,Design,4,34,,20160824193651741,,
+Project2 Production,[[Project2]] [[Production]],2016009014000009,Wed Sep14 ,2,Production,5,34,,20160824193651741,,
+Project2 Evaluation,[[Project2]] [[Evaluation]],2016009016000009,Fri Sep16 ,2,Evaluation,2,16,,20160824193651741,,
+Project3 Concept,[[Project3]] [[Concept]],2016009019000009,Mon Sep19 ,3,Concept,3,24,,20160824193651741,,
+Project3 Design,[[Project3]] [[Design]],2016009023000009,Fri Sep23 ,3,Design,4,51,,20160824193651741,,
+Project3 Production,[[Project3]] [[Production]],2016009028000009,Wed Sep28 ,3,Production,5,51,,20160824193651741,,
+Project3 Evaluation,[[Project3]] [[Evaluation]],2016009030000009,Fri Sep30 ,3,Evaluation,2,24,,20160824193651741,,
+Project4 Concept,[[Project4]] [[Concept]],2016010003000010,Mon Oct03 ,4,Concept,3,32,,20160824193651741,,
+Project4 Design,[[Project4]] [[Design]],2016010010000010,Mon Oct10 ,4,Design,7,68,,20160824193651741,,
+Project4 Production,[[Project4]] [[Production]],2016010017000010,Mon Oct17 ,4,Production,7,68,,20160824193651741,,
+Project4 Evaluation,[[Project4]] [[Evaluation]],2016010019000010,Wed Oct19 ,4,Evaluation,2,32,,20160824193651741,,
+Project5 Concept,[[Project5]] [[Concept]],2016010024000010,Mon Oct24 ,5,Concept,5,40,,20160824193651741,,
+Project5 Design,[[Project5]] [[Design]],2016011002000011,Wed Nov02 ,5,Design,9,85,,20160824193651741,,
+Project5 Production,[[Project5]] [[Production]],2016011014000011,Mon Nov14 ,5,Production,12,85,,20160824193651741,,
+Project5 Evaluation,[[Project5]] [[Evaluation]],2016011016000011,Wed Nov16 ,5,Evaluation,2,40,,20160824193651741,,
+Project6 Concept,[[Project6]] [[Concept]],2016011021000011,Mon Nov21 ,6,Concept,5,40,,20160824193651741,,
+Project6 Design,[[Project6]] [[Design]],2016011030000011,Wed Nov30 ,6,Design,9,85,,20160824193651741,,
+Project6 Production,[[Project6]] [[Production]],2016012012000012,Mon Dec12 ,6,Production,12,85,,20160824193651741,,
+Project6 Evaluation,[[Project6]] [[Evaluation]],2016012014000012,Wed Dec14 ,6,Evaluation,2,40,,20160824193651741,,
