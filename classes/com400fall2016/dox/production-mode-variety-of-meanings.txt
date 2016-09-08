@@ -1,0 +1,55 @@
+Production mode has a variety of meanings 
+
+''Presentation''
+
+* A Production mode is just what form the documentation is presented as,
+whether it is written, audio, and video, etc.,
+
+''Access''
+
+* Production modes which are the ways the documentation is accessed,
+i.e. text, audio, video, screen shots, are either static or
+dynamic.
+
+''Technique''
+
+* When I think of production mode, I automatically think of how it is
+made, how it is "produced". Even though documentation is technically a
+product (it can be a piece of paper or a file which is something that
+can be produced), I still imagine the mediums that can be used (text,
+graphics, audio, video).
+
+* In my mind there is much overlap between tools and medium. If I am
+making a website, the purpose of which is to provide documentation for
+a process, I am going to be producing, directly or indirectly, HTML
+and quite probably some CSS.  I personally am going to write some HTML
+or JADE(which is compiled into HTML).  The website, at its core, is
+HTML. Is HTML a tool or a medium?  Is HTML a production mode or a
+technique?  I suppose that since the HTML will be rendered as text
+(unless I'm using <audio> or <video> tags) the production mode is
+text. In my own case, I have a hard time separating techniques from
+mediums.
+
+
+
+''Process''
+
+* A production mode identifies how you produce the documentation, the
+key word in that is production. Production of anything takes more
+thought than one might think. When producing documentation you need to
+think ahead and plan from the beginning to the end of the
+documentation to find the most effective way to product the
+documentation.
+
+''Output''
+
+* Production modes are more of the technical side of the document.
+Basically, the production mode defines WHAT you create, not
+necessarily HOW you create it.
+
+* Technique as input, production mode output
+So maybe this is how I should be thinking about techniques.  The
+techniques are the inputs and the production modes are the outputs.
+
+
+

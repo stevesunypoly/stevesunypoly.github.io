@@ -1,0 +1,405 @@
+[[Anthony Albertina]]: I will talk about this from a website point of
+view.  Static documentation means that the user can only read, but
+never manipulate the documentation to the point where it is different
+than when originally loaded. Dynamic documentation means the opposite;
+manipulatable and interactive. Not to the point where the user can
+change the content, but where they can reveal hidden parts, and/or
+where the data is dependent on some attribute of the user. Examples of
+this include lists of words prefixed with a '+' logo. If the user
+clicks on the '+' logo, it will change to a '-' logo, and reveal more
+specific details about the area. Conversely, when the '-' logo is
+clicked, it will re-hide it. An example that is completely unrelated,
+but shows what I'm communicating is here:
+www.bootsnipp.com/snippets/DVb0A.
+
+This concept doesn't just include '+', and '-', buttons/logos, but
+anything that hides and shows additional content, like at Mr.
+Schnieder's github page linked here:
+www.stevesunypoly.github.io/classes/com400fall2016/com400-spring2016syllabus.html. Production
+modes which are the ways the documentation is accessed, i.e. text,
+audio, video, screen shots, are either static or dynamic. What
+determines that is the technique used to make the
+documentation. Assuming the documentation is on a web page, Is it made
+using JavaScript to be interactive and dynamic? Or is it just a .pdf
+file posted on a web page? Unless it is directed to the user based on
+some attribute of theirs, this would be considered static.
+
+[[Ezra Neal]]: According to my research, documentation techniques are
+ideas that one uses to create proper documentation for a particular
+subject.  There are two different methods that are used, dynamic and
+static.  Static documentation is always visible in the same form and
+format, and does not change depending on context, user, or any other
+situations. An example would be, documentation printed on paper at a
+point in time distinct from the need or request for such
+documentation.  Dynamic documentation is presented to the user in a
+way that is, at least in part, customised or personalised to some
+aspect of the context. The context can be defined by attributes of the
+user or the specific situation.  Dynamic documentation may be prepared
+as print, video or audio materials, and delivered in part based on the
+context.
+
+[[Eric Kucskar]]: Against my better judgment, I'm going to let this
+thread live and just add my interpretations of what is required
+below. I’ll also be referencing other people’s threads in this
+thread. The reason I did not reply to those threads is because I
+thought it would be better to have a consolidated reply thread to the
+people I reference rather than replying to each individually.
+
+ 
+I’m going to start by adding onto Vieltiza Rodriguez’s thread,
+specifically technique. I believe that technique is very much about
+the execution of the task. For example, there are multiple different
+ways or techniques that people could use to enjoy pizza. Some examples
+would be just picking it up and eating it, folding it, or using a fork
+and knife (but seriously why?). While Vieltiza kinda says this, I just
+felt it important to highlight the fact that it is very much about the
+execution. I also feel it important to add that Erin Vandresar pretty
+much states the same thing that I did, but before me, props to them!
+I'm now moving onto the relation of a production mode’s documentation
+has towards static and dynamic in this thread. I feel that Michael
+Leighton started a very good relationship comparison, so I’m going to
+building/responding to his comparison. I agree with the way that he
+presented the dynamic nature of video and audio, but feel it brought
+up an interesting question, is any production solely dynamic or
+static? Taking his example I applied it to text. While it’s true that
+text isn't changing, it can be presented on paper either handwritten
+or typed, or found on the Internet. This also extends to the fact that
+when reading an article, you can choose to only read part of it, or in
+other words get rid of/skip over what you don’t want to read. This
+would indeed be dynamic presentation.
+
+[[Spencer Backus]]: Technique is just the way that someone goes about
+doing something, in this case documentation. You can choose either a
+static method of documentation or a dynamic method. Every person
+wouldn’t use the same user input options in dynamic documentation.
+
+The different production modes that pertain to this discussion are in
+the forms of text, graphics, audio and video. The documentation that
+comes from this can be either static or dynamic.  Static documentation
+is something that will not change, it does not depend on who is using
+it or when. It can be updated, but the updates won’t be automatic like
+dynamic would be.
+
+Dynamic documentation is clearly the opposite whereas it will change
+depending on different variables such as when someone uses it. It is
+updated or changed based new information. It is also defined as
+dynamic if it presents input options to the user such as radio
+buttons, drop down buttons, sliders, etc.
+
+ 
+[[Vielitza Rodriguez]]: After doing some research, I have concluded
+that Technique can be defined as describing how you will be doing what
+you are doing. If you are performing a written document then how will
+you produce it, if you are doing an audio documentation then how will
+you be recording it., etc.  A Production mode is just what form the
+documentation is presented as, whether it is written, audio, and
+video, etc., From my understanding, Static and Dynamic documentation
+has to do with the viewer and the time. A Static documentation does
+not change when viewed today or tomorrow, by Bob or Will. Whereas a
+Dynamic documentation can change when viewed at a different time and
+by a different person. Dynamic documentation is more towards those who
+use user profiles, or member only pages where Static is for everyone
+and anyone.
+
+[[Lucia Loperﬁdo]]: I really like how you broke down static and
+dynamic documentation. Because like you said, someone who is
+inexperienced with static and dynamic documentation will have a hard
+time comparing them, and I am a perfect example of that. From the
+deﬁnitions given for the discussion I started to understand the
+diﬀerence between the two but hearing about your experiences with them
+and putting them in real life situations helped me a lot.
+
+[[Kyle Saunders]]: Documentation techniques are ways you go about
+creating documentation. The true definition of technique is “a way of
+carrying out a particular task, especially the execution or
+performance of an artistic work or a scientific procedure”. Technique
+from a documentation perspective is the tools and strategies used to
+create the documentation. A production mode identifies how you produce
+the documentation, the key word in that is production. Production of
+anything takes more thought than one might think. When producing
+documentation you need to think ahead and plan from the beginning to
+the end of the documentation to find the most effective way to product
+the documentation.
+
+Anyone comparing static and dynamic documentation that is
+inexperienced is going to have a hard time. I feel that to fully
+understand the difference between the two you have to use both, static
+and dynamic documentation. During my job over the summer I got the
+opportunity to be able to work with both types of documentation and i
+am grateful of it. Static documentation was the more popular form of
+documentation that was used. Static tends to be more popular because
+this form is less personal and more broad to the general topic, also
+static allows the documentation to more abiding.  Dynamic
+documentation tends to be more of a short term and simpler way to
+document things. At my job dynamic tended to only be used when someone
+was going to be out of the office while a job needed to be done. What
+the coworker would do is he/she would use their preferred production
+mode and create a customized form of documentation for a one time use,
+thus allowing me to work on the ticket while they were out of the
+office.
+
+[[Michael Leighton]]: For this discussion, I am to talk about the
+different modes of production, examples given in the wiki were text,
+graphics, audio and video; Also, within the different modes, the
+documentation is either static or dynamic, static documentation being
+unchangeable and straight forward and dynamic being a custom form of
+documentation.
+
+Explained in TechTarget’s site about the differences between dynamic
+and static modes, it states an example about web links / HTML code
+output; It states that on a static website, the user may click on
+available and FIXED links on the site that are given, but, on a
+dynamic website, the user can make requests for data contained in a
+database on the server that will be created and shown visually at that
+moment according to what was requested. [1]
+
+Video and audio wise is more or less static, it is going to be given
+to you as presented. The most control that you will have over video is
+being able to pause and start it from a certain point and audio is the
+same, but you can control the volume in certain applications. The only
+way for this to be dynamic I feel is if you are the one who is
+actually editing the clips and images (and sound / music / etc.) that
+is going into it using an application.
+
+[1] TechTarget, Paragraph 2 -http://searchnetworking.techtarget.com/definition/dynamic-and-static
+
+
+[[Erin Vandresar]]: A technique to many is a means of finishing
+something. In the case of creating documentation, it is more than just
+a "way" to complete or finish something. It is and can be described by
+the tools and strategies that are used as different strategies and
+tools used could come across as a new or different technique. When I
+think of production mode, I automatically think of how it is made, how
+it is "produced". Even though documentation is technically a product
+(it can be a piece of paper or a file which is something that can be
+produced), I still imagine the mediums that can be used (text,
+graphics, audio, video).  Dynamic is a process that is constantly
+characterized by constant change therefore dynamic documentation is in
+some ways, changed or altered. On the other hand, Static documentation
+makes me think that you do not want to touch it- the same as something
+that is electronically charged, something that can produce static
+electricity.  In many ways, you stay clear of something that can shock
+you and I would assume the same applies with documentation- you do not
+change or alter it.
+
+[[Donald Will]]: While I agree that most documentation is static
+currently, I would argue that there are tools for creating dynamic
+documentation today. However these forms of documentation are usually
+regarded as less reliable due to the fact that they change often. For
+example, an open Google Document or Wikipedia page might have plenty
+of information on a certain subject but the intellectual side of
+society and educational institutions would have us not trust these
+pages for our actual research or work as they cannot be accredited and
+could be changed within the day. So I don't necessarily think that
+dynamic documentation is a concept, but i do think that what dynamic
+documentation does exist is usually regarded as less trustworthy and
+therefore less accurate than what could be printed as static
+documentation.
+
+[[Steven Savold]]: Another counter to this would be an example of the
+steam store. For anyone familiar with it the Steam store is a
+collection of games that can be bought downloaded and played. Further,
+anyone with a Steam account gets their homepage tailored to the games
+they enjoy. So instead of the default homepage for any anonymous
+user. A steam account homepage when presented must construct the
+homepage in real time on request with games the users might enjoy. The
+server which is doing this is also looking a database and calculating
+prices for the games based off sales that might bee going on. All of
+this in real time per request of a logged in users homepage, making it
+very much a dynamically documented page.
+
+[[Eric Dunn]]: As somewhat of a counter, how about certain game
+tutorials, where they tell you how to do something in the game, then
+you do it until you can nail it five times in a row (for
+example). That could be considered dynamic because the game makes you
+practice more in the area of the game you are already weakest,
+somewhat changing the experience from user to user on the fly.  A lot
+of program help menus could be considered dynamic as well, since
+(usually) the user enters search terms, and one or more pages pop
+up. They don't end up seeing all of the documentation and choosing
+which part to look at, so it is therefore dynamic.  The issue is that
+(of course) the user can just read through the whole thing if they
+want, making it static.  Taking both sides into account, something
+like a program's help menu can be either dynamic or static, depending
+on how it is used.
+
+[[Carl Bennett]]: Techniques really describe the processes used in
+making documentation. For example if your documentation is text based
+using some sort of text editor to create it would be a technique used
+in creating the documentation. If your documentation had video you
+would use some sort of video editor. The techniques you use may vary
+depending on whether you want your documentation to be static of
+dynamic because the techniques you choose to use will determine what
+your production modes are.
+
+With regards to static and dynamic documentation it would seem that
+most documentation is static. Obviously changes can be made to any
+documentation to account for updates or changes to software or
+whatever the documentation is for but none of this is done in real
+time. So it would seem that the closest we get to dynamic
+documentation is going from one static document to a new updated
+static document, but the end result is always static. Unless someone
+is constantly updating and changing a document, until it is updated
+that document would be static. Dynamic documentation really seems like
+more of a concept than anything that actually currently exists since
+there is no system that can make documentation tailored to each
+individual user and scenario to best fit what they might need. Now you
+could create multiple forms of documentation to account for various
+users and scenarios but each group of documents would be static
+themselves. For example say you create documentation for group A and
+documentation for group B. Overall it could be considered dynamic
+since the documentation changes from group A to group B
+changes. However within just group A or just group B there would be no
+change and thus the documentation within the separate groups would be
+static.
+
+[[Christian Rothrock]]: The division between techniques and production
+modes have a much more richly defined boundary between them.  The
+technique defines how you create a document.  It lays out which tools
+you will need for creating the document and gives a structure to how
+the content will be introduced.  Conversely, production modes are more
+of the technical side of the document.  Basically, the production mode
+defines WHAT you create, not necessarily HOW you create it.
+
+Static and dynamic documentation differences are less clear, more
+ambiguous in their separation.  To expand on this observation, a
+dynamic document can look and feel exactly like a static document if
+the dynamic document is written using a standard template and the
+content is customized to the specific details of what is needed.  In
+today's world of multimedia, static documents can also be in the form
+of audio or video presentation as an instructional video much the same
+way a printed static document is.
+
+In my opinion, it is easier to understand and conceptualize the
+contrasts between techniques and production modes that it is between
+static and dynamic documentation.
+
+[[Richard Arcuri]]: I agree with the points made here.  Putting them
+in your terms helps explain the modes of production better. Today
+there is so much documentation over media and so much advancing with
+things that almost everything is dynamic. Everything is changing all
+the time.
+
+[[Derek Baker]]: I would agree with almost everything stated here.
+Production modes are easy to identify, and relatively limited. If we
+are forced to make a binary categorization in regards to whether we
+consider a piece of documentation to be static or dynamic, this is
+also accomplished with ease if one does not think too much about what
+it actually means to be static or dynamic.  In my own case, I have a
+hard time separating techniques from mediums.
+
+"* A technique is a way
+of carrying out the task of creating documentation – described by the
+tools and strategies used in making the documentation * A production
+mode identifies the medium in which documentation is produced – text,
+graphics, audio, video (?)"
+
+In my mind there is much overlap between tools and medium. If I am
+making a website, the purpose of which is to provide documentation for
+a process, I am going to be producing, directly or indirectly, HTML
+and quite probably some CSS.  I personally am going to write some HTML
+or JADE(which is compiled into HTML).  The website, at its core, is
+HTML. Is HTML a tool or a medium?  Is HTML a production mode or a
+technique?  I suppose that since the HTML will be rendered as text
+(unless I'm using <audio> or <video> tags) the production mode is
+text.
+
+So maybe this is how I should be thinking about techniques.  The
+techniques are the inputs and the production modes are the outputs.  I
+suppose that my diffuculty arises from the word 'medium.'  If I paint
+in acrylic and on a canvas, my medium is acrylic and canvas. That
+seems obvious. If I'm just painting letters to document some process,
+I suppose I could quantify the 'production mode' as text. If I painted
+an image or several to document that process, my production mode would
+then be graphic.
+
+As far as techniques I could be using cross-hatching or glazing or
+pointilism or splatter or others. I mentioned those particular
+techniques because they can achieve desired effects within the
+limitations of the medium that is acrylic painting. So, in this
+example the techniques are a function of the limitations of the
+medium.  In a similar vein, text-based documentation should be
+verbose, highly illustrative and unambiguous because of the
+limitations of text: with text we are using abstract symbols (letters)
+to represent a process that requires actions of some type to be
+manifested in the real world.
+
+Clear writing as a technique
+What techniques in can be used in the medium of writing that
+facilitate effective documentation production in the mode of text?
+Adherence to contemporary and widely accepted definitions of words,
+grammar, and spelling are obvious. For instance, using Irish-English
+slang with British-English spellings in a document that will be
+consumed by American-English speakers will probably result in
+unnecessary cognitive demands being placed on the users.
+
+[[Lester Mazyck-Carroll]]: The production modes introduced so far come
+in various forms such as text, graphics, audio and video. Within these
+production modes, documentation can be presented in two types static
+and dynamic.
+
+
+Examples of static
+As previously stated, documentation that is printed, such
+as a user’s manual, would be considered static. What you see, is what
+you get. No changes can be made.
+
+Relationship of digital to dynamic
+As we move into digital mediums the
+options of creating both static and dynamic documentation becomes
+available.
+
+
+Audio and video as static
+In audio and video files, being static, I’m assuming, would just be
+playing the file.
+
+Audio and video as dynamic
+A dynamic audio and video file would allow the user
+to interact with the file through various means. Using software such
+as Adobe Flash allows for the capture of mouse and keyboard input as
+well as other forms of input to aid in the interactivity.
+
+
+
+Derek on truly dynamic documentation
+[[Derek Baker]]: I have been tasked with illustrating how existing
+examples of documentation can fit within the confines of a static of
+dynamic family based on the definitions provided. However, I would
+argue that documentation that can be considered truly dynamic is
+almost non-existent.
+
+In order for documentation to be truly dynamic, outputs would have to
+be generated on-the-fly in response to user interactions, meaning it
+would almost certainly require real-time evaluation of data derived
+from available percepts in addition to respond to novel situations.
+
+Something like this would fall into a category of Artificial
+Intelligence or Machine Learning. However, even if we are dealing with
+rudimentary forms of AI or ML, we will still be interacting with
+systems that are not meaningfully dynamic.
+
+Let's assume that we use the Slack application at work. Let's also
+assume that we have configured Slackbot to serve as an FAQ-responder
+(this really happens).  While I can ask Slackbot any number of
+different questions, it will have a predefined set of responses, and
+the documented information it provides is static.
+
+The presentation is "customized or personalized to some aspect of the
+context,"but all we really accomplished was putting a different
+interface on a static web page.  In the similar vein, we could refer
+to a book's table of contents or index to find "pointers" that guide
+us to relevant "answers" to our "queries."In my mind the two scenarios
+are somewhat analgous. If the book were capable of capturing my inputs
+and turning its own pages, the equivalence would be basically
+complete.
+
+As I consider this further, based on the definition provided, I'm
+interpreting that the User Interface will be the defining factor in
+regards to whether I should classify a piece of documentation as
+static or dynamic.
+
+If a non-trivial portion of the presentation of documentative data is
+automated, or the data presented is tailored to the user, it may be
+safe to assume that, according to the definition provided, the
+document is itself dynamic. Else the document is static.

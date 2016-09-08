@@ -1,0 +1,63 @@
+<<reveal2 "What is the meaning of dynamic?"
+"
+* Dynamic is a process that is constantly characterized by constant change therefore dynamic documentation is in some ways, changed or altered.
+
+* Dynamic documentation is presented to the user in a way that is, at least in part, customised or personalised to some aspect of the context. The context can be defined by attributes of the user or the specific situation.  Dynamic documentation may be prepared as print, video or audio materials, and delivered in part based on the context.
+
+* Dynamic documentation is clearly the opposite whereas it will change depending on different variables such as when someone uses it. It is updated or changed based new information. It is also defined as dynamic if it presents input options to the user such as radio buttons, drop down buttons, sliders, etc. 
+
+* Explained in TechTarget’s site about the differences between dynamic and static modes, it states an example about web links / HTML code output; It states that on a static website, the user may click on available and FIXED links on the site that are given, but, on a dynamic website, the user can make requests for data contained in a database on the server that will be created and shown visually at that moment according to what was requested. [[TechTarget, Paragraph 2|http://searchnetworking.techtarget.com/definition/dynamic-and-static]]
+"
+"zz1">>
+<<reveal2 "Some examples of dynamic content"
+"
+* include lists of words prefixed with a '+' logo. If the user clicks on the '+' logo, it will change to a '-' logo, and reveal more specific details about the area. Conversely, when the '-' logo is clicked, it will re-hide it. 
+* A dynamic audio and video file would allow the user to interact with the file through various means. Using software such as Adobe Flash allows for the capture of mouse and keyboard input as well as other forms of input to aid in the interactivity. 
+* [[An excellent live example of dynamic text|http://www.bootsnipp.com/snippets/DVb0A]] At the same time, dynamic concept doesn't just include '+', and '-', buttons/logos, but
+anything that hides and shows additional content,
+* Thanks for noticing the dynamic nature of the wiki! [[like at Schneider's github page linked here|http://www.stevesunypoly.github.io/classes/com400fall2016/com400-spring2016syllabus.html]]
+"
+"zz2">>
+
+<<reveal2 "Social documentation is an example of dynamic documentation"
+"
+* [[Donald Will]]: While I agree that most documentation is static currently, I would argue that there are tools for creating dynamic documentation today. However these forms of documentation are usually regarded as less reliable due to the fact that they change often. For example, an open Google Document or Wikipedia page might have plenty of information on a certain subject but the intellectual side of society and educational institutions would have us not trust these pages for our actual research or work as they cannot be accredited and could be changed within the day. So I don't necessarily think that dynamic documentation is a concept, but i do think that what dynamic documentation does exist is usually regarded as less trustworthy and therefore less accurate than what could be printed as static documentation.
+"
+"zz3">>
+<<reveal2 "Dynamic documentation involves an interface for the user"
+"
+* [[Steven Savold]]: Another counter to this would be an example of the steam store. For anyone familiar with it the Steam store is a collection of games that can be bought downloaded and played. Further, anyone with a Steam account gets their homepage tailored to the games they enjoy. So instead of the default homepage for any anonymous user. A steam account homepage when presented must construct the homepage in real time on request with games the users might enjoy. The server which is doing this is also looking a database and calculating prices for the games based off sales that might bee going on. All of this in real time per request of a logged in users homepage, making it very much a dynamically documented page.
+* A lot of program help menus could be considered dynamic as well, since (usually) the user enters search terms, and one or more pages pop up. They don't end up seeing all of the documentation and choosing which part to look at, so it is therefore dynamic.  The issue is that (of course) the user can just read through the whole thing if they want, making it static.  Taking both sides into account, something like a program's help menu can be either dynamic or static, depending on how it is used.
+"
+"zz4">>
+<<reveal2 "What's the difference between responsive software, and dynamic documentation?"
+"
+* [[Eric Dunn]]: As somewhat of a counter, how about certain game tutorials, where they tell you how to do something in the game, then you do it until you can nail it five times in a row (for example). That could be considered dynamic because the game makes you practice more in the area of the game you are already weakest, somewhat changing the experience from user to user on the fly. 
+*  Static and dynamic documentation differences are less clear, more ambiguous in their separation.  To expand on this observation, a dynamic document can look and feel exactly like a static document if the dynamic document is written using a standard template and the content is customized to the specific details of what is needed.  In today's world of multimedia, static documents can also be in the form of audio or video presentation as an instructional video much the same way a printed static document is.
+"
+"zz5">>
+
+<<reveal2 "This is an interesting perspective on dynamic documentation as just-in-time or one-off"
+"
+* Dynamic documentation tends to be more of a short term and simpler way to document things. At my job dynamic tended to only be used when someone was going to be out of the office while a job needed to be done. What the coworker would do is he/she would use their preferred production mode and create a customized form of documentation for a one time use, thus allowing me to work on the ticket while they were out of the office. 
+"
+"zz6">>
+<<reveal2 "What is the tension between the words 'dynamic' and 'interactive'"
+"
+* Is any production solely dynamic or static? text: While it’s true that text isn't changing, it can be presented on paper either handwritten or typed, or found on the Internet. This also extends to the fact that when reading an article, you can choose to only read part of it, or in other words get rid of/skip over what you don’t want to read. This would indeed be dynamic presentation. 
+* Whereas a Dynamic documentation can change when viewed at a different time and by a different person. Dynamic documentation is more towards those who use user profiles, or member only pages where Static is for everyone and anyone.
+"
+"zz7">>
+<<reveal2 "Can dynamic documentation even exist?"
+"
+*  Dynamic documentation really seems like more of a concept than anything that actually currently exists since there is no system that can make documentation tailored to each individual user and scenario to best fit what they might need. Now you could create multiple forms of documentation to account for various users and scenarios but each group of documents would be static themselves. For example say you create documentation for group A and documentation for group B. Overall it could be considered dynamic since the documentation changes from group A to group B changes. However within just group A or just group B there would be no change and thus the documentation within the separate groups would be static. 
+* Derek on truly dynamic documentation
+** [[Derek Baker]]: I have been tasked with illustrating how existing examples of documentation can fit within the confines of a static of dynamic family based on the definitions provided. However, I would argue that documentation that can be considered truly dynamic is almost non-existent.
+**  In order for documentation to be truly dynamic, outputs would have to be generated on-the-fly in response to user interactions, meaning it would almost certainly require real-time evaluation of data derived from available percepts in addition to respond to novel situations.
+**  Something like this would fall into a category of Artificial Intelligence or Machine Learning. However, even if we are dealing with rudimentary forms of AI or ML, we will still be interacting with systems that are not meaningfully dynamic. 
+** Let's assume that we use the Slack application at work. Let's also assume that we have configured Slackbot to serve as an FAQ-responder (this really happens).  While I can ask Slackbot any number of different questions, it will have a predefined set of responses, and the documented information it provides is static. 
+** The presentation is 'customized or personalized to some aspect of the context,'but all we really accomplished was putting a different interface on a static web page.  In the similar vein, we could refer to a book's table of contents or index to find 'pointers' that guide us to relevant 'answers' to our 'queries.' In my mind the two scenarios are somewhat analgous. If the book were capable of capturing my inputs and turning its own pages, the equivalence would be basically complete.
+** As I consider this further, based on the definition provided, I'm interpreting that the User Interface will be the defining factor in regards to whether I should classify a piece of documentation as static or dynamic. 
+** If a non-trivial portion of the presentation of documentative data is automated, or the data presented is tailored to the user, it may be safe to assume that, according to the definition provided, the document is itself dynamic. Else the document is static. 
+"
+"zz8">>
