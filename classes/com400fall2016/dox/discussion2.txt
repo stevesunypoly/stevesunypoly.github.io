@@ -324,6 +324,7 @@ limitations of text: with text we are using abstract symbols (letters)
 to represent a process that requires actions of some type to be
 manifested in the real world.
 
+Clear writing as a technique
 What techniques in can be used in the medium of writing that
 facilitate effective documentation production in the mode of text?
 Adherence to contemporary and widely accepted definitions of words,
@@ -335,24 +336,33 @@ unnecessary cognitive demands being placed on the users.
 [[Lester Mazyck-Carroll]]: The production modes introduced so far come
 in various forms such as text, graphics, audio and video. Within these
 production modes, documentation can be presented in two types static
-and dynamic. As previously stated, documentation that is printed, such
+and dynamic.
+
+
+Examples of static
+As previously stated, documentation that is printed, such
 as a user’s manual, would be considered static. What you see, is what
-you get. No changes can be made. As we move into digital mediums the
+you get. No changes can be made.
+
+Relationship of digital to dynamic
+As we move into digital mediums the
 options of creating both static and dynamic documentation becomes
 available.
 
-Using software such as Word, can allow you to create static documents
-such as PDF files or dynamic documents, well at least somewhat, by the
-addition of dynamic fields where you can input the information you
-like or variable data printing where data can be change using
-information from a database.
 
+Audio and video as static
 In audio and video files, being static, I’m assuming, would just be
-playing the file. A dynamic audio and video file would allow the user
+playing the file.
+
+Audio and video as dynamic
+A dynamic audio and video file would allow the user
 to interact with the file through various means. Using software such
 as Adobe Flash allows for the capture of mouse and keyboard input as
 well as other forms of input to aid in the interactivity.
 
+
+
+Derek on truly dynamic documentation
 [[Derek Baker]]: I have been tasked with illustrating how existing
 examples of documentation can fit within the confines of a static of
 dynamic family based on the definitions provided. However, I would
