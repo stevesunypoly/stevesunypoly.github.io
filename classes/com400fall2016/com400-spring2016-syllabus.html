@@ -593,6 +593,10 @@ Error message and password prompt
 
 <li>Articles</li>
 
+<li>bblink macro</li>
+
+<li>bblinktip</li>
+
 <li>BlackboardForum: Project 2</li>
 
 <li>BlogPostTemplate</li>
@@ -981,9 +985,17 @@ Error message and password prompt
 
 <li>Thoughts on the different types of documentation</li>
 
+<li>tiddly-documentation.png</li>
+
 <li>TiddlyWiki</li>
 
+<li>TiddlyWiki &amp; COM400</li>
+
+<li>TiddlyWiki helps authors to write hypertextually</li>
+
 <li>Tiddlywiki markdowndemo</li>
+
+<li>tiddlywiki-in-blackboard.png</li>
 
 <li>Tips: How to Write Technical Content</li>
 
@@ -1036,6 +1048,8 @@ Error message and password prompt
 <li>What kinds of people write documentation?</li>
 
 <li>What kinds of things have documentation?</li>
+
+<li>What's cool about writing documentation in TiddlyWiki?</li>
 
 <li>wikipedia-iframelink macro</li>
 
@@ -10734,14 +10748,14 @@ src: local(&quot;FontAwesome&quot;), url(data:application/font-woff;base64,d09GR
 <div created="20160902181008067" modified="20160902181017948" title="$:/state/folded/Techniques">
 <pre>show</pre>
 </div>
-<div created="20160908201442128" modified="20160912190926382" title="$:/state/SampleReveal2">
+<div created="20160908201442128" modified="20160913202717307" title="$:/state/SampleReveal2">
 <pre>hide</pre>
 </div>
 <div created="20160714154445045" modified="20160901194251316" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20160714155119905" modified="20160912180415810" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20160714155119905" modified="20160913205450301" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20160909030824922" modified="20160909030827140" title="$:/state/tab--1488345713">
 <pre>$:/core/ui/TiddlerInfo/Tagging</pre>
@@ -10767,8 +10781,8 @@ src: local(&quot;FontAwesome&quot;), url(data:application/font-woff;base64,d09GR
 <div created="20160802155253289" modified="20160911185724550" title="$:/state/tab-1749438307">
 <pre>$:/core/ui/ControlPanel/Plugins</pre>
 </div>
-<div created="20160714154346213" modified="20160912190857131" title="$:/state/tab/sidebar--1835078512">
-<pre>Contents</pre>
+<div created="20160714154346213" modified="20160913195438928" title="$:/state/tab/sidebar--1835078512">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div created="20160829014315244" modified="20160829024550570" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/PageControls</pre>
@@ -10881,11 +10895,11 @@ src: local(&quot;FontAwesome&quot;), url(data:application/font-woff;base64,d09GR
 <div created="20160818201559728" modified="20160818201559728" title="$:/state/toc/What kinds of people rely on / use documentation?-What kinds of people write documentation?-428821339">
 <pre>open</pre>
 </div>
-<div list="[[Discussion 3: The Static-Dynamic Continuum]]" title="$:/StoryList">
+<div list="[[TiddlyWiki &amp; COM400]] [[TiddlyWiki helps authors to write hypertextually]]" title="$:/StoryList">
 <pre></pre>
 </div>
-<div created="20160714154620188" modified="20160909022150194" title="$:/temp/advancedsearch">
-<pre>Wikified</pre>
+<div created="20160714154620188" modified="20160913200359040" title="$:/temp/advancedsearch">
+<pre>class</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
 <pre>{
@@ -11243,8 +11257,8 @@ This plugin contains tools to help slice up long texts into individual tiddlers.
 <div created="20160818201833834" modified="20160912190255863" title="$:/temp/RenameTags/search">
 <pre>Discussions</pre>
 </div>
-<div created="20160714154615320" modified="20160912190855901" title="$:/temp/search">
-<pre></pre>
+<div created="20160714154615320" modified="20160913203916998" title="$:/temp/search">
+<pre>Trends</pre>
 </div>
 <div created="20160911185735208" modified="20160911185735208" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/http://tiddlywiki.com/library/v5.1.12/index.html" url="http://tiddlywiki.com/library/v5.1.12/index.html">
 <pre>loaded</pre>
@@ -11562,6 +11576,17 @@ Select (from the pull-downs below) the type (and sub-type) of product you would 
 </div>
 <div created="20160818173704255" modified="20160818173709172" tags="" title="Articles">
 <pre></pre>
+</div>
+<div caption="Macro to show documentation" created="20160913201142371" creator="stevesunypoly" modified="20160913201355052" modifier="stevesunypoly" tags="$:/tags/Macro NewInThisWiki DesignWriteMacros OldIn400" title="bblink macro">
+<pre>\define bblink($text$, $link$)
+&lt;a href=&quot;$link$&quot; target=&quot;_blank&quot;&gt;$text$&lt;/a&gt;
+&lt;small&gt; {{bblinktip}}&lt;/small&gt;
+\end
+
+</pre>
+</div>
+<div created="20160913201401825" modified="20160913201412295" tags="" title="bblinktip">
+<pre>&lt;&lt;ipopup &quot;You need to be logged into Blackboard in the same browser for Blackboard links to work&quot;&gt;&gt;</pre>
 </div>
 <div created="20160911194233042" modified="20160911201242010" tags="" title="BlackboardForum: Project 2">
 <pre>[[BlackboardForum: Project 2|https://sunypoly.open.suny.edu/webapps/discussionboard/do/forum?action=list_threads&amp;course_id=_3659_1&amp;nav=discussion_board_entry&amp;conf_id=_6619_1&amp;forum_id=_11991_1]]&lt;small&gt; &lt;&lt;ipopup &quot;You need to be logged into Blackboard in the same browser for Blackboard links to work&quot;&gt;&gt;&lt;/small&gt;</pre>
@@ -13522,18 +13547,55 @@ I especially like the tension the two primary types:
 
 Further exploration of &quot;types&quot; is found in an interesting article; I added some of my comments as well on [[The 8 types of technical documentation and why each is important]] (thanks for the reference!)</pre>
 </div>
-<div created="20130822170700000" modified="20160829022605830" tags="Concepts" title="TiddlyWiki" type="text/vnd.tiddlywiki">
-<pre>~TiddlyWiki is a rich, interactive tool for manipulating complex data with structure that doesn't easily fit into conventional tools like spreadsheets or wordprocessors.
+<div _canonical_uri="./images/tiddly-documentation.png" created="20160913195221886" modified="20160913195337635" tags="external-images" title="tiddly-documentation.png" type="image/png">
+<pre></pre>
+</div>
+<div created="20130822170700000" modified="20160913205437994" tags="Concepts" title="TiddlyWiki" type="text/vnd.tiddlywiki">
+<pre>http://tiddlywiki.com/#TiddlyWiki
 
-~TiddlyWiki is designed to fit around your brain, helping you deal with the things that won't fit. The [[fundamental idea|https://designwritestudio.github.io/#Philosophy%20of%20Tiddlers]] is that information is more useful and reusable if we cut it up into the smallest semantically meaningful chunks -- [[tiddlers|https://designwritestudio.github.io/#Tiddlers]] -- and give them titles so that they can be [[structured|https://designwritestudio.github.io/#Structuring%20TiddlyWiki]] with [[links|https://designwritestudio.github.io/#TiddlerLinks]], [[tags|https://designwritestudio.github.io/#Tagging]], [[lists|https://designwritestudio.github.io/#ListField]] and [[macros|https://designwritestudio.github.io/#Macros]].  Tiddlers use a [[WikiText|https://designwritestudio.github.io/#WikiText]] notation that concisely represents a wide range of text formatting and hypertext features. ~TiddlyWiki aims to provide a fluid interface for working with tiddlers, allowing them to be aggregated and composed into longer narratives.
 
-People love using ~TiddlyWiki. Because it can be used without any complicated server infrastructure, and because it is [[open source|https://designwritestudio.github.io/#OpenSource]], it has bought unprecedented freedom to everyone to keep their precious information under their own control.
+&gt;~TiddlyWiki is a rich, interactive tool for manipulating complex data with structure that doesn't easily fit into conventional tools like spreadsheets or wordprocessors.
 
-~TiddlyWiki was originally created by [[JeremyRuston|https://designwritestudio.github.io/#JeremyRuston]] and is now a thriving open source project with a busy [[Community|https://designwritestudio.github.io/#Community]] of independent developers.
+&gt;~TiddlyWiki is designed to fit around your brain, helping you deal with the things that won't fit. The [[fundamental idea|https://designwritestudio.github.io/#Philosophy%20of%20Tiddlers]] is that information is more useful and reusable if we cut it up into the smallest semantically meaningful chunks -- [[tiddlers|https://designwritestudio.github.io/#Tiddlers]] -- and give them titles so that they can be [[structured|https://designwritestudio.github.io/#Structuring%20TiddlyWiki]] with [[links|https://designwritestudio.github.io/#TiddlerLinks]], [[tags|https://designwritestudio.github.io/#Tagging]], [[lists|https://designwritestudio.github.io/#ListField]] and [[macros|https://designwritestudio.github.io/#Macros]].  Tiddlers use a [[WikiText|https://designwritestudio.github.io/#WikiText]] notation that concisely represents a wide range of text formatting and hypertext features. ~TiddlyWiki aims to provide a fluid interface for working with tiddlers, allowing them to be aggregated and composed into longer narratives.
+
+&gt;People love using ~TiddlyWiki. Because it can be used without any complicated server infrastructure, and because it is [[open source|https://designwritestudio.github.io/#OpenSource]], it has bought unprecedented freedom to everyone to keep their precious information under their own control.
+
+&gt;~TiddlyWiki was originally created by [[JeremyRuston|https://designwritestudio.github.io/#JeremyRuston]] and is now a thriving open source project with a busy [[Community|https://designwritestudio.github.io/#Community]] of independent developers.
 </pre>
+</div>
+<div created="20160913192851735" modified="20160913205715737" tags="NewIn400" title="TiddlyWiki &amp; COM400">
+<pre>I thought I'd take a few minutes to write some thoughts about COM400, and maybe provide a bit more context and explanation about the use of TiddlyWiki, the software behind the wiki you are reading.
+
+I hope it is obvious to all that I'm teaching this course using two (increasingly) integrated platforms: 
+
+* &lt;&lt;bblink &quot;Blackboard&quot; &quot;https://sunypoly.open.suny.edu/webapps/blackboard/execute/announcement?method=search&amp;context=course&amp;course_id=_3659_1&amp;handle=cp_announcements&amp;mode=cpview&quot;&gt;&gt;: for discussion forums and course announcements
+* [[TiddlyWiki|Welcome to TiddlyWiki]] : for everything else
+
+TiddlyWiki is a very different kind of platform. Two important ways in which it can be distinguished from other platforms: 
+
+* It is a [[single page application|https://www.google.com/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=single%20page%20application]]
+* It is [[hypertextual|TiddlyWiki helps authors to write hypertextually]].
+
+It's hard to get your head wrapped around it, but you might compare TiddlyWiki to 
+
+* Microsoft Word --  except, there is no software other than the Wiki file. You use your browser to both read and write. It is just a simple HTML file that looks like a Web site, and that you can edit in your browser, and save. 
+* Or, perhaps, to a Web development platform (since you can, more or less, build Web sites). 
+* Or, perhaps, to a database, since you can make database calls to objects based on their field values. 
+* Or, maybe read about it a [[bit|http://www.tiddlywiki.com]], or try it out.
+
+I invite anyone who is interested to follow along in the TiddlyWiki development process. I'd be happy to do some online demos, and you might also take a look at my emerging studio: http://bit.do/designwrite -- in which we design and write interactive texts.
+
+I'm especially interested in having folks write documentation (for Projects 3,4,5&amp;6) in TiddlyWiki. Not //about// TiddlyWiki, or this class, but //in// TiddlyWiki. I've created a few tools, such as my dox macro ( &lt;&lt;dox &quot;I use double open braces to signifiy that there is some meta-documentation about the wiki present. Probably not too clear yet. Notice the braces turn to close braces when dox is open. Cool.&quot;&gt;&gt;, and there is an entire [[system of documentation built into TiddlyWiki|http://tiddlywiki.com/#Improving%20TiddlyWiki%20Documentation]] that could be put to use (especially if anyone is interested in running TW under [[node.js|http://tiddlywiki.com/#GettingStarted%20-%20Node.js]], but the idea would be that you could develop documentation and use the TiddlyWiki code to simulate how it would be delivered. Again, let me know if you are interested. Send an email to steve@sunyit.edu.
+</pre>
+</div>
+<div created="20160913204117822" modified="20160913204229592" title="TiddlyWiki helps authors to write hypertextually">
+<pre>Writing hypertextually means writing with links, lists, and transclusions referencing bits of content through objects, tags and fields.This is critical, especially in documentation, where all current &lt;&lt;tag Trends&gt;&gt; point towards highly structured and interwoven content.</pre>
 </div>
 <div created="20160714154133385" modified="20160714154243392" tags="Resources" title="Tiddlywiki markdowndemo">
 <pre>http://tiddlywiki.com/plugins/tiddlywiki/markdown/</pre>
+</div>
+<div _canonical_uri="./images/tiddlywiki-in-blackboard.png" created="20160913195531892" modified="20160913195606439" tags="external-images" title="tiddlywiki-in-blackboard.png" type="image/png">
+<pre></pre>
 </div>
 <div created="20160904125501898" modified="20160912180339143" tags="ViewsFromTheField NewIn400" title="Tips: How to Write Technical Content" type="application/x-tiddler">
 <pre>//[[John Freiberger - Course Blogger]]&lt;br&gt;//
@@ -13957,6 +14019,9 @@ Hoffmann, Maxwell. &lt;a href=&quot;http://blogs.adobe.com/techcomm/2012/04/a-re
 </div>
 <div created="20160818200934926" modified="20160818201905831" tags="[[Meta-Questions: About Documentation]]" title="What kinds of things have documentation?">
 <pre></pre>
+</div>
+<div created="20160913202334221" modified="20160913202340789" title="What's cool about writing documentation in TiddlyWiki?">
+<pre>That's a long story...I'm working on it.</pre>
 </div>
 <div created="20160802155624744" modified="20160802155709490" tags="$:/tags/Macro DesignWriteMacros" title="wikipedia-iframelink macro">
 <pre>\define wikipedia-iframe-link(link)
