@@ -1,0 +1,1399 @@
+[
+   {
+      "form": 0,
+      "name": "url",
+      "type": "text",
+      "id": "url",
+      "elementPos": 3,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "textarea",
+      "id": "txt1",
+      "elementPos": 5,
+      "namePos": 0,
+      "value": "title,tags,Student,Task,Text,ProjectSummary,DocumentationType,Consistent With Assignment,Discusses Trend,Discussed Scenario\n\"Project2ConceptualizationResponse: Rodriguez, Vielitza\",Project2Conceptualization,\"Rodriguez, Vielitza\",Conceptualization,\"It is safe to say that 48% of the population now have a Mac computer but yet the school computers that school Professors have access to are Windows. Whenever there is work to be emailed in etc,. Professors ask for a .doc/.docx file only, making harder for those who have a Mac without Word on it to submit the required assignment without any trouble.  For my project 2, I will create an end user documentation on how to get a document that was created on a Mac using their programs of Pages, Numbers or Keynote to be accessible to those using Word or any Microsoft program. My project 2 will explain how to do the above without needing to buy Microsoft or use the Online version that is now available. My documentation will assume that the user knows how to access the Mac programs mentioned above and has finished with the assignment and is ready to submit.\",Save mac dox on windows machines,End-user,No,No,No\n\"Project2ConceptualizationResponse: Backus, Spencer\",Project2Conceptualization,\"Backus, Spencer\",Conceptualization,For project 2 I will be creating end user documentation on how create a program in Visual Studio and run it. I will be assuming that the user is able to write functional code. I could possibly do this by creating a video of the process The video would consist of annotations of what to do at each step. Another option would be to create another PDF showing each step individually and instructing the user on what to do at each step.,Create and run program in Visual Studio,End-user,No,No,No\n\"Project2ConceptualizationResponse: Bennett, Carl\",Project2Conceptualization,\"Bennett, Carl\",Conceptualization,I will create documentation that utilizes both images and video that is easily visible on a mobile platform. Users will have quick and easy access to be able to see how to embed an image in a blackboard post since this documentation emphasizes multimedia and mobile delivery. Since many people have a smart phone or other mobile device the documentation will be viewable from almost anywhere. The video will be in a mobile friendly viewing format (probably mp4) and all media will be hosted somewhere mobile friendly that has not been decided on yet. This documentation will be used in any scenario where someone need to quickly see how to embed an image and can simply take out their smart phone or mobile device and view the documentation describing how to do so.,Embed image in Blackboard post,End-user,Somewhat,No,Yes\n\"Project2ConceptualizationResponse: Rothrock, Chris\",Project2Conceptualization,\"Rothrock, Chris\",Conceptualization,\"I will be creating an end-user document that will demonstrate the steps necessary to install Oracle VirtualBox and create a virtual machine with Ubuntu Linux installation.  Virtualization is a booming technology useful for many different purposes such as testing a new operating system, creating a secure environment for virus detection and elimination, running applications in a unique environment, creating isolation of applications in separate virtual machines, and many other uses not mentioned here.  Knowing how to create a virtual machine and install an operating system are both two important concepts that anyone working in a technical field should know.\",Install Oracle VirtualBox and create a virtual machine,End-user,No,No,No\n\"Project2ConceptualizationResponse: Kucskar, Eric\",Project2Conceptualization,\"Kucskar, Eric\",Conceptualization,\"For Project 2, I will be creating end user documentation for Blender, which is a modeling / animation making software. The system I intend on making to deliver this documentation through would be a website similar to ones like stackoverflow or the battle.net forums. In these forums, questions are asked and then answered by either other users, or through member of the development team. The \"\"answer\"\" to a question would be the one that receives the most votes in favor of the it. Users will also be allowed to up vote questions to further increase the speed at which they are answered by the staff but are never allowed to down vote a question. This is to try and stop the \"\"stupid question\"\" mindset. Once any answer gets a single vote it will not be editable for the user anymore. Users can respond to their own posts to further elaborate on what they meant by an answer or put another response to their first answer as the one that shows up first.\",For Blender,End-user,No,No,No\n\"Project2ConceptualizationResponse: Neal, Ezra\",Project2Conceptualization,\"Neal, Ezra\",Conceptualisation,\"Music has always been a popular entertainment medium throughout the ages but the storage of it has changed greatly. In today's digital age, the methods on how we store music has changed. A majority of us store our music on cloud servers such as Spotify or Google Play Music. For this project I will be providing information on how to upload music that is already stored on a device to Google Play Music. The device(s) that I plan on covering are both laptop (Macbook running macOS Sierra) and mobile (iPhone running iOS 10). People all over have pieces of their music library that's saved on different devices. When time comes to use this music, say at a party or to help them concentrate when they study, it's too much of a hassle to use multiple devices or move all their songs to a single device with no guarantee that their library is going to be there, especially if the device fails. Cloud storage helps to eliminate these inconveniences and make life so much simpler.\",How to upload music,End-user,No,No,No\n\"Project2ConceptualizationResponse: Savold, Steven\",Project2Conceptualization,\"Savold, Steven\",Conceptualization,\"In today's world photos are a very big thing. With so much social media sharing images and pictures of people its getting more important to make those pictures look good. I plan to document how to import and edit a photo in Photoshop to make the photo look a little better. I won't go into strong editing detail like stitching images together, however I will go into how the contrast and composition can help make a photo look better. I will use a pdf with images listing the steps the user will need to take to import the photo, the tools they will need to use, and them saving that new photo. \",How to import and edit photo in Photoshop,End-user,No,No,No\nProject2ConceptualizationResponse: Mike Leighton,Project2Conceptualization,Mike Leighton,Conceptualization,\"I am going to create a manual type documentation on how to install hardware into a specific computer case. I will add pictures when possible to aid with visuals of more difficult areas on the installation.  It will have all the needed hardware for regular use and some extra parts for extended use of a computer, such as for computer gaming.\",Install hardware into computer case,End-user,No,No,No\n\"Project2ConceptualizationResponse: Arcuri, Richard\",Project2Conceptualization,\"Arcuri, Richard\",Conceptualization,Im going to create a forum type of documentation that allows users to search within the forum and get any inquiry they choose. This forum will have ratings and allow people with good ratings and reputation to comment and backup peoples answers and questions. So say you needed to get information on a subject. You could post a question on there to get answers within a day or two. If you wanted to you could later post the final answer to the question you asked to be put in a search engine and looked up.,Create forum for questions,End-user,No,No,Yes\n\"Project2ConceptualizationResponse: Baker, Derek\",Project2Conceptualization,\"Baker, Derek\",Conceptualization,\"I am going to create a website that presents options for taking a screen shot, annotating it, and then injecting it into a Blackboard post. The options initially presented will be tailored to the user's OS. This will be facilitated by browser-sniffing. The page will, by default, display info pertaining to the operating system that the site registers the user as currently using. This method is not fool-proof however due to the fact that the user could be spoofing or obfuscating data, or they may be looking for install docs for an operating system different than the one that they are currently using. Due to these realities I will also provide options to select the subset of the docs that does suit their particular needs.\",Website to do things,End-user,No,No,No\n\"Project2ConceptualizationResponse: Saunders, Kyle\",Project2Conceptualization,\"Saunders, Kyle\",Conceptualization,\"I will provide documentation to my users by creating a PDF file with detailed pictures and short concise text. The PDF file will walk the users through the various steps to create a Google account and teach the users how to put the documentation files onto Google drive. The PDF will also walk the user through obtaining access on a mobile device. (Android and IOS)  The PDF file will be created with preview, the text will be created with pages and the pictures will be taken with apples screen grab <br>The trend that i intend to create end user documentation for is mobile delivery. Smartphones are used by everyone today, from building relationships, planing, gaming to listening to music. As a technical documentation professional is it very safe to assume that a reader is no longer going to have the desire to flip through a printed document or be in front of a computer when desiring to read documentation. I plan on documenting a system to show users how to post documentation and other important documents to Google drive to allow anyone with a mobile device to be able to access the documentation. The scenario in which my documentation will come in use, would be when an employee is at a customers site. When an employee is on site, it might not be best for them to pull out a laptop or go through pages of documentation. My documentation will show the end users how to give the employee the access to the documentation he needs.\",Create google account and store files on Google drive,End-user,No,Not Explicit,Yes\n\"Project2ConceptualizationResponse: VanDresar, Erin\",Project2Conceptualization,\"VanDresar, Erin\",Conceptualization,\"For my project 2 Conceptualization, I will be creating an end-user documentation that will explain how to save a Microsoft Word, Excel or Power point document/file to Microsoft One Drive. The files will be saved in their normal format (.doc, .xlsx, .ppsx). By saving to the One Drive, the user is now able to access that file from any computer by logging into the platform used (Microsoft Word, Excel or Power point). My documentation will show users how to save their document to the One Drive so it is accessible.\",How to save MS file on onedrive,End-user,No,No,No"
+   },
+   {
+      "form": 0,
+      "name": "chkHeader",
+      "type": "checkbox",
+      "id": "chkHeader",
+      "elementPos": 9,
+      "checked": true,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtRowLimit",
+      "elementPos": 10,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepAuto",
+      "elementPos": 11,
+      "checked": true,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepComma",
+      "elementPos": 12,
+      "checked": false,
+      "namePos": 1,
+      "value": ","
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepSemicolon",
+      "elementPos": 13,
+      "checked": false,
+      "namePos": 2,
+      "value": ";"
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepColon",
+      "elementPos": 14,
+      "checked": false,
+      "namePos": 3,
+      "value": ":"
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepPipe",
+      "elementPos": 15,
+      "checked": false,
+      "namePos": 4,
+      "value": "|"
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepTab",
+      "elementPos": 16,
+      "checked": false,
+      "namePos": 5,
+      "value": "\\t"
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepCaret",
+      "elementPos": 17,
+      "checked": false,
+      "namePos": 6,
+      "value": "^"
+   },
+   {
+      "form": 0,
+      "name": "sep",
+      "type": "radio",
+      "id": "sepSpace",
+      "elementPos": 18,
+      "checked": false,
+      "namePos": 7,
+      "value": " "
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkReplaceAccents",
+      "elementPos": 19,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkIgnoreDoubleQuote",
+      "elementPos": 20,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkInputQuote",
+      "elementPos": 21,
+      "checked": false,
+      "namePos": 0,
+      "value": "'"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkDecodeLiterals",
+      "elementPos": 22,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtCols",
+      "elementPos": 24,
+      "checked": false,
+      "namePos": 0,
+      "value": "1,2,3,4,5,6,7,8,9,10"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "",
+      "elementPos": 26,
+      "namePos": 0,
+      "value": "Query Builder"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkIgnoreCase",
+      "elementPos": 28,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortFld1",
+      "elementPos": 29,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortType1",
+      "elementPos": 30,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortAsc1",
+      "elementPos": 31,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortFld2",
+      "elementPos": 32,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortType2",
+      "elementPos": 33,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortAsc2",
+      "elementPos": 34,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortFld3",
+      "elementPos": 35,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortType3",
+      "elementPos": 36,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "selSortAsc3",
+      "elementPos": 37,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 38,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 39,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 40,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 41,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 42,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 43,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 44,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "",
+      "elementPos": 45,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml1",
+      "elementPos": 46,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr1",
+      "elementPos": 47,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper1",
+      "elementPos": 48,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower1",
+      "elementPos": 49,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper1",
+      "elementPos": 50,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct1",
+      "elementPos": 51,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch1",
+      "elementPos": 52,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull1",
+      "elementPos": 53,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals1",
+      "elementPos": 54,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml2",
+      "elementPos": 55,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr2",
+      "elementPos": 56,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper2",
+      "elementPos": 57,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower2",
+      "elementPos": 58,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper2",
+      "elementPos": 59,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct2",
+      "elementPos": 60,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch2",
+      "elementPos": 61,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull2",
+      "elementPos": 62,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals2",
+      "elementPos": 63,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml3",
+      "elementPos": 64,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr3",
+      "elementPos": 65,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper3",
+      "elementPos": 66,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower3",
+      "elementPos": 67,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper3",
+      "elementPos": 68,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct3",
+      "elementPos": 69,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch3",
+      "elementPos": 70,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull3",
+      "elementPos": 71,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals3",
+      "elementPos": 72,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml4",
+      "elementPos": 73,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr4",
+      "elementPos": 74,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper4",
+      "elementPos": 75,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower4",
+      "elementPos": 76,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper4",
+      "elementPos": 77,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct4",
+      "elementPos": 78,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch4",
+      "elementPos": 79,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull4",
+      "elementPos": 80,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals4",
+      "elementPos": 81,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml5",
+      "elementPos": 82,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr5",
+      "elementPos": 83,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper5",
+      "elementPos": 84,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower5",
+      "elementPos": 85,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper5",
+      "elementPos": 86,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct5",
+      "elementPos": 87,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch5",
+      "elementPos": 88,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull5",
+      "elementPos": 89,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals5",
+      "elementPos": 90,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml6",
+      "elementPos": 91,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr6",
+      "elementPos": 92,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper6",
+      "elementPos": 93,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower6",
+      "elementPos": 94,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper6",
+      "elementPos": 95,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct6",
+      "elementPos": 96,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch6",
+      "elementPos": 97,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull6",
+      "elementPos": 98,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals6",
+      "elementPos": 99,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml7",
+      "elementPos": 100,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr7",
+      "elementPos": 101,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper7",
+      "elementPos": 102,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower7",
+      "elementPos": 103,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper7",
+      "elementPos": 104,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct7",
+      "elementPos": 105,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch7",
+      "elementPos": 106,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull7",
+      "elementPos": 107,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals7",
+      "elementPos": 108,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml8",
+      "elementPos": 109,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr8",
+      "elementPos": 110,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper8",
+      "elementPos": 111,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower8",
+      "elementPos": 112,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper8",
+      "elementPos": 113,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct8",
+      "elementPos": 114,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch8",
+      "elementPos": 115,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull8",
+      "elementPos": 116,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals8",
+      "elementPos": 117,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml9",
+      "elementPos": 118,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr9",
+      "elementPos": 119,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper9",
+      "elementPos": 120,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower9",
+      "elementPos": 121,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper9",
+      "elementPos": 122,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct9",
+      "elementPos": 123,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch9",
+      "elementPos": 124,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull9",
+      "elementPos": 125,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals9",
+      "elementPos": 126,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftriml10",
+      "elementPos": 127,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "ftrimr10",
+      "elementPos": 128,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkupper10",
+      "elementPos": 129,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chklower10",
+      "elementPos": 130,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkProper10",
+      "elementPos": 131,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkpunct10",
+      "elementPos": 132,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkcrunch10",
+      "elementPos": 133,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chknull10",
+      "elementPos": 134,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fdecimals10",
+      "elementPos": 135,
+      "checked": false,
+      "namePos": 0,
+      "value": ""
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkCsvQuotes",
+      "elementPos": 136,
+      "checked": false,
+      "namePos": 0,
+      "value": "on"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtKeyNum",
+      "elementPos": 137,
+      "checked": false,
+      "namePos": 0,
+      "value": "1"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkFldData",
+      "elementPos": 138,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtFieldName",
+      "elementPos": 139,
+      "checked": false,
+      "namePos": 0,
+      "value": "fields"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtDataName",
+      "elementPos": 140,
+      "checked": false,
+      "namePos": 0,
+      "value": "data"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "checkbox",
+      "id": "chkOverwrite",
+      "elementPos": 141,
+      "checked": true,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "chkNullJson",
+      "type": "checkbox",
+      "id": "chkNullJson",
+      "elementPos": 142,
+      "checked": true,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "chkSkipEmpty",
+      "type": "checkbox",
+      "id": "chkSkipEmpty",
+      "elementPos": 143,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "chkTryToObject",
+      "type": "checkbox",
+      "id": "chkTryToObject",
+      "elementPos": 144,
+      "checked": true,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "chkMongoDbMode",
+      "type": "checkbox",
+      "id": "chkMongoDbMode",
+      "elementPos": 145,
+      "checked": false,
+      "namePos": 0,
+      "value": "Y"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtHeader",
+      "elementPos": 147,
+      "checked": false,
+      "namePos": 0,
+      "value": "[{br}"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "textarea",
+      "id": "txtTemplate",
+      "elementPos": 148,
+      "namePos": 0,
+      "value": "  {lb}\n     \"{h1}\":\"{f1}\"\n    ,\"{h2}\":\"{f2}\"\n    ,\"{h3}\":\"{f3}\"\n    ,\"{h4}\":\"{f4}\"\n    ,\"{h5}\":\"{f5}\"\n    ,\"{h6}\":\"{f6}\"\n    ,\"{h7}\":\"{f7}\"\n    ,\"{h8}\":\"{f8}\"\n    ,\"{h9}\":\"{f9}\"\n    ,\"{h10}\":\"{f10}\"\n  {rb}"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "txtFooter",
+      "elementPos": 149,
+      "checked": false,
+      "namePos": 0,
+      "value": "]"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "text",
+      "id": "fn",
+      "elementPos": 156,
+      "checked": false,
+      "namePos": 0,
+      "value": "convertcsv"
+   },
+   {
+      "form": 0,
+      "name": "",
+      "type": "select-one",
+      "id": "eol",
+      "elementPos": 158,
+      "namePos": 0,
+      "value": ""
+   }
+]
