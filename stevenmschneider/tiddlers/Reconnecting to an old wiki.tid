@@ -1,0 +1,21 @@
+created: 20171212171705064
+modified: 20171212172941349
+tags: Thoughts
+title: Reconnecting to an old wiki
+type: text/vnd.tiddlywiki
+
+So I've decided to make this the main wiki that serves http://people.sunyit.edu/~steve -- in other words, the gateway to my digital presence @ SUNYPoly (for example, eventually, I'd like to be able to post to Twitter and to Facebook from here, on both phone and laptop).
+
+For today, I focused on making it reasonably up-to-date. I brought it into node.js, and put the wiki as the default index.html at https://github.com/stevesunypoly/stevesunypoly.github.io.
+
+* To edit this wiki, use terminal and execute ``tiddlywiki ~/Documents/GitHub/stevesunypoly.github.io/stevenmschneider/ --server``
+* To build index ``tiddlywiki ~/Documents/GitHub/stevesunypoly.github.io/stevenmschneider/ --build``
+* update github 
+
+But now that I look at it, I'll have to reconstruct it to clean out lots of stuff....
+
+
+
+
+
+f

@@ -712,11 +712,11 @@ Error message and password prompt
 
 <li>Draft of 'Digital Text Research Group'</li>
 
+<li>Draft of 'IMG_7443'</li>
+
 <li>Draft of 'New Tiddler 5'</li>
 
 <li>Draft of 'New Tiddler'</li>
-
-<li>Draft of 'TableOfContents'</li>
 
 <li>Draft of 'using an image macro to serve pictures'</li>
 
@@ -1209,6 +1209,8 @@ Error message and password prompt
 <li>radio-invoke-actions.js</li>
 
 <li>readonly tiddlywiki</li>
+
+<li>Reconnecting to an old wiki</li>
 
 <li>RedState.com</li>
 
@@ -12589,13 +12591,17 @@ https://www.diigo.com/file/image/odbcaqzcqocscpcbzbrdcqaee/Screenshot+2015-07-01
 <div created="20150911191919336" creator="stevesunypoly" draft.title="Digital Text oup Research G" modified="20171212162013260" modifier="stevesunypoly" title="Draft of 'Digital Text Research Group'" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
+<div activity="standing" animal="goats" created="20150605144858172" creator="stevesuny" draft.of="IMG_7443" draft.title="IMG_7443" dropbox-location="https://dl.dropboxusercontent.com/s/e1kb1dxg55qhcr5/" image="IMG_7443.jpg?dl=0" modified="20171212172854079" modifier="stevesunypoly" number="Three" phrase="by the barn" tags="oldGoatNarrative" title="Draft of 'IMG_7443'" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>!! {{!!number}} {{!!animal}} {{!!activity}} {{!!phrase}}
+!!! &lt;&lt;tag number&gt;&gt;&lt;&lt;tag animal&gt;&gt;&lt;&lt;tag activity&gt;&gt;&lt;&lt;tag phrase&gt;&gt;
+
+[img[https://dl.dropboxusercontent.com/s/e1kb1dxg55qhcr5/IMG_7443.jpg?dl=0]]
+</pre>
+</div>
 <div created="20150710145041277" creator="stevesunypoly" draft.of="New Tiddler 5" draft.title="New Tiddler 5" modified="20171212162013257" modifier="stevesunypoly" tags="" title="Draft of 'New Tiddler 5'" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>http://www.youtube.com/embed/JSi3r8Kw5XM?rel=0&amp;start=&quot;0:01:01&quot;&amp;end=&quot;0:01:15&quot;&gt;</pre>
 </div>
 <div created="20150605155639097" draft.of="New Tiddler" draft.title="New Tiddler" modified="20171212162013255" tags="" title="Draft of 'New Tiddler'" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre></pre>
-</div>
-<div created="20171212162013252" draft.of="TableOfContents" draft.title="TableOfContents" list="Courses" modified="20171212162013252" modifier="stevesunypoly" title="Draft of 'TableOfContents'" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
 </div>
 <div created="20150630141136519" creator="stevesunypoly" draft.of="using an image macro to serve pictures" draft.title="using an image macro to serve pictures" modified="20171212162013249" modifier="stevesunypoly" tags="" title="Draft of 'using an image macro to serve pictures'" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -14687,6 +14693,23 @@ exports.radioInvokeActions = RadioWidgetInvokeActions;
 <div created="20150714171142015" creator="stevesunypoly" modified="20171212162014367" modifier="stevesunypoly" tags="[[TiddlyWiki Dev]]" title="readonly tiddlywiki" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>http://tw5readonly.tiddlyspot.com/</pre>
 </div>
+<div created="20171212171705064" modified="20171212172941349" tags="Thoughts" title="Reconnecting to an old wiki" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>So I've decided to make this the main wiki that serves http://people.sunyit.edu/~steve -- in other words, the gateway to my digital presence @ SUNYPoly (for example, eventually, I'd like to be able to post to Twitter and to Facebook from here, on both phone and laptop).
+
+For today, I focused on making it reasonably up-to-date. I brought it into node.js, and put the wiki as the default index.html at https://github.com/stevesunypoly/stevesunypoly.github.io.
+
+* To edit this wiki, use terminal and execute ``tiddlywiki ~/Documents/GitHub/stevesunypoly.github.io/stevenmschneider/ --server``
+* To build index ``tiddlywiki ~/Documents/GitHub/stevesunypoly.github.io/stevenmschneider/ --build``
+* update github 
+
+But now that I look at it, I'll have to reconstruct it to clean out lots of stuff....
+
+
+
+
+
+f</pre>
+</div>
 <div created="20150624182831377" creator="stevesunypoly" modified="20171212162014364" modifier="stevesunypoly" tags="HypertextExamples" title="RedState.com" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>[img[https://dl.dropboxusercontent.com/s/zjj2h4kfwu4bs11/Screenshot%202015-06-23%2022.26.12.png?dl=0]]</pre>
 </div>
@@ -15615,12 +15638,8 @@ Images are stored locally:
 | Mon, Sep 28| Mon, Oct 19| Mon, Nov 9|Mon, Nov 30|
 | Mon, Oct 12| Mon, Nov 2|||</pre>
 </div>
-<div created="20150611170607098" creator="stevesunypoly" modified="20171212162014781" modifier="stevesunypoly" tags="TableOfContents" title="Thoughts" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;$list filter=&quot;[tag[Thoughts]!sort[created]]&quot;&gt;
-//&lt;$view field=&quot;created&quot; format=&quot;date&quot;
-template=&quot;DD mmm YY&quot;/&gt;//
-&lt;$link&gt;{{!!title}}&lt;/$link&gt;&lt;br&gt;
-&lt;/$list&gt;
+<div created="20150611170607098" creator="stevesunypoly" modified="20171212172514970" modifier="stevesunypoly" tags="TableOfContents" title="Thoughts" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>
 
 </pre>
 </div>

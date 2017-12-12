@@ -1,14 +1,10 @@
 created: 20150611170607098
 creator: stevesunypoly
-modified: 20171212162014781
+modified: 20171212172514970
 modifier: stevesunypoly
 tags: TableOfContents
 title: Thoughts
 type: text/vnd.tiddlywiki
 
-<$list filter="[tag[Thoughts]!sort[created]]">
-//<$view field="created" format="date"
-template="DD mmm YY"/>//
-<$link>{{!!title}}</$link><br>
-</$list>
+
 
