@@ -1,0 +1,12 @@
+created: 20171212162013400
+image: IMG_7503.jpg
+modified: 20171212162013400
+noun: Goats
+number: Four
+phrase: InTheBarn
+tags: goatNarrative6
+title: FourClimbingInTheBarn
+type: text/vnd.tiddlywiki
+verb: Climbing
+
+<<ximg IMG_7503.jpg width:150>> <br>showing {{!!image}} and noun: {{!!noun}} number: {{!!number}} verb: {{!!verb}} phrase: {{!!phrase}}<br>

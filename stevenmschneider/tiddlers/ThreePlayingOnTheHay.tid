@@ -1,0 +1,12 @@
+created: 20171212162014825
+image: IMG_7461.jpg
+modified: 20171212162014825
+noun: Goats
+number: Three
+phrase: OnTheHay
+tags: goatNarrative6
+title: ThreePlayingOnTheHay
+type: text/vnd.tiddlywiki
+verb: Playing
+
+<<ximg IMG_7461.jpg width:150>> <br>showing {{!!image}} and noun: {{!!noun}} number: {{!!number}} verb: {{!!verb}} phrase: {{!!phrase}}<br>

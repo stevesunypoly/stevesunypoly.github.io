@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.14" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<!--title mod by steve to point to $:/core/wiki/static-tiddler-title-->
+<title>select-invoke-actions.js: Steven M. Schneider</title>
+</head>
+<body class="tc-body">
+
+<section class="tc-story-river">
+
+<p><div class="tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   "><div class="tc-tiddler-title">
+<div class="tc-titlebar">
+<span class="tc-tiddler-controls">
+<span class=" tc-reveal"><button aria-label="more" class="tc-btn-invisible" title="More actions">
+
+
+</button><div class=" tc-reveal" hidden="true"></div></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal"><button aria-label="close others" class="tc-btn-invisible" title="Close other tiddlers">
+
+
+</button></span><span class=" tc-reveal"><button aria-label="close" class="tc-btn-invisible" title="Close this tiddler">
+
+
+</button></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span>
+</span>
+
+<span>
+
+<span class="tc-tiddler-title-icon" style="fill:;">
+
+</span>
+
+
+
+<h2 class="tc-title">
+select-invoke-actions.js
+</h2>
+
+</span>
+
+</div>
+
+<div class="tc-tiddler-info tc-popup-handle tc-reveal" hidden="true"></div>
+</div><div class=" tc-reveal" hidden="true"></div>
+<div class=" tc-reveal">
+<div class="tc-subtitle">
+<a class="tc-tiddlylink tc-tiddlylink-missing" href=".html">
+
+</a> 12th December 2017 at 11:20am
+</div>
+</div>
+<div class=" tc-reveal">
+<div class="tc-tags-wrapper"></div>
+</div>
+<div class="tc-tiddler-body tc-reveal"><p>/*\
+title: <a class="tc-tiddlylink tc-tiddlylink-missing" href="%2524%253A%252Fplugins%252Finmysocsk%252FWidgetsInvokeActions%252Fselect-invoke-actions.js.html">$:/plugins/inmysocsk/WidgetsInvokeActions/select-invoke-actions.js</a>
+type: application/javascript
+module-type: widget</p><p>Select widget:</p><pre><code>&lt;$select tiddler=&quot;MyTiddler&quot; field=&quot;text&quot;&gt;
+&lt;$list filter=&quot;[tag[chapter]]&quot;&gt;
+&lt;option value=&lt;&lt;currentTiddler&gt;&gt;&gt;
+&lt;$view field=&quot;description&quot;/&gt;
+&lt;/option&gt;
+&lt;/$list&gt;
+&lt;/$select&gt;</code></pre><p>\*/
+(function(){</p><p>/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;</p><p>var Widget = require(&quot;<a class="tc-tiddlylink tc-tiddlylink-shadow" href="%2524%253A%252Fcore%252Fmodules%252Fwidgets%252Fwidget.js.html">$:/core/modules/widgets/widget.js</a>&quot;).widget;</p><p>var <a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a> = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};</p><p>/*
+Inherit from the base widget class
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype = new Widget();</p><p>/*
+Render this widget into the DOM
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype.render = function(parent,nextSibling) {
+	this.parentDomNode = parent;
+	this.computeAttributes();
+	this.execute();
+	this.renderChildren(parent,nextSibling);
+	this.setSelectValue();
+	$tw.utils.addEventListeners(this.getSelectDomNode(),[
+		{name: &quot;change&quot;, handlerObject: this, handlerMethod: &quot;handleChangeEvent&quot;}
+	]);
+};</p><p>/*
+Handle a change event
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype.handleChangeEvent = function(event) {	</p><p>var value = this.getSelectDomNode().value;
+	this.wiki.setText(this.selectTitle,this.selectField,this.selectIndex,value);</p><p>this.activeChild = 2*(this.getSelectDomNode().selectedIndex)+1;
+	var widgets = $tw.wiki.makeWidget(this.parseTreeNode.children[this.activeChild], {parentWidget:this});
+	widgets.parseTreeNode = this.parseTreeNode;
+	widgets.parseTreeNode.children = [this.parseTreeNode.children[this.activeChild]];
+	var container = $tw.fakeDocument.createElement(&quot;div&quot;);
+	widgets.setVariable(&quot;currentTiddler&quot;, this.getVariable(&quot;currentTiddler&quot;));
+	widgets.render(container, null);
+	if(widgets) {
+		widgets.invokeActions({});
+	}
+};</p><p>/*
+If necessary, set the value of the select element to the current value
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype.setSelectValue = function() {
+	var value = this.selectDefault;
+	<em> Get the value
+	if(this.selectIndex) {
+		value = this.wiki.extractTiddlerDataItem(this.selectTitle,this.selectIndex);
+	} else {
+		var tiddler = this.wiki.getTiddler(this.selectTitle);
+		if(tiddler) {
+			if(this.selectField === &quot;text&quot;) {
+				</em> Calling getTiddlerText() triggers lazy loading of skinny tiddlers
+				value = this.wiki.getTiddlerText(this.selectTitle);
+			} else {
+				if($tw.utils.hop(tiddler.fields,this.selectField)) {
+					value = tiddler.getFieldString(this.selectField);
+				}
+			}
+		} else {
+			if(this.selectField === &quot;title&quot;) {
+				value = this.selectTitle;
+			}
+		}
+	}
+	<em> Assign it to the select element if it's different than the current value
+	var domNode = this.getSelectDomNode();
+	if(domNode.value !== value) {
+		domNode.value = value;
+	}
+};
+
+/*
+Get the DOM node of the select element
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype.getSelectDomNode = function() {
+	return this.children[0].domNodes[0];
+};
+
+/*
+Compute the internal state of the widget
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype.execute = function() {
+	</em> Get our parameters
+	this.selectTitle = this.getAttribute(&quot;tiddler&quot;,this.getVariable(&quot;currentTiddler&quot;));
+	this.selectField = this.getAttribute(&quot;field&quot;,&quot;text&quot;);
+	this.selectIndex = this.getAttribute(&quot;index&quot;);
+	this.selectClass = this.getAttribute(&quot;class&quot;);
+	this.selectDefault = this.getAttribute(&quot;default&quot;);
+	var selectNode = {
+		type: &quot;element&quot;,
+		tag: &quot;select&quot;,
+		children: this.parseTreeNode.children,
+	};
+	if(this.selectClass) {
+		$tw.utils.addAttributeToParseTreeNode(selectNode,&quot;class&quot;,this.selectClass);
+	}
+	this.makeChildWidgets([selectNode]);
+};</p><p>/*
+Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	<em> If we're using a different tiddler/field/index then completely refresh ourselves
+	if(changedAttributes.selectTitle || changedAttributes.selectField || changedAttributes.selectIndex) {
+		this.refreshSelf();
+		return true;
+	</em> If the target tiddler value has changed, just update setting and refresh the children
+	} else {
+		if(changedTiddlers[this.selectTitle]) {
+			this.setSelectValue();
+		} 
+		return this.refreshChildren(changedTiddlers);		
+	}
+};</p><p>exports.selectInvokeActions = <a class="tc-tiddlylink tc-tiddlylink-missing" href="SelectWidgetInvokeActions.html">SelectWidgetInvokeActions</a>;</p><p>})();
+</p></div>
+
+<div class="tb-tagging">
+<div class="tb-tagging-label">
+    
+</div>
+
+
+
+</div><style>
+.tb-tagging{
+font-size:1.0em;
+}
+
+
+
+
+.tb-tagging-label{
+color:grey;
+}
+
+.tb-tagging-sub{
+margin-left: 10px;
+}
+
+.tb-tagging-sub:before{
+content:&quot;»&quot;;
+color:grey;
+float:left;
+margin-right:5px;
+}
+</style>
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

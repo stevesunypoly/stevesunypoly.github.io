@@ -1,0 +1,12 @@
+created: 20171212162013352
+image: IMG_7472.jpg
+modified: 20171212162013352
+noun: Goats
+number: Four
+phrase: NearTheTractor
+tags: goatNarrative4
+title: FourSleepigNearTheTractor
+type: text/vnd.tiddlywiki
+verb: Sleepig
+
+noun: {{!!noun}} number: {{!!number}} verb: {{!!verb}} phrase: {{!!phrase}}<br>

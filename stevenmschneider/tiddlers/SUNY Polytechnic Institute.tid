@@ -1,0 +1,10 @@
+created: 20170107184209215
+creator: stevesunypoly
+modified: 20171212162014649
+modifier: stevesunypoly
+title: SUNY Polytechnic Institute
+type: text/vnd.tiddlywiki
+
+http://sunypoly.edu<br>
+<hr>
+<$transclude tiddler="""SUNY Poly Programs | Committees"""mode="block">

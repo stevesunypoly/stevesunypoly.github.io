@@ -1,0 +1,10 @@
+created: 20150611172010918
+creator: stevesunypoly
+modified: 20171212162013841
+modifier: stevesunypoly
+title: ifRecipe
+type: text/vnd.tiddlywiki
+
+An {{!!title}} is a recipe created on [[IFTTT|http://ifttt.com]], meaning "if this, then that". Current {{!!title}}'s include:
+
+<$list filter="[tag[ifRecipe]]"/>

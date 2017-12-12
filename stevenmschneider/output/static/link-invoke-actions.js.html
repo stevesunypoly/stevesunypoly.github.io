@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.14" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<!--title mod by steve to point to $:/core/wiki/static-tiddler-title-->
+<title>link-invoke-actions.js: Steven M. Schneider</title>
+</head>
+<body class="tc-body">
+
+<section class="tc-story-river">
+
+<p><div class="tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   "><div class="tc-tiddler-title">
+<div class="tc-titlebar">
+<span class="tc-tiddler-controls">
+<span class=" tc-reveal"><button aria-label="more" class="tc-btn-invisible" title="More actions">
+
+
+</button><div class=" tc-reveal" hidden="true"></div></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal"><button aria-label="close others" class="tc-btn-invisible" title="Close other tiddlers">
+
+
+</button></span><span class=" tc-reveal"><button aria-label="close" class="tc-btn-invisible" title="Close this tiddler">
+
+
+</button></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span>
+</span>
+
+<span>
+
+<span class="tc-tiddler-title-icon" style="fill:;">
+
+</span>
+
+
+
+<h2 class="tc-title">
+link-invoke-actions.js
+</h2>
+
+</span>
+
+</div>
+
+<div class="tc-tiddler-info tc-popup-handle tc-reveal" hidden="true"></div>
+</div><div class=" tc-reveal" hidden="true"></div>
+<div class=" tc-reveal">
+<div class="tc-subtitle">
+<a class="tc-tiddlylink tc-tiddlylink-missing" href=".html">
+
+</a> 12th December 2017 at 11:20am
+</div>
+</div>
+<div class=" tc-reveal">
+<div class="tc-tags-wrapper"></div>
+</div>
+<div class="tc-tiddler-body tc-reveal"><p>/*\
+title: <a class="tc-tiddlylink tc-tiddlylink-missing" href="%2524%253A%252Fplugins%252Finmysocsk%252FWidgetsInvokeActions%252Flink-invoke-actions.js.html">$:/plugins/inmysocsk/WidgetsInvokeActions/link-invoke-actions.js</a>
+type: application/javascript
+module-type: widget</p><p>Link widget</p><p>\*/
+(function(){</p><p>/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;</p><p>var Widget = require(&quot;<a class="tc-tiddlylink tc-tiddlylink-shadow" href="%2524%253A%252Fcore%252Fmodules%252Fwidgets%252Fwidget.js.html">$:/core/modules/widgets/widget.js</a>&quot;).widget;</p><p>var <a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a> = function(parseTreeNode,options) {
+	this.initialise(parseTreeNode,options);
+};</p><p>/*
+Inherit from the base widget class
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype = new Widget();</p><p>/*
+Render this widget into the DOM
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.render = function(parent,nextSibling) {
+	<em> Save the parent dom node
+	this.parentDomNode = parent;
+	</em> Compute our attributes
+	this.computeAttributes();
+	<em> Execute our logic
+	this.execute();
+	</em> Get the value of the tv-wikilinks configuration macro
+	var wikiLinksMacro = this.getVariable(&quot;tv-wikilinks&quot;),
+		useWikiLinks = wikiLinksMacro ? (wikiLinksMacro.trim() !== &quot;no&quot;) : true;
+	<em> Render the link if required
+	if(useWikiLinks) {
+		this.renderLink(parent,nextSibling);
+	} else {
+		</em> Just insert the link text
+		var domNode = this.document.createElement(&quot;span&quot;);
+		parent.insertBefore(domNode,nextSibling);
+		this.renderChildren(domNode,null);
+		this.domNodes.push(domNode);
+	}
+};</p><p>/*
+Render this widget into the DOM
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.renderLink = function(parent,nextSibling) {
+	var self = this;
+	<em> Create our element
+	var domNode = this.document.createElement(&quot;a&quot;);
+	</em> Assign classes
+	var classes = [];
+	if(this.linkClasses) {
+		classes.push(this.linkClasses);
+	}
+	classes.push(&quot;tc-tiddlylink&quot;);
+	if(this.isShadow) {
+		classes.push(&quot;tc-tiddlylink-shadow&quot;);
+	}
+	if(this.isMissing &amp;&amp; !this.isShadow) {
+		classes.push(&quot;tc-tiddlylink-missing&quot;);
+	} else {
+		if(!this.isMissing) {
+			classes.push(&quot;tc-tiddlylink-resolves&quot;);
+		}
+	}
+	domNode.setAttribute(&quot;class&quot;,classes.join(&quot; &quot;));
+	<em> Set an href
+	var wikiLinkTemplateMacro = this.getVariable(&quot;tv-wikilink-template&quot;),
+		wikiLinkTemplate = wikiLinkTemplateMacro ? wikiLinkTemplateMacro.trim() : &quot;#$uri_encoded$&quot;,
+		wikiLinkText = wikiLinkTemplate.replace(&quot;$uri_encoded$&quot;,encodeURIComponent(this.to));
+	wikiLinkText = wikiLinkText.replace(&quot;$uri_doubleencoded$&quot;,encodeURIComponent(encodeURIComponent(this.to)));
+	domNode.setAttribute(&quot;href&quot;,wikiLinkText);
+	</em> Set the tooltip
+	<em> HACK: Performance issues with re-parsing the tooltip prevent us defaulting the tooltip to &quot;link-invoke-actions.js&quot;
+	var tooltipWikiText = this.tooltip || this.getVariable(&quot;tv-wikilink-tooltip&quot;);
+	if(tooltipWikiText) {
+		var tooltipText = this.wiki.renderText(&quot;text/plain&quot;,&quot;text/vnd.tiddlywiki&quot;,tooltipWikiText,{
+				parseAsInline: true,
+				variables: {
+					currentTiddler: this.to
+				},
+				parentWidget: this
+			});
+		domNode.setAttribute(&quot;title&quot;,tooltipText);
+	}
+	if(this[&quot;aria-label&quot;]) {
+		domNode.setAttribute(&quot;aria-label&quot;,this[&quot;aria-label&quot;]);
+	}
+	</em> Add a click event handler
+	$tw.utils.addEventListeners(domNode,[
+		{name: &quot;click&quot;, handlerObject: this, handlerMethod: &quot;handleClickEvent&quot;},
+		{name: &quot;dragstart&quot;, handlerObject: this, handlerMethod: &quot;handleDragStartEvent&quot;},
+		{name: &quot;dragend&quot;, handlerObject: this, handlerMethod: &quot;handleDragEndEvent&quot;}
+	]);
+	<em> Insert the link into the DOM and render any children
+	parent.insertBefore(domNode,nextSibling);
+	this.renderChildren(domNode,null);
+	this.domNodes.push(domNode);
+};
+
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.handleClickEvent = function(event) {
+	var handled;
+	</em> Invoke any actions
+	if(this.invokeActions(event)) {
+		handled = true;
+	}
+	<em> Send the click on its way as a navigate event
+	var bounds = this.domNodes[0].getBoundingClientRect();
+	this.dispatchEvent({
+		type: &quot;tm-navigate&quot;,
+		navigateTo: this.to,
+		navigateFromTitle: this.getVariable(&quot;storyTiddler&quot;),
+		navigateFromNode: this,
+		navigateFromClientRect: { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
+		},
+		navigateSuppressNavigation: event.metaKey || event.ctrlKey || (event.button === 1)
+	});
+	event.preventDefault();
+	event.stopPropagation();
+	return false;
+};
+
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.handleDragStartEvent = function(event) {
+	if(event.target === this.domNodes[0]) {
+		if(this.to) {
+			</em> Set the dragging class on the element being dragged
+			$tw.utils.addClass(event.target,&quot;tc-tiddlylink-dragging&quot;);
+			<em> Create the drag image elements
+			this.dragImage = this.document.createElement(&quot;div&quot;);
+			this.dragImage.className = &quot;tc-tiddler-dragger&quot;;
+			var inner = this.document.createElement(&quot;div&quot;);
+			inner.className = &quot;tc-tiddler-dragger-inner&quot;;
+			inner.appendChild(this.document.createTextNode(this.to));
+			this.dragImage.appendChild(inner);
+			this.document.body.appendChild(this.dragImage);
+			</em> Astoundingly, we need to cover the dragger up: <a class="tc-tiddlylink-external" href="http://www.kryogenix.org/code/browser/custom-drag-image.html" rel="noopener noreferrer" target="_blank">http://www.kryogenix.org/code/browser/custom-drag-image.html</a>
+			var cover = this.document.createElement(&quot;div&quot;);
+			cover.className = &quot;tc-tiddler-dragger-cover&quot;;
+			cover.style.left = (inner.offsetLeft - 16) + &quot;px&quot;;
+			cover.style.top = (inner.offsetTop - 16) + &quot;px&quot;;
+			cover.style.width = (inner.offsetWidth + 32) + &quot;px&quot;;
+			cover.style.height = (inner.offsetHeight + 32) + &quot;px&quot;;
+			this.dragImage.appendChild(cover);
+			<em> Set the data transfer properties
+			var dataTransfer = event.dataTransfer;
+			</em> First the image
+			dataTransfer.effectAllowed = &quot;copy&quot;;
+			if(dataTransfer.setDragImage) {
+				dataTransfer.setDragImage(this.dragImage.firstChild,-16,-16);
+			}
+			<em> Then the data
+			dataTransfer.clearData();
+			var jsonData = this.wiki.getTiddlerAsJson(this.to),
+				textData = this.wiki.getTiddlerText(this.to,&quot;&quot;),
+				title = (new <a class="tc-tiddlylink tc-tiddlylink-missing" href="RegExp.html">RegExp</a>(&quot;^&quot; + $tw.config.textPrimitives.wikiLink + &quot;$&quot;,&quot;mg&quot;)).exec(this.to) ? this.to : &quot;<a class="tc-tiddlylink tc-tiddlylink-missing" href="%2522%2520%252B%2520this.to%2520%252B%2520%2522.html">&quot; + this.to + &quot;</a>&quot;;
+			</em> IE doesn't like these content types
+			if(!$tw.browser.isIE) {
+				dataTransfer.setData(&quot;text/vnd.tiddler&quot;,jsonData);
+				dataTransfer.setData(&quot;text/plain&quot;,title);
+				dataTransfer.setData(&quot;text/x-moz-url&quot;,&quot;<a class="tc-tiddlylink-external" href="data:text/vnd.tiddler" rel="noopener noreferrer" target="_blank">data:text/vnd.tiddler</a>,&quot; + encodeURI(jsonData));
+			}
+			dataTransfer.setData(&quot;URL&quot;,&quot;<a class="tc-tiddlylink-external" href="data:text/vnd.tiddler" rel="noopener noreferrer" target="_blank">data:text/vnd.tiddler</a>,&quot; + encodeURI(jsonData));
+			dataTransfer.setData(&quot;Text&quot;,title);
+			event.stopPropagation();
+		} else {
+			event.preventDefault();
+		}
+	}
+};</p><p><a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.handleDragEndEvent = function(event) {
+	if(event.target === this.domNodes[0]) {
+		<em> Remove the dragging class on the element being dragged
+		$tw.utils.removeClass(event.target,&quot;tc-tiddlylink-dragging&quot;);
+		</em> Delete the drag image element
+		if(this.dragImage) {
+			this.dragImage.parentNode.removeChild(this.dragImage);
+		}
+	}
+};</p><p>/*
+Compute the internal state of the widget
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.execute = function() {
+	<em> Get the target tiddler title
+	this.to = this.getAttribute(&quot;to&quot;,this.getVariable(&quot;currentTiddler&quot;));
+	</em> Get the link title and aria label
+	this.tooltip = this.getAttribute(&quot;tooltip&quot;);
+	this[&quot;aria-label&quot;] = this.getAttribute(&quot;aria-label&quot;);
+	<em> Get the link classes
+	this.linkClasses = this.getAttribute(&quot;class&quot;);
+	</em> Determine the link characteristics
+	this.isMissing = !this.wiki.tiddlerExists(this.to);
+	this.isShadow = this.wiki.isShadowTiddler(this.to);
+	<em> Make the child widgets
+	this.makeChildWidgets();
+};
+
+/*
+Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
+*/
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>.prototype.refresh = function(changedTiddlers) {
+	var changedAttributes = this.computeAttributes();
+	if(changedAttributes.to || changedTiddlers[this.to] || changedAttributes[&quot;aria-label&quot;] || changedAttributes.tooltip) {
+		this.refreshSelf();
+		return true;
+	}
+	return this.refreshChildren(changedTiddlers);
+};
+
+exports.linkInvokeActions = <a class="tc-tiddlylink tc-tiddlylink-missing" href="LinkWidgetInvokeActions.html">LinkWidgetInvokeActions</a>;
+
+})();
+</em></p></div>
+
+<div class="tb-tagging">
+<div class="tb-tagging-label">
+    
+</div>
+
+
+
+</div><style>
+.tb-tagging{
+font-size:1.0em;
+}
+
+
+
+
+.tb-tagging-label{
+color:grey;
+}
+
+.tb-tagging-sub{
+margin-left: 10px;
+}
+
+.tb-tagging-sub:before{
+content:&quot;»&quot;;
+color:grey;
+float:left;
+margin-right:5px;
+}
+</style>
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

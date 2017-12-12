@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.14" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<!--title mod by steve to point to $:/core/wiki/static-tiddler-title-->
+<title>computational graphics & tagging: Steven M. Schneider</title>
+</head>
+<body class="tc-body">
+
+<section class="tc-story-river">
+
+<p><div class="tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Thoughts"><div class="tc-tiddler-title">
+<div class="tc-titlebar">
+<span class="tc-tiddler-controls">
+<span class=" tc-reveal"><button aria-label="more" class="tc-btn-invisible" title="More actions">
+
+
+</button><div class=" tc-reveal" hidden="true"></div></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal"><button aria-label="close others" class="tc-btn-invisible" title="Close other tiddlers">
+
+
+</button></span><span class=" tc-reveal"><button aria-label="close" class="tc-btn-invisible" title="Close this tiddler">
+
+
+</button></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span>
+</span>
+
+<span>
+
+<span class="tc-tiddler-title-icon" style="fill:;">
+
+</span>
+
+
+
+<h2 class="tc-title">
+computational graphics &amp; tagging
+</h2>
+
+</span>
+
+</div>
+
+<div class="tc-tiddler-info tc-popup-handle tc-reveal" hidden="true"></div>
+</div><div class=" tc-reveal" hidden="true"></div>
+<div class=" tc-reveal">
+<div class="tc-subtitle">
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="stevesunypoly.html">
+stevesunypoly
+</a> 12th December 2017 at 11:20am
+</div>
+</div>
+<div class=" tc-reveal">
+<div class="tc-tags-wrapper"><span class="tc-tag-list-item">
+
+
+<span class="tc-tag-label tc-btn-invisible" draggable="true" style="background-color:;
+fill:#ffffff;
+color:#ffffff;">
+ Thoughts
+</span>
+
+<span class="tc-drop-down tc-reveal" hidden="true"></span>
+
+</span>
+</div>
+</div>
+<div class="tc-tiddler-body tc-reveal"><p>A friend of mine shared a script with me, which takes a set of R-G-B values, a radius and an x/y coordinate, and generates a graphic. I think his function could be used to generate &quot;tiles&quot; – say, 25px by 25px generated images that could be put on tiddlers, depending on tag/field values.</p><p>I embedded the script as an iframe here</p><p>Of course, I'm hoping to embed the function in tiddlywiki so I could use a macro  to generate a 25x25 image that looks like this
+ </p><p>We could set those values based on fields/tags, and generate visual cues to the tags of a tiddler. For example, given a field &quot;Location&quot; value=1 x=25 y=25; value=2 x=150 y=25; value=3 x=150 y=25; value=4 x=150 y=150. Select 3 different R-G-B value sets (100,200,300 ; 200,300,100; 300,100,200)  and combine them to yield 4x3=12 different &quot;tiles&quot; that could be associated with tiddlers having appropriate field values.</p><p>In a multi-tagged environment, this could be an interesting visual cue. But – I don't really know how to move is javascript into a tiddlywiki function. It might be trivial, but insurmountable for me.If anyone wanted to hack on it, that would be great, and might be interesting.</p><p>Here is a link to <a class="tc-tiddlylink-external" href="https://designwritestudio.github.io/experimental/hand-tagged-graphics.html?i=124.87379701700996&amp;x=176.6728727371631&amp;y=104.28485949713784&amp;r=64&amp;g=178&amp;b=242&amp;ri=1.6731564374861718&amp;gi=5.41945679039433&amp;bi=17.160426734134074&amp;rand=1" rel="noopener noreferrer" target="_blank">mike hand's graphic generator</a></p><p>Here is an iframe:
+<iframe height="500" src="https://designwritestudio.github.io/experimental/hand-tagged-graphics.html" width="100%"></iframe></p></div>
+
+<div class="tb-tagging">
+<div class="tb-tagging-label">
+    
+</div>
+
+
+
+</div><style>
+.tb-tagging{
+font-size:1.0em;
+}
+
+
+
+
+.tb-tagging-label{
+color:grey;
+}
+
+.tb-tagging-sub{
+margin-left: 10px;
+}
+
+.tb-tagging-sub:before{
+content:&quot;»&quot;;
+color:grey;
+float:left;
+margin-right:5px;
+}
+</style>
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

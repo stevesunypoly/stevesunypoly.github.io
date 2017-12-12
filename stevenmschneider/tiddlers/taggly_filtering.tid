@@ -1,0 +1,9 @@
+created: 20151008001405968
+creator: stevesunypoly
+modified: 20171212162014724
+modifier: stevesunypoly
+tags: 
+title: taggly filtering
+type: text/vnd.tiddlywiki
+
+<$list filter="[tag[TableOfContents]]">

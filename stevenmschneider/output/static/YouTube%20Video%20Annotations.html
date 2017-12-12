@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.14" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<!--title mod by steve to point to $:/core/wiki/static-tiddler-title-->
+<title>YouTube Video Annotations: Steven M. Schneider</title>
+</head>
+<body class="tc-body">
+
+<section class="tc-story-river">
+
+<p><div class="tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Dashboard"><div class="tc-tiddler-title">
+<div class="tc-titlebar">
+<span class="tc-tiddler-controls">
+<span class=" tc-reveal"><button aria-label="more" class="tc-btn-invisible" title="More actions">
+
+
+</button><div class=" tc-reveal" hidden="true"></div></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal"><button aria-label="close others" class="tc-btn-invisible" title="Close other tiddlers">
+
+
+</button></span><span class=" tc-reveal"><button aria-label="close" class="tc-btn-invisible" title="Close this tiddler">
+
+
+</button></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span><span class=" tc-reveal" hidden="true"></span>
+</span>
+
+<span>
+
+<span class="tc-tiddler-title-icon" style="fill:;">
+
+</span>
+
+
+
+<h2 class="tc-title">
+YouTube Video Annotations
+</h2>
+
+</span>
+
+</div>
+
+<div class="tc-tiddler-info tc-popup-handle tc-reveal" hidden="true"></div>
+</div><div class=" tc-reveal" hidden="true"></div>
+<div class=" tc-reveal">
+<div class="tc-subtitle">
+<a class="tc-tiddlylink tc-tiddlylink-missing" href="stevesunypoly.html">
+stevesunypoly
+</a> 12th December 2017 at 11:20am
+</div>
+</div>
+<div class=" tc-reveal">
+<div class="tc-tags-wrapper"><span class="tc-tag-list-item">
+
+
+<span class="tc-tag-label tc-btn-invisible" draggable="true" style="background-color:;
+fill:#ffffff;
+color:#ffffff;">
+ Dashboard
+</span>
+
+<span class="tc-drop-down tc-reveal" hidden="true"></span>
+
+</span>
+</div>
+</div>
+<div class="tc-tiddler-body tc-reveal"><p>Notes about the state of development:</p><p>I still want to add the option to just copy a youtube URL into the add video place and use regular expressions to pull out the video id. You would still have to give it a name. I will get around to that at some point.</p><p>Also, the <code>Add Video Segment</code> and <code>Add Video Timestamp</code> tiddlers don't work outside of their use in this tiddler. You can change this. The problem is that there are a few places in the two tiddlers that have <code>{{!!selected_video}}</code>, which in the tabs here references the <code>selected_video</code> field of the <code>YouTube Video Annotations</code> tiddler, not the individual tiddlers. If you change it to <code>{{YouTube Video Annotations!!selected_video}}</code> than they should work. I am leaving it the way it is because this way changing the name of <code>YouTube Video Annotations</code> won't break anything.</p><p>Instructions:</p><p>You can select a video using the drop down menu, if you want to add a new video click on the <code>New Video</code> button and in the dialog that appears enter the youtube video id and a name for the video and click <code>add</code> to add the video and then <code>done</code> to get back to the video selection. Video names <strong>can't</strong> have any colons (<code>:</code>) in the titles or it will break.</p><p>If you enter a start and end time then click <code>Set Video Time</code> it will set the embedded video to play the segment between the start and end time. <code>Reset Video Time</code> resets this.</p><p>By entering a start time, an end time, short and long descriptions and any tags you wish then clicking <code>Add Video Segment</code> the segment will be saved. If you click on a segment name in the list at the bottom than the video will be set to play that segment (no autoplay though, I am working on it.)</p><p>
+
+
+<p></p><p><span class=" tc-reveal">
+Select Video: <select value="Obamacare">
+
+<option>Obama Eulogy</option>
+
+<option>Obamacare</option>
+
+</select>
+<button class="">New Video</button>
+</span>
+<span class=" tc-reveal" hidden="true"></span></p><p><div class="tc-tab-set ">
+<div class="tc-tab-buttons ">
+<button class="">
+
+
+
+Add Video Segment
+
+</button><button class="">
+
+
+
+Add Video Timestamp
+
+</button>
+</div>
+<div class="tc-tab-divider "></div>
+<div class="tc-tab-content ">
+<div class=" tc-reveal" hidden="true"></div><div class=" tc-reveal" hidden="true"></div>
+</div>
+</div></p>
+
+
+</p></div>
+
+<div class="tb-tagging">
+<div class="tb-tagging-label">
+    
+</div>
+
+
+
+</div><style>
+.tb-tagging{
+font-size:1.0em;
+}
+
+
+
+
+.tb-tagging-label{
+color:grey;
+}
+
+.tb-tagging-sub{
+margin-left: 10px;
+}
+
+.tb-tagging-sub:before{
+content:&quot;»&quot;;
+color:grey;
+float:left;
+margin-right:5px;
+}
+</style>
+</div>
+
+</p>
+
+</section>
+</body>
+</html>
