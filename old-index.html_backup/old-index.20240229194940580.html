@@ -226,8 +226,6 @@ Error message and password prompt
 
 <li>$:/generated-list-demo-state1</li>
 
-<li>$:/Import</li>
-
 <li>$:/isEncrypted</li>
 
 <li>$:/language/RecentChanges/DateFormat1</li>
@@ -1289,8 +1287,6 @@ Error message and password prompt
 <li>Serial - Thesis/Project</li>
 
 <li>SerialTiddlyWikification</li>
-
-<li>ShadowTiddlers</li>
 
 <li>share knowledge with peers</li>
 
@@ -10273,11 +10269,6 @@ $:/config/PageControlButtons/Visibility/$(listItem)$
 <div bag="default" created="20171212162012646" modified="20171212162012646" modifier="stevesunypoly" revision="0" title="$:/generated-list-demo-state1" type="text/vnd.tiddlywiki">
 <pre>goats: 2 eating +on the hay</pre>
 </div>
-<div status="complete" title="$:/Import">
-<pre>The following tiddlers were imported:
-
-# [[ShadowTiddlers]]</pre>
-</div>
 <div bag="default" revision="0" title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -10845,10 +10836,10 @@ exports.newtiddler = NewtiddlerWidget;
 <div bag="default" created="20150603184725792" creator="stevesunypoly" modified="20171212162012604" modifier="stevesunypoly" revision="0" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>Steven M. Schneider</pre>
 </div>
-<div created="20220415194014089" modified="20240301175620545" title="$:/state/sidebar">
-<pre>no</pre>
+<div created="20220415194014089" modified="20220415195428584" title="$:/state/sidebar">
+<pre>yes</pre>
 </div>
-<div list="$:/Import [[Hello There]]" title="$:/StoryList">
+<div list="[[Hello There]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div bag="default" created="20150716201720755" creator="stevesunypoly" list="$:/core/ui/MoreSideBar/All $:/core/ui/MoreSideBar/Recent $:/core/ui/MoreSideBar/Tags $:/core/ui/MoreSideBar/Missing $:/core/ui/MoreSideBar/Drafts $:/core/ui/MoreSideBar/Orphans $:/core/ui/MoreSideBar/Types $:/core/ui/MoreSideBar/System $:/core/ui/MoreSideBar/Shadows" modified="20171212162012601" modifier="stevesunypoly" revision="0" title="$:/tags/MoreSideBar" type="text/vnd.tiddlywiki">
@@ -10870,7 +10861,7 @@ exports.newtiddler = NewtiddlerWidget;
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/steve/Documents/GitHub/stevesunypoly.github.io/old-index.html&quot;
+            &quot;text&quot;: &quot;file:///Users/steve/Documents/GitHub/stevesunypoly.github.io/stevenmschneider/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -10890,7 +10881,7 @@ exports.newtiddler = NewtiddlerWidget;
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/steve/Documents/GitHub/stevesunypoly.github.io/old-index.html&quot;
+            &quot;text&quot;: &quot;/Users/steve/Documents/GitHub/stevesunypoly.github.io/stevenmschneider/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -15072,32 +15063,6 @@ exports.selectInvokeActions = SelectWidgetInvokeActions;
 </div>
 <div bag="default" created="20151013144608997" creator="stevesunypoly" modified="20171212162014503" modifier="stevesunypoly" revision="0" tags="[[Non-Sequential Object-Oriented Digital Narratives]]" title="SerialTiddlyWikification" type="text/vnd.tiddlywiki">
 <pre>[[Serial Tiddlywikificiation|https://dl.dropboxusercontent.com/u/7301528/digital-text-research-group/serial-tiddlywikification/serial-tiddlywikification.html]] project</pre>
-</div>
-<div tags="Concepts" title="ShadowTiddlers">
-<pre>\define actions()
-&lt;$action-setfield $tiddler=&quot;$:/state/tab/moresidebar-1850697562&quot; $field=&quot;text&quot; $value=&quot;$:/core/ui/MoreSideBar/Shadows&quot;/&gt;
-&lt;$action-setfield $tiddler=&quot;$:/state/tab/sidebar--595412856&quot; $field=&quot;text&quot; $value=&quot;$:/core/ui/SideBar/More&quot;/&gt;
-\end
-\define click(text)
-&lt;$button actions=&lt;&lt;actions&gt;&gt;&gt;$text$&lt;/$button&gt;
-\end
-
-ShadowTiddlers are tiddlers that are loaded from [[Plugins]] at the wiki startup. Unlike ordinary tiddlers, they don't appear in most lists.
-
-!! Overriding Shadow Tiddlers to modify plugins
-
-A ShadowTiddler can be overridden with an ordinary tiddler of the same name. This leaves the shadow tiddler intact but the plugin will use the overriding tiddler in its place, effectively allowing users to modify the behaviour of plugins.
-
-Users are cautioned against overriding shadow tiddlers because if the shadow tiddler is changed in a plugin update, the overriding tiddler may no longer perform as intended. To remedy this, the overriding tiddler may be modified or deleted. If the overriding tiddler is deleted, then the plugin falls back to using the original shadow tiddler.
-
-!! Overridden Shadow Tiddlers
-
-&lt;&lt;list-links &quot;[is[tiddler]is[shadow]sort[title]]&quot;&gt;&gt;
-
-!! Shadow Tiddlers
-
-A full list of shadow tiddlers can be found in the sidebar in the &quot;More&quot; -&gt; &quot;Shadows&quot; tab
-</pre>
 </div>
 <div bag="default" created="20150707133750591" creator="stevesunypoly" modified="20171212162014501" modifier="stevesunypoly" revision="0" tags="[[cid 106 assignments]]" title="share knowledge with peers" type="text/vnd.tiddlywiki">
 <pre>* provide reviews, experiences, etc.</pre>
