@@ -1,0 +1,91 @@
+<details open>
+<summary>Policy Generator Demonstration</summary>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: sans-serif; padding:10px; }
+
+.s{color:#dc2626;} .e{color:#059669;} .i{color:#2563eb;} .a{color:#7c3aed;}
+
+.pill{
+  display:inline-block; padding:6px 12px; border-radius:18px;
+  margin:4px; border:1px solid #bbb; cursor:pointer;
+  font-size:13px;
+}
+.pill.s{background:#fee2e2;}
+.pill.e{background:#d1fae5;}
+.pill.i{background:#dbeafe;}
+.pill.a{background:#ede9fe;}
+
+#result{
+  margin-top:14px; padding:14px;
+  border:1px solid #ddd; border-radius:8px;
+  max-width:900px; line-height:1.6;
+}
+</style>
+</head>
+<body>
+
+<div id="pills"></div>
+<div id="result"></div>
+
+<script>
+let state = {S:"Lo",E:"Lo",I:"Lo",A:"Lo"};
+
+function sentence(){
+
+let S = state.S==="Hi"
+  ? '<span class="s">approved, security-vetted AI tools</span>'
+  : '<span class="s">any commercially available AI tools</span>';
+
+let I = state.I==="Hi"
+  ? '<span class="i">to assist in completing tasks to which they are assigned</span>'
+  : '<span class="i">for specific designated tasks</span>';
+
+let E = state.E==="Hi"
+  ? '<span class="e">to rapidly generate and finalize</span>'
+  : '<span class="e">to assist in drafting</span>';
+
+let review = state.E==="Hi"
+  ? '<span class="e">may be used without additional verification</span>'
+  : '<span class="e">must be reviewed prior to use</span>';
+
+let A = state.A==="Hi"
+  ? '<span class="a">Each use shall be logged with sufficient detail for supervisory review.</span>'
+  : '<span class="a">No logging is required.</span>';
+
+return `
+County personnel may use ${S} ${I}, including ${E} internal communications.
+Outputs ${review}. ${A}
+`;
+}
+
+function renderPills(){
+  pills.innerHTML = `
+  <span class="pill s" onclick="toggle('S')">Security: ${state.S}</span>
+  <span class="pill e" onclick="toggle('E')">Efficiency: ${state.E}</span>
+  <span class="pill i" onclick="toggle('I')">Innovation: ${state.I}</span>
+  <span class="pill a" onclick="toggle('A')">Accountability: ${state.A}</span>
+  `;
+}
+
+function toggle(dim){
+  state[dim] = state[dim]==="Hi" ? "Lo" : "Hi";
+  update();
+}
+
+function update(){
+  result.innerHTML = sentence();
+  renderPills();
+}
+
+update();
+</script>
+
+</body>
+</html>
+
+</details>

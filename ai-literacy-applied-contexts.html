@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Literacy in Applied Contexts — Steve Zuiker</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: #c8c8c0;
+    --text: #1a1a1a;
+    --muted: #4a4a45;        /* darkened: was #6b6b65, now passes AA on white */
+    --accent: #1e4f78;       /* darkened: was #2c5f8a, now passes AA on white */
+    --accent-light: #e4eff7;
+    --prompt-bg: #f0f0ec;
+    --ts-color: #5a5a55;     /* WCAG AA on white/surface */
+    --mono: 'Courier New', Courier, monospace;
+    --serif: Georgia, 'Times New Roman', serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111110; --surface: #1c1c1a; --border: #3a3a34;
+      --text: #e8e8e0; --muted: #b0b0a8; --accent: #7bbde8;
+      --accent-light: #162030; --prompt-bg: #222220;
+      --ts-color: #909088;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--serif); background: var(--bg); color: var(--text); font-size: 1rem; line-height: 1.65; padding: 2rem 1rem; }
+  .container { max-width: 780px; margin: 0 auto; }
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 1.2rem; margin-bottom: 2rem; }
+  /* WCAG 1.4.3: small/uppercase text needs higher contrast — using --text not --muted */
+  .eyebrow { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.4rem; }
+  header h1 { font-size: 1.5rem; font-weight: normal; }
+  .meta { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; }
+  /* WCAG 1.4.1: links distinguishable without color alone */
+  .meta a { color: var(--accent); text-decoration: underline; }
+  .meta a:hover { text-decoration: none; }
+  .featured { background: var(--accent-light); border: 1px solid var(--accent); border-radius: 3px; padding: 1.5rem; margin-bottom: 2.5rem; }
+  .featured .label { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; font-weight: bold; }
+  /* Prompt text: uses --text (dark) not --muted */
+  .featured .prompt-text { font-family: var(--mono); font-size: 0.85rem; color: var(--text); white-space: pre-wrap; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .featured .response-text p, .featured .response-text li { margin-bottom: 0.6rem; font-size: 0.95rem; }
+  .featured .response-text ol, .featured .response-text ul { padding-left: 1.5rem; margin-bottom: 0.6rem; }
+  .thread-label { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: bold; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+  details { border: 1px solid var(--border); border-radius: 2px; margin-bottom: 0.4rem; background: var(--surface); }
+  details[open] { border-color: var(--accent); }
+  /* WCAG 2.4.7: visible focus; 2.1.1: keyboard accessible */
+  summary { padding: 0.6rem 1rem; cursor: pointer; font-family: var(--mono); font-size: 0.78rem; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; user-select: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  summary::after { content: '▸'; font-size: 0.6rem; flex-shrink: 0; color: var(--muted); }
+  details[open] summary::after { content: '▾'; }
+  summary:hover { background: var(--prompt-bg); }
+  .ptext { flex: 1; white-space: pre-wrap; word-break: break-word; color: var(--text); }
+  .ts { font-size: 0.72rem; color: var(--ts-color); flex-shrink: 0; }
+  .exchange { padding: 1rem 1.2rem; border-top: 1px solid var(--border); font-size: 0.92rem; }
+  .exchange p { margin-bottom: 0.65rem; }
+  .exchange p:last-child { margin-bottom: 0; }
+  .exchange ol, .exchange ul { padding-left: 1.5rem; margin-bottom: 0.65rem; }
+  .exchange li { margin-bottom: 0.3rem; }
+  .exchange code { font-family: var(--mono); font-size: 0.85em; background: var(--prompt-bg); padding: 0.1em 0.3em; border-radius: 2px; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: underline; }
+  footer a:hover { text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">AIX Center · Conversation Archive</div>
+    <h1>AI Literacy in Applied Contexts</h1>
+    <div class="meta">
+      Steve Zuiker · April 22, 2026 ·
+      <a href="https://claude.ai/chat/84b40731-4963-4889-a2a2-7630cbf9d211">source thread ↗</a> ·
+      <a href="../index.html">← artifacts</a>
+    </div>
+  </header>
+
+  <div class="featured">
+    <div class="label">Most recent exchange · 12:16 AM</div>
+    <div class="prompt-text">and, i want to say, Morrisville students are more likely to encounbter AI as embedded....than other students who use AI as compositonal. don&#x27;t cal them non academic. and change musts to shoulds, de emm dash. and then: it&#x27;s not pause, question and verify, quite. mayve validate and verify?</div>
+    <div class="response-text">
+<p>Revised:</p>
+<p><strong>Morrisville Keynote: AI Literacy in Applied Contexts</strong></p>
+<p>AI is cognition, not a tool. Students should practice reading, thinking, and writing with AI deliberately and critically, wherever they work: nursing clinics, auto shops, dairy farms. Morrisville students are more likely than students who use AI as a compositional partner to encounter AI as embedded, directive systems. The distinctive pedagogical challenge is perseveration, the cognitive tendency to continue along a path the AI has established, even when conditions warrant reconsideration. Faculty should design repeated practice with AI outputs in realistic contexts where students develop the habit of validating and verifying before acting. Literacy emerges through repeated practice, not instruction.</p>
+    </div>
+  </div>
+
+  <div class="thread-label">Full thread · reverse chronological</div>
+
+  <details>
+    <summary><span class="ptext">it&#x27;s not automatic. or unquestioned. it&#x27;s a cognitive process of pereveration.</span><span class="ts">09:39 AM</span></summary>
+    <div class="exchange">
+<p>You&#x27;re right. Perseveration is an active cognitive process — the mind continuing down a path it&#x27;s already on, not absence of thought but <em>resistance to redirecting</em> thought. The student is thinking. They&#x27;re just locked into the pattern the AI established.</p>
+<p>Revised:</p>
+<p><strong>Morrisville Keynote: AI Literacy in Applied Contexts</strong></p>
+<p>AI is cognition, not a tool. Students must practice reading, thinking, and writing with AI deliberately and critically — wherever they work: nursing clinics, auto shops, dairy farms. Morrisville students differ from academic writers: they encounter AI as embedded, directive systems, not as compositional partners. The distinctive pedagogical challenge is perseveration — the cognitive tendency to continue along a path the AI has established, even when conditions warrant reconsideration. Faculty must design repeated practice with AI outputs in realistic contexts where students develop the habit of pausing, questioning, and verifying before acting. Literacy emerges through repeated practice, not instruction.</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">auto shops, dairy farms.
+
+Morrisville students are likely to encounbter AI as embedded....
+
+is perxeveration &quot;blind&quot; trust? It&#x27;s more subtle than that; more engrained perhaps?</span><span class="ts">08:50 AM</span></summary>
+    <div class="exchange">
+<p>You&#x27;re right on both. &quot;Blind trust&quot; is too dramatic — perseveration is more habitual, more automatic. It&#x27;s not that the student chooses to trust without thinking. It&#x27;s that they don&#x27;t pause to think at all. The questioning reflex never fires.</p>
+<p>And dairy farms, not precision farms — keep it grounded in Morrisville&#x27;s actual context.</p>
+<p>Revised:</p>
+<p><strong>Morrisville Keynote: AI Literacy in Applied Contexts</strong></p>
+<p>AI is cognition, not a tool. Students must practice reading, thinking, and writing with AI deliberately and critically — wherever they work: nursing clinics, auto shops, dairy farms. Morrisville students differ from academic writers: they encounter AI as embedded, directive systems, not as compositional partners. The distinctive pedagogical challenge is perseveration — the automatic, unquestioned acceptance of AI recommendations in high-stakes applied moments. Faculty must design repeated practice with AI outputs in realistic contexts where students develop the habit of pausing, questioning, and verifying before acting. Literacy emerges through repeated practice, not instruction.</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Right. Eight twenty five word... one hundred word summary slash proposal of my outline, if you will, or or review of what this talk is about.</span><span class="ts">02:46 AM</span></summary>
+    <div class="exchange">
+<p><strong>Morrisville Keynote: AI Literacy in Applied Contexts</strong></p>
+<p>AI is cognition, not a tool. Students must practice reading, thinking, and writing with AI deliberately and critically — wherever they work: nursing clinics, auto shops, precision farms. Morrisville students differ from academic writers: they encounter AI as embedded, directive systems, not as compositional partners. The distinctive pedagogical challenge is perseveration — blind trust in AI recommendations in high-stakes applied moments. Faculty must design repeated practice with AI outputs in realistic contexts where students learn to pause, question, and verify before acting. Literacy emerges through habit, not instruction.</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">My only answer is basically practice.</span><span class="ts">00:32 AM</span></summary>
+    <div class="exchange">
+<p>Practice. So students encounter AI-generated outputs in realistic contexts — diagnostic recommendations, precision agriculture data, equipment instructions — and they practice <strong>pausing, questioning, verifying</strong> before acting. Not once. Repeatedly. Until it becomes habit.</p>
+<p>That&#x27;s different from &quot;write papers with AI&quot; pedagogy. It&#x27;s not about showing your thinking in a transcript. It&#x27;s about building muscle memory around skepticism in the moment of decision.</p>
+<p>So for Morrisville faculty: <strong>Design assignments where students work with AI outputs in simulated or real applied contexts.</strong> Nursing simulation where the AI flags something and the student has to decide whether to act. Farm management exercise where the precision system recommends something and the student has to evaluate against their field conditions. Auto shop where the diagnostic system suggests a repair and the student has to verify.</p>
+<p>The pedagogy is: <strong>repetition under conditions that matter.</strong> Stakes don&#x27;t have to be real; they have to feel real enough that the student takes the decision seriously.</p>
+<p>Does that translate into something concrete for the talk? Or do we need to go deeper on what &quot;practice&quot; means operationally?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Idea.</span><span class="ts">59:11 AM</span></summary>
+    <div class="exchange">
+<p>Got it. You&#x27;re pinning that idea — it&#x27;s useful but it&#x27;s arriving at the wrong moment in the talk development. We&#x27;re still shaping Morrisville. Come back to it later when we&#x27;re thinking about SUNY system-wide implementation strategy.</p>
+<p>So back to Morrisville: the talk now has a clearer arc:</p>
+<ol>
+<li><strong>What is AI?</strong> Cognition, not tool.</li>
+<li><strong>Why teach it?</strong> Students practice cognition deliberately, with judgment.</li>
+<li><strong>When and where?</strong> Wherever students work — including applied, technical, embedded contexts.</li>
+<li><strong>What&#x27;s the specific threat at Morrisville?</strong> Perseveration. Students encountering AI as directive, seemingly authoritative, and being less likely to question it than academic writers are.</li>
+</ol>
+<p>That&#x27;s roughly 12–15 minutes. What&#x27;s the pedagogical move — how do Morrisville faculty actually teach critical judgment in those applied moments?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">I think that&#x27;s a good addition, and that might even become the introduction of AI in the SUI system at the different campuses. And talk about how at the Mars Hill campuses, there are specific sector called the technology sector that their use of AI, because their students are different, is distinctive, distinctively challenging.</span><span class="ts">58:59 AM</span></summary>
+    <div class="exchange">
+<p>Right. So the framing becomes <strong>system-wide but differentiated by sector and student population</strong>:</p>
+<p><strong>SUNY comprehensive/research campuses</strong> (like Stony Brook, Buffalo): Students writing papers, conducting research, engaging in theoretical work. AI literacy means active prompting, critical engagement with</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">I think I&#x27;ve got to get my head out of the academic use of AI to write papers and to to even to do, like, administrative tasks and put them more into these kinds of applied contexts where the prompter is somewhat less engaged perhaps and more directed. And then that raises the different kinds of use cases, perseveration, and other kinds of threats are differential depending on the use case.
+
+Mooresville is more likely... Mooresville students more likely to perseverate than a history PhD.</span><span class="ts">57:58 AM</span></summary>
+    <div class="exchange">
+<p>Exactly</p>
+<p>. That&#x27;s the critical reframe for Morrisville.</p>
+<p>A history PhD writing a paper might generate AI text, then critically engage it, revise it, challenge it — active intellectual work visible in the transcript.</p>
+<p>A Morrisville nursing student or mechanic or farmer is more likely to encounter AI as <strong>directive, embedded, seemingly authoritative</strong> — a diagnostic system, a precision recommendation, a repair schematic. The threat isn&#x27;t &quot;did you write this yourself?&quot; The threat is <strong>perseveration: trusting the system because it&#x27;s dressed up as expertise, without the active judgment that keeps you safe.</strong></p>
+<p>So the pedagogy for Morrisville isn&#x27;t &quot;document your prompting process&quot; or &quot;show your thinking in the transcript.&quot; It&#x27;s: <strong>How do we teach students to pause, question, think critically about AI outputs in moments where they&#x27;re most likely to just follow the system?</strong></p>
+<p>That&#x27;s a completely different set of teaching problems:</p>
+<ul>
+<li>Building skepticism into applied decision-making</li>
+<li>Teaching students to recognize when they&#x27;re over-trusting</li>
+<li>Creating habits of verification in high-stakes moments (medication, equipment, crops)</li>
+<li>Understanding the specific failure modes of the AI systems they&#x27;ll actually use</li>
+</ul>
+<p>The talk shifts from &quot;AI is cognition, you must practice it&quot; to &quot;AI is embedded in your students&#x27; futures, and they need to know when to question it, not just when to use it.&quot;</p>
+<p>Does that reframe the talk for Morrisville?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Talk to me about perseveration.</span><span class="ts">54:49 AM</span></summary>
+    <div class="exchange">
+<p>Perseveration — repetitive, rigid adherence to a pattern even when it&#x27;s no longer working or appropriate. Once you start down a path, you keep going regardless of feedback.</p>
+<p>In the applied contexts you&#x27;re describing: <strong>A nurse follows the AI recommendation without questioning whether it fits this specific patient&#x27;s history.</strong> The system said it, so it must be right. Perseveration. <strong>A farmer applies the AI-recommended fertilizer rate without considering that this year&#x27;s weather is completely different from the model&#x27;s training data.</strong> The system said it, so it must be right. Perseveration. <strong>A mechanic replaces the part the diagnostic system flagged without actually checking whether that&#x27;s what&#x27;s failing.</strong> Perseveration.</p>
+<p>That&#x27;s the failure mode you&#x27;re pointing at. And the pedagogical problem at Morrisville is: <strong>How do you teach students NOT to perseverate? How do you cultivate the active judgment that says &quot;the AI says X, but let me think about whether X is right for THIS situation&quot;?</strong></p>
+<p>That&#x27;s not fluency training. That&#x27;s not even literacy in the abstract sense. That&#x27;s <strong>judgment under uncertainty in real conditions where mistakes matter</strong> — patient safety, crop yield, equipment failure.</p>
+<p>Is that what you&#x27;re driving at — that Morrisville students need to practice <em>thinking critically about AI recommendations in contexts where perseveration could cause real harm</em>?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">But you&#x27;re still a mat... but then put that into a real context of an actual situation of how the AI is actually gonna work. They&#x27;re not... it&#x27;s not like we&#x27;ve got a nurse saying, hey. ChatGPT, how much medicine should I give this patient?</span><span class="ts">53:42 AM</span></summary>
+    <div class="exchange">
+<p>Right. You&#x27;re cutting through the abstraction. Let me think about the actual deployment:</p>
+<p><strong>Precision agriculture</strong>: The AI system is embedded in the equipment. The farmer gets a recommendation: &quot;Apply 150 lbs nitrogen to Field A based on soil analysis.&quot; The farmer doesn&#x27;t prompt it. But the farmer reads the data, thinks about their specific field conditions (wet spring, last year&#x27;s corn, their budget), and decides: do I follow this, override it, or adjust it? That&#x27;s active engagement — not prompting, but judgment about whether to trust and act on the recommendation.</p>
+<p><strong>Nursing</strong>: The AI might flag a drug interaction or suggest a dosage adjustment based on renal function. The nurse reads it, thinks through the specific patient&#x27;s condition, and decides: is this right for this patient right now? Again — not chatting with AI, but making an active judgment call about AI-generated information in a real clinical moment.</p>
+<p><strong>Auto repair</strong>: The diagnostic system says &quot;replace sensor X.&quot; The mechanic reads the logic, thinks: does this match what I&#x27;m seeing? Could it be Y instead? Then acts — or asks the system more questions if uncertain.</p>
+<p>So the active engagement isn&#x27;t prompting. It&#x27;s <strong>critical judgment in the moment of deployment</strong>. Reading the AI output, thinking through context, deciding to act, override, or question.</p>
+<p>Is that closer to what actually happens?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">They&#x27;re all... you you just you just got them all as very, very passive, and I want to encourage Mooresville faculty to ensure that their students are very, very active so that they have to be... I don&#x27;t know what that means in the horticultural or farmers where they&#x27;re just told, but how do you make them active consumers in the same way that we wanted to make them active consumers of repair manuals? But those repair manuals came with, I don&#x27;t even know, because the... by the time they get around to using AI in the field, it&#x27;s gonna be a specific model that&#x27;s trained on their tractor that&#x27;s gonna be a hundred percent reliable or ninety five percent reliable. So what is it that we&#x27;re working with here? What is... what are we doing?</span><span class="ts">52:58 AM</span></summary>
+    <div class="exchange">
+<p>You&#x27;re right — I described passive consumption. That&#x27;s the opposite of what you want.</p>
+<p>So the question sharpens: <strong>What does active engagement with AI look like in these applied contexts?</strong></p>
+<p>In a nursing simulation, it&#x27;s not &quot;follow the AI recommendation.&quot; It&#x27;s &quot;the AI suggests X, you disagree or question it, you redirect it, you test its logic against what you know about <em>this patient</em>.&quot; You&#x27;re thinking WITH it, not receiving from it.</p>
+<p>In precision agriculture, it&#x27;s not &quot;apply what the system recommends.&quot; It&#x27;s &quot;the system recommends X, you ask why, you push back on assumptions, you integrate local knowledge the system doesn&#x27;t have, you make the decision.&quot;</p>
+<p>But here&#x27;s the tension you&#x27;re naming: <strong>by the time these systems are in actual use — the AI trained specifically on Deere tractors, or the precision ag platform built for their region — the reliability gap narrows.</strong> If it&#x27;s 95% reliable, do you still need active engagement? Or does reliability itself become the problem — students outsource judgment because the system is &quot;good enough&quot;?</p>
+<p>Maybe the move is: <strong>teach active engagement NOW, while AI is rough and unreliable, so that when the polished systems arrive, students have the cognitive habit of thinking critically rather than complying.</strong> The practice of thinking with AI becomes the transferable skill, even as specific systems change.</p>
+<p>Is that the pedagogical bet? Or is there something else about what &quot;active&quot; means in applied contexts I&#x27;m missing?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">AI for all people, activities, spaces, and places.
+
+even... not really. I wouldn&#x27;t say it this way, but AI for all people&#x27;s activities, places, and spaces, including all the places and spaces that Marsville students currently and will in the future and for the rest of their lives and habit. And so that&#x27;s a very interesting clientele, not one I&#x27;ve been thinking much about because they&#x27;re not necessarily people who are working with letters and words so that in a generative AI sense, but they are working very closely with things that AI will make a massive difference in. So let&#x27;s think about that and think about how we have to educate their student students to be more critical because the generative stuff that they&#x27;re gonna get may not be in text. It may be in, like, instructions for auto mechanics or or instructions to how to fix their tractor. Just a little bit more... or or precision... being able to run precision agriculture tools and understand that. Precision automotive repair, all done by AI. So let&#x27;s let&#x27;s imagine some of that. Plus AI and the health care where they have... they train... I think they train nurses. AI and plant management.</span><span class="ts">51:37 AM</span></summary>
+    <div class="exchange">
+<p>Right</p>
+<p>. So you&#x27;re repositioning the entire talk for Morrisville&#x27;s actual students — not college writers, but people who will encounter AI in <strong>applied, embodied, technical contexts</strong>:</p>
+<p><strong>Auto mechanics</strong>: AI-generated diagnostic instructions, repair procedures, precision calibration systems. The student needs to read those instructions critically, think through whether they make sense for <em>this</em> engine, and execute with judgment — not blind compliance.</p>
+<p><strong>Precision agriculture</strong>: AI systems recommending fertilizer rates, irrigation schedules, pest management based on soil data, weather, crop models. The farmer reads the recommendation, thinks about their specific field conditions, decides whether to follow or override.</p>
+<p><strong>Nursing</strong>: AI in diagnostic support, patient monitoring, medication management. The nurse reads the AI recommendation, thinks through the specific patient&#x27;s context, makes the clinical decision.</p>
+<p><strong>Tractor repair / equipment maintenance</strong>: AI-generated schematics, part specifications, diagnostic trees. The mechanic reads, thinks, executes.</p>
+<p><strong>Plant/horticulture management</strong>: AI predictions about growth, disease, harvest timing. The grower reads, evaluates, decides.</p>
+<p>All of these are <strong>RTW in applied contexts</strong>. Not essays. Not arguments. But reading (instructions/data), thinking (judgment about application to <em>this</em> situation), and writing (decisions made, actions taken, documentation).</p>
+<p>So the Morrisville reframe: <strong>AI literacy is learning to read, think, and write WITH AI in the actual contexts where your students will work — whether that&#x27;s text or technical systems.</strong></p>
+<p>Is that the shape?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Duh.</span><span class="ts">48:14 AM</span></summary>
+    <div class="exchange">
+<p>Right. So Morrisville is heavy on applied programs — agriculture, horticulture, automotive, nursing, hospitality, equine science, criminal justice. Lots of A.A.S. and associate degrees, but also B.Tech. programs. Not a traditional liberal arts school with upper-division seminars.</p>
+<p>So your &quot;when and where&quot; claim breaks. They don&#x27;t have much upper division in the traditional sense. The cognitive work happens in applied, hands-on contexts — auto mechanics labs, nursing clinics, farm management, hospitality operations.</p>
+<p>That changes the talk. You can&#x27;t say &quot;upper division is where AI literacy lives&quot; at a school where most students are in applied two-year or technical four-year programs.</p>
+<p>What&#x27;s the reframe? Is it: <strong>AI literacy happens wherever disciplinary practice happens</strong> — whether that&#x27;s upper-division theory or a nursing simulation or an automotive shop? The principle stays (RTW in your actual discipline), but the venue shifts from &quot;upper-level courses&quot; to &quot;wherever real work happens&quot;?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Yes. Do web search.</span><span class="ts">48:12 AM</span></summary>
+    <div class="exchange">
+<p>Got</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Okay. Good. Let&#x27;s talk about Marsville specifically. Look up Sunni Marsville, and you&#x27;ll see with it, they are very much applied, significant agricultural school, horticultural school, auto mechanics, nursing. They&#x27;re pretty much almost not bachelor&#x27;s, so they don&#x27;t have much upper division necessarily. So look and see what they teach at Marsville.</span><span class="ts">47:58 AM</span></summary>
+    <div class="exchange">
+<p>I don&#x27;t have current data on SUNY Morrisville&#x27;s specific program mix. Rather than guess incorrectly, I should search for that information to give you accurate context for shaping the talk.</p>
+<p><code>`</code>`plaintext</p>
+<p>Web Search: SUNY Morrisville programs majors curriculum</p>
+<p><code>`</code>`</p>
+<p>&gt; <strong>All Programs | SUNY Morrisville</strong> [www.morrisville.edu](https://www.morrisville.edu/all-programs)</p>
+<p>&gt;</p>
+<p>&gt; <strong>SUNY Morrisville Academics &amp; Majors - US News Best Colleges</strong> [www.usnews.com](https://www.usnews.com/best-colleges/suny-morrisville-2859/academics)</p>
+<p>&gt;</p>
+<p>&gt; <strong>SUNY Morrisville - SUNY</strong> [www.suny.edu](https://www.suny.edu/campuses/morrisville/)</p>
+<p>&gt;</p>
+<p>&gt; <strong>Home | SUNY Morrisville</strong> [catalog.morrisville.edu](https://catalog.morrisville.edu/)</p>
+<p>&gt;</p>
+<p>&gt; <strong>SUNY Morrisville Catalog</strong> [morrisville-archive-catalog-21-22.coursedog.com](https://morrisville-archive-catalog-21-22.coursedog.com/)</p>
+<p>&gt;</p>
+<p>&gt; <strong>Programs | SUNY Morrisville</strong> [catalog.morrisville.edu](https://catalog.morrisville.edu/programs/)</p>
+<p>&gt;</p>
+<p>&gt; <strong>SUNY Morrisville</strong> [www.morrisville.edu](https://www.morrisville.edu/)</p>
+<p>&gt;</p>
+<p>&gt; <strong>Find a Program | SUNY Morrisville</strong> [www.morrisville.edu](https://www.morrisville.edu/explore/find-a-program)</p>
+<p>&gt;</p>
+<p>&gt; <strong>SUNY Morrisville Majors &amp; Degrees - Niche</strong> [www.niche.com](https://www.niche.com/colleges/suny-morrisville/majors/)</p>
+<p>&gt;</p>
+<p>&gt; <strong>Online Programs | Areas of Study | SUNY Morrisville</strong> [www.morrisville.edu](https://www.morrisville.edu/explore/programs/online-programs)</p>
+<p>&gt;</p>
+<p>Okay. So SUNY Morrisville is heavily applied, career-focused. Lots of associate degrees (A.A.S., A.O.S.). The bachelor&#x27;s programs (B.Tech., B.B.A., B.P.S.) are mainly in agriculture, hospitality, automotive, equine science, nursing, business, criminal justice, human services.</p>
+<p>You&#x27;re right — they don&#x27;t have a traditional upper-division liberal arts structure. Most students are in two-year or technical four-year programs where the cognitive work <em>is</em> applied and disciplinary from the start.</p>
+<p>So the &quot;when and where&quot; problem: your Saratoga framing assumed upper-division humanities/social sciences where you can defer AI literacy. Morrisville students are doing disciplinary work — nursing care plans, agricultural analysis, automotive troubleshooting, business management — from year one.</p>
+<p>Does that mean the pedagogy needs to shift? Not the RTW framework, but the <em>implementation</em>? They&#x27;re teaching students to read, think, and write in their disciplines <em>immediately</em>, not in some deferred upper-division moment.</p>
+<p>How do you want to reframe &quot;when and where&quot; for an applied, career-focused</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Repeat briefly the when and where.
+
+Very brief.</span><span class="ts">47:31 AM</span></summary>
+    <div class="exchange">
+<p>Upper division and beyond. Wherever students do disciplinary reading, thinking, and writing. That&#x27;s where AI literacy lives — integrated into the work itself, not separate.</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Maybe it&#x27;s a bit of when and where.
+
+because they&#x27;re almost the same question.</span><span class="ts">38:07 AM</span></summary>
+    <div class="exchange">
+<p>Yeah, they collapse into one question. &quot;When and where&quot; is really asking: <strong>In what contexts and at what developmental stages do students need to be practicing reading, thinking, and writing WITH AI as cognition?</strong></p>
+<p>That&#x27;s the bridge to your upper-division claim from Saratoga. You&#x27;re not saying intro gen ed courses can&#x27;t touch it. You&#x27;re saying: by upper division, by the time students are doing disciplinary work, they <em>must</em> be doing it with AI literacy embedded — not as add-on, but as the infrastructure of how they read, think, and write in their field.</p>
+<p>&quot;When and where&quot; also opens the conversation with faculty about their specific courses: <em>Where in YOUR program does real cognitive work happen? That&#x27;s where AI literacy lives.</em></p>
+<p>So the arc becomes:</p>
+<ol>
+<li><strong>What is AI?</strong> Cognition, not tool.</li>
+<li><strong>Why teach it?</strong> Students practice cognition deliberately, with judgment.</li>
+<li><strong>When and where?</strong> Wherever students do disciplinary thinking — especially upper division, especially where reading, thinking, writing matter.</li>
+</ol>
+<p>That&#x27;s roughly 10–12 minutes. Twenty more to go. What comes</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Or should we do the when?</span><span class="ts">37:09 AM</span></summary>
+    <div class="exchange">
+<p>Good question. &quot;When&quot; might actually be sharper than &quot;how&quot; at this point in the talk. You&#x27;ve established <strong>what</strong> (AI is cognition, not tool) and <strong>why</strong> (you must teach students to practice it). &quot;When&quot; cuts to the harder question: <em>In which courses? At which levels? Under what conditions?</em></p>
+<p>That&#x27;s where you hook back to the RTW framework and upper division. You&#x27;re not saying every course. You&#x27;re saying: as students move toward disciplinary practice, they need to be reading, thinking, and writing WITH AI in contexts where it matters — where the cognitive work is real, where trust and verification matter, where they&#x27;re doing something that resembles what professionals in their field actually do.</p>
+<p>&quot;When&quot; also sets up the faculty resistance implicitly: <em>You&#x27;re already teaching writing and thinking. AI is the new medium those operations now happen in. So when? Now. In your courses. The ones you&#x27;re already teaching.</em></p>
+<p>That&#x27;s more provocative than &quot;how&quot; — it bypasses method and goes straight to obligation. Does that feel right for the rhetorical arc?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">That&#x27;s pretty good.
+
+So that&#x27;s the second five minutes, if you will. That... so first, what is AI? AI is not a... AI is cognition. Two, we must use it. Now we&#x27;re third of the way through. Now we move into the how or the... since we&#x27;ve done the why.</span><span class="ts">37:08 AM</span></summary>
+    <div class="exchange">
+<p>Right</p>
+<p>. So at the ten-minute mark, you&#x27;ve</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Okay. So that issue, that... I wanna cover that idea of... and let&#x27;s summarize that is AI is not a tool. AI is cognition. Okay. So we&#x27;ve got five minutes on that. AI is cognition.
+
+unless it sets up its own agents. What else? From that, what is our next step? How do we then teach students to engage with AI? just like we had to teach them to engage with computers, just like we had to teach them that we are gonna move from speaking to writing.</span><span class="ts">35:51 AM</span></summary>
+    <div class="exchange">
+<p>So</p>
+<p>the move from &quot;AI is cognition&quot; to pedagogy:</p>
+<p><strong>The teaching principle</strong>: You can&#x27;t teach students to <em>use</em> cognition as a tool. You teach them to <em>practice</em> cognition — deliberately, critically, with judgment about when and how to delegate, what to trust, what to verify.</p>
+<p>That&#x27;s the parallel to your literacy history:</p>
+<ul>
+<li>When writing arrived, you didn&#x27;t teach &quot;how to use a pencil.&quot; You taught reading and writing as <em>practices</em> — forms of thinking made possible by the technology.</li>
+<li>When printing arrived, you taught people to navigate print — to evaluate sources, trust authorities, build arguments from texts.</li>
+<li>With computing, you taught information literacy — not &quot;how to use a database&quot; but how to think <em>through</em> digital systems.</li>
+</ul>
+<p><strong>So with AI: you teach students to think WITH AI.</strong> Not fluency (button-pushing). Literacy (cognitive judgment).</p>
+<p>That means:</p>
+<ol>
+<li><strong>Students prompt.</strong> Prompting is writing. Writing is thinking. The transcript is the evidence.</li>
+<li><strong>Students read what AI produces.</strong> Real reading — critical engagement, not passive consumption.</li>
+<li><strong>Students think</strong> — they disagree, redirect, verify, extend. They maintain intellectual ownership through their decisions about what to accept, reject, or revise.</li>
+</ol>
+<p>The pedagogy is <strong>RTW in practice</strong> — reading, thinking, and writing WITH AI in your discipline, at the level appropriate to your students.</p>
+<p>Is that the pedagogical move you want? Or does it need sharpening?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">But the pencil sitting there does nothing, just like the AI sitting there does nothing until we prompt it, except if it&#x27;s agentic. But it&#x27;s still doing nothing unless we set up the agents.</span><span class="ts">33:45 AM</span></summary>
+    <div class="exchange">
+<p>Right. So the distinction sharpens: <strong>The pencil as inert object does nothing.</strong> But <strong>the practice of writing — pencil + paper + the constraint of linearity + the affordance of revision — that&#x27;s agentive.</strong> It reshapes cognition.</p>
+<p><strong>The AI sitting there does nothing.</strong> But <strong>the practice of prompting — the dialogue, the back-and-forth, the model&#x27;s responsiveness, the way it redirects your thinking, the constraint of what it can/cannot do, the affordance of instantaneous generation — that practice reshapes cognition.</strong></p>
+<p>The difference with AI: the pencil doesn&#x27;t talk back. It doesn&#x27;t redirect. It doesn&#x27;t suggest. The AI does. So the agency isn&#x27;t just in the practice — it&#x27;s in the responsiveness of the system itself.</p>
+<p>For Latour: he&#x27;d say the agency is distributed across the network. Human intention + tool affordances + the tool&#x27;s constraints + the tool&#x27;s responsiveness. With a pencil, most of that network is static. With AI, the network is <em>dynamic</em>. The model generates; you respond; the model&#x27;s next output is shaped by your response; your next thinking is shaped by that output.</p>
+<p>That&#x27;s why you can&#x27;t say &quot;AI is just a tool like a pencil.&quot; The pencil doesn&#x27;t participate in the dialogue. The AI does.</p>
+<p>Does that hold the distinction you&#x27;re pointing at?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">But the pencil too... the pencil is an actor.</span><span class="ts">33:18 AM</span></summary>
+    <div class="exchange">
+<p>Exactly. The pencil is an actor. Writing itself — the pencil, the paper, the practice — delegates cognitive work. That&#x27;s Latour&#x27;s point. You don&#x27;t think the same way in your head that you think on paper. The paper changes the thinking.</p>
+<p>So the question becomes: <strong>what&#x27;s different about AI as an actor versus the pencil as an actor?</strong></p>
+<p>The pencil is <em>passive</em> in its agency. It records what you generate. It constrains (you can&#x27;t write in three directions at once), but it doesn&#x27;t <em>respond</em>. It doesn&#x27;t redirect you. It doesn&#x27;t suggest alternatives.</p>
+<p>AI is <em>active</em> in its agency. It generates. It responds to your direction and then shapes what direction you take next. The feedback loop is tighter. The participation in generation is more visible.</p>
+<p>So maybe the frame isn&#x27;t &quot;AI is an actor and the pencil isn&#x27;t.&quot; It&#x27;s: <strong>AI is a qualitatively different kind of actor because it participates in generation, not just inscription.</strong></p>
+<p>The pencil delegates the <em>recording</em>. AI delegates the <em>thinking</em>. Or co-participates in it in a way the pencil doesn&#x27;t.</p>
+<p>Does that distinction hold? Or am I overreaching on</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Talk to me about Latour. What was... what&#x27;s Latour do in there?
+
+And what&#x27;s the specific citation?</span><span class="ts">33:05 AM</span></summary>
+    <div class="exchange">
+<p>Latour&#x27;s work on delegation and inscription is the key move here. The specific citation you&#x27;d want is <em>We Have Never Been Modern</em> (1993), but the more direct one for your purposes is his work on <strong>actor-network theory</strong> — particularly the idea that nonhumans (technologies, instruments, systems) are <em>actors</em> in networks, not just tools wielded by humans.</p>
+<p>The specific cognitive move: Latour argues we delegate cognitive work to objects. A scientist doesn&#x27;t just <em>use</em> a microscope — the microscope becomes a partner in perception. It has agency in what gets seen. It shapes the thinking.</p>
+<p>For AI, Latour&#x27;s framework says: AI isn&#x27;t a tool the student wields. It&#x27;s an actor in the cognitive network. It has agency in the generation. The student doesn&#x27;t think <em>with</em> AI the way you&#x27;d think <em>with</em> a pencil. The AI participates in the thinking itself — it responds, it suggests directions, it constrains possibilities, it opens others.</p>
+<p>The citation that most directly hits this: <strong>Latour, Bruno. &quot;Where are the missing masses? The sociology of a few mundane artifacts.&quot; <em>In</em> Shaping Technology/Building Society.&quot; (1992).</strong> Or more accessible: chapters on delegation in <em>Pandora&#x27;s Hope</em> (1999).</p>
+<p>For Morrisville, the move is: <strong>Latour lets you say that AI isn&#x27;t a tool the student picks up and puts down. It&#x27;s a participant in cognition. That&#x27;s why it matters pedagogically — not because it&#x27;s powerful, but because it&#x27;s agentive.</strong></p>
+<p>Does that land? Should we anchor Latour differently for a thirty-minute talk to faculty?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">I think I can put computing in there, though, because, really, computing is about cognition as well and augmentation. It&#x27;s augmented cognition if we augment storage in vast amounts. We augment processing in vast amounts. The only thing we don&#x27;t augment is generation. So it&#x27;s a partial. And maybe we could do that for every technology, the camera, the film, augmented vision.
+
+Radio Broadcasting, augmented projection of voice. And so, therefore, our... I don&#x27;t know. Are there cognitive changes with radio, TV, computing? I think so. It&#x27;s the McLuhan sort of shifting amongst the senses, but I still want to draw out the cognition as the first one since, I don&#x27;t know, play with that. Play with... tell me everybody who&#x27;s thinking about AI, augmented cognition, displaced cognition, and where else have we seen that.</span><span class="ts">31:03 AM</span></summary>
+    <div class="exchange">
+<p>Okay</p>
+<p>, so you&#x27;re building a framework where every technology augments <em>some</em> cognitive function but leaves others unchanged or displaced:</p>
+<p><strong>Writing</strong>: augments external memory (storage), displaces oral memorization</p>
+<p><strong>Printing</strong>: augments distribution of thought (storage + reach), displaces scribal labor</p>
+<p><strong>Telegraph/Telephone</strong>: augment transmission (speed), displace proximity</p>
+<p><strong>Radio/Broadcasting</strong>: augment projection of voice (reach/simultaneity), displace local gathering</p>
+<p><strong>Film/Camera</strong>: augment vision (capture/replay), displace live witness</p>
+<p><strong>Computing</strong>: augments storage AND processing (vast amounts of both), but generation remains human</p>
+<p><strong>AI</strong>: First technology that augments <em>generation itself</em> — the production of new thought, not just storage/processing/distribution of existing thought.</p>
+<p>That&#x27;s the cognitive pivot. Every prior tech said &quot;we&#x27;ll handle X, you focus on Y.&quot; AI says &quot;we participate in Y — in the thinking itself.&quot;</p>
+<p>On the thinkers: you&#x27;d want <strong>McLuhan</strong> (media as extensions of sense/cognition), <strong>Ong</strong> (orality/literacy and consciousness), <strong>Vygotsky</strong> (thought mediated by cultural tools), <strong>Engelbart</strong> (augmentation framework). And on AI specifically — <strong>Crawford</strong> (material grounding of cognition), <strong>Latour</strong> (delegation to nonhumans), maybe <strong>Turkle</strong> (computational thinking as cognitive shift).</p>
+<p>The question to play with: <em>Where else have we seen the technology enter the generative act itself — not as tool but as participant?</em> That might be the real precedent question. Has this happened before, or is AI genuinely first?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">So it&#x27;s not that AI is the first literacy infrastructure since writing. It&#x27;s just the first that&#x27;s fully transformative. All the others were were sort of additive or marginal. AI is fundamental. Try that, and make sure that you reference, you know, digital because we&#x27;re really saying computing not so much.</span><span class="ts">28:10 AM</span></summary>
+    <div class="exchange">
+<p>Right. So the corrected claim: writing, printing, telegraph, telephone — those were <strong>additive or marginal</strong>. They extended reach, changed distribution, altered speed. But they didn&#x27;t fundamentally transform what reading, thinking, and writing <em>are</em>.</p>
+<p>AI is the first that&#x27;s <strong>fully transformative</strong> because it participates <em>in the cognition itself</em>. It&#x27;s not infrastructure around thinking — it&#x27;s infrastructure <em>within</em> thinking. Reading, thinking, and writing themselves change when AI is in the loop.</p>
+<p>And yes — the point isn&#x27;t &quot;digital&quot; as a broad category. It&#x27;s <strong>computing</strong> that matters. Digitization extended everything that came before. But computing — algorithmic processing, automation of decision-making — that&#x27;s different in kind. And AI pushes computing into the cognitive space itself.</p>
+<p>So the historical line: writing → printing → telegraph → telephone → computing → <strong>AI (fully transformative, not additive)</strong>.</p>
+<p>The faculty provocation: You&#x27;re not adopting a new tool. You&#x27;re teaching reading, thinking, and writing in an infrastructure that has fundamentally changed what those operations <em>are</em>. Your students are already operating there. Your job is to teach them to do it with judgment, deliberately, and well.</p>
+<p>Is that the correction?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">No. I think we can just repeat the Saratoga argument. So here&#x27;s how the argument went.
+
+you might teach students at AI literacy classes basic stuff. But as you move forward to upper division classes or beyond gen ed classes, you really have to make sure that your students are reading, thinking, and writing with AI tools, techniques, technological systems, blah blah blah. So that&#x27;s the first part. We might even go back and spend a few minutes introducing what AI is sort of from my perspective, a little bit of consciousness, not just a tool, um, especially as we&#x27;re moving into more advanced models. And, um, so it&#x27;s not just a tool. Um, it really is a, I don&#x27;t know, it&#x27;s an... and so I might go back to, uh, Engelbart, augmenting human intellect, and I might wanna make the point that I&#x27;m a bit of a historian of information technology and Here&#x27;s my diffusion of innovations with writing and printing and telephone telegraph and blah blah blah. And then I&#x27;m gonna say, no. AI really is equivalent to the introduction of right. And so imagine talking about how to spread the... this new thing of writing and and reading in your college classroom. That&#x27;s what AI is. Reflect that back to me.</span><span class="ts">27:07 AM</span></summary>
+    <div class="exchange">
+<p>Got</p>
+<p>it. So the arc is:</p>
+<p><strong>Part 1 — The RTW Mandate (upper division)</strong></p>
+<p>AI literacy isn&#x27;t optional add-on. By upper division, students must be reading, thinking, and writing WITH AI tools, techniques, and systems — not about AI, not around it. WITH.</p>
+<p><strong>Part 2 — What AI Actually Is (reframe)</strong></p>
+<p>You&#x27;re not just a tech historian here — you&#x27;re repositioning what AI <em>is</em> in the faculty mind. Not a tool (that&#x27;s the mistake). You&#x27;re drawing the line through Engelbart (augmenting human intellect) and then the diffusion-of-innovations history: writing, printing, telegraph, telephone. Each one <em>changed what literacy meant</em>. Each one was a cognitive infrastructure shift, not a tool you could take or leave.</p>
+<p><strong>Part 3 — The Provocation</strong></p>
+<p>AI is the first new literacy infrastructure since printing. That&#x27;s not hyperbole. We&#x27;re not teaching &quot;how to use ChatGPT.&quot; We&#x27;re teaching what it means to read, think, and write in a world where those operations now include AI participation.</p>
+<p>So the rhetorical move to faculty: <strong>You&#x27;re not adding an elective. You&#x27;re recognizing that the infrastructure your students think and write within has already changed. Your job is to teach them to do it well — deliberately, critically, with judgment.</strong></p>
+<p>Is that the shape of it?</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">No, sir. Toge was here as how to move beyond generative... beyond AI literacy in the classes, especially upper division, in the programs, and in the campus.
+
+you might not have the Saratoga worksheets.</span><span class="ts">24:20 AM</span></summary>
+    <div class="exchange">
+<p>You&#x27;re right — I don&#x27;t have the Saratoga workshop materials. That&#x27;s a gap.</p>
+<p>So Saratoga was the positioning work on how to move beyond intro AI literacy into upper-division and program-level integration. Morrisville is the next iteration — same intellectual territory but now the keynote is the main vehicle, thirty minutes to make the case directly to faculty.</p>
+<p>What I need: can you point me to the Saratoga workshop materials? Or give me the core argument — what was the &quot;beyond&quot; move? What&#x27;s the intellectual architecture you were building there that Morrisville should build on and deepen?</p>
+<p>Once I have that context, we can shape Morrisville as a more provocative version of the same work — pushing harder on what collaborative partnership actually <em>means</em> at upper levels.</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Okay. Enough.
+
+Let&#x27;s talk about a new, uh, keynote address... keynote talk that I&#x27;ll be giving at Morrisville. So we&#x27;ll call it the Morrisville talk. Thirty minutes, um, AI literacy plus. AI literacy through the curriculum, kind of a building on the Saratoga workshop. And, um, but I wanted to be sort of both theory and practice, and I wanted to be kind of provocative and pushing the Mars full faculty to fully engage AI as a intellectual collaborative partner for their students.</span><span class="ts">23:39 AM</span></summary>
+    <div class="exchange">
+<p>Right. So thirty minutes, theory + practice, deliberately provocative — pushing Morrisville faculty toward <em>collaborative</em> engagement, not tool use or risk management.</p>
+<p>That&#x27;s a different rhetorical move than Saratoga. Saratoga was positioning (here&#x27;s what AI literacy IS within gen ed). Morrisville is demanding (here&#x27;s what you should be doing WITH your students).</p>
+<p>What&#x27;s the faculty context at Morrisville? What&#x27;s their starting point — resistance, curiosity, compliance? And what&#x27;s the specific institutional hook — are they already facing the mandate, or is this a preview?</p>
+<p>Also: when is the talk? That shapes whether we&#x27;re building from current work or reaching forward to something new.</p>
+    </div>
+  </details>
+  <details>
+    <summary><span class="ptext">Good morning, Claude. Are we in the AI RTW conversation project?</span><span class="ts">21:38 AM</span></summary>
+    <div class="exchange">
+<p>Good morning, Steve. Yes — we&#x27;re in the AI RTW Claude Project. I have full context on the work: the literacy definition (RTW with tools, techniques, technological systems consistent with one&#x27;s peers), the MICA methodology, the credential stack, the AIX OER initiative, IDT 590, the Learner&#x27;s Permit scaffold, and the PKM infrastructure you&#x27;re building.</p>
+<p>I&#x27;m oriented to your working style — directness, precision corrections, action over philosophy, synthesis before full drafts. I understand the distinction between &quot;AI literacy&quot; as umbrella term and &quot;generative AI literacy&quot; as specific-activity descriptor. The transcripts are primary source material. The archive compounds thinking rather than evaporating it.</p>
+<p>How can I think with you this morning?</p>
+    </div>
+  </details>
+
+  <footer>
+    <p>Steve Zuiker · AIX Center · SUNY Polytechnic Institute ·
+    <a href="https://claude.ai/chat/84b40731-4963-4889-a2a2-7630cbf9d211">claude.ai source ↗</a> ·
+    <a href="../index.html">← artifacts</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

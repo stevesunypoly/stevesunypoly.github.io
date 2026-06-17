@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herkimer County AI &amp; Cybersecurity Policy Initiative — March 25, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:      #002D62;
+  --navy-mid:  #152E52;
+
+  /* Distinct Text Palette - Accessible at all sizes */
+  --c-S: #8B0000;   /* Security    Burgundy     */
+  --c-E: #006633;   /* Efficiency  Emerald Green */
+  --c-I: #003399;   /* Innovation  Navy Blue    */
+  --c-A: #6600CC;   /* Accountability Deep Purple */
+  
+  /* Light backgrounds for text pods */
+  --bg-S: #FDECEC; /* Security    Pale Rose    */
+  --bg-E: #E6F5EC; /* Efficiency  Mint Tint    */
+  --bg-I: #E6F0FF; /* Innovation  Light Cyan   */
+  --bg-A: #F3E6FF; /* Accountability Soft Lavender */
+
+  --c-Eq:  #003399;
+  --c-Hi:  #8B0000;
+  --c-Inf: #006633;
+
+  --text:   #0D1B2A;
+  --muted:  #4B5563;
+  --border: #D1D5DB;
+  --surf:   #F9FAFB;
+  --white:  #FFFFFF;
+}
+
+html, body { height: 100%; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #F3F4F6;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+#site-header { background: var(--navy); padding: 14px 32px 0; flex-shrink: 0; }
+
+.brand { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; }
+.brand-name  { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+.brand-sub   { font-size: 13px; color: rgba(255,255,255,0.7); }
+.brand-date  { margin-left: auto; font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'JetBrains Mono', monospace; }
+
+nav[role="tablist"] { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+nav[role="tablist"]::-webkit-scrollbar { display: none; }
+
+nav button {
+  background: none; border: none; border-bottom: 3px solid transparent;
+  color: rgba(255,255,255,0.7); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; padding: 10px 16px;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.15s ease; border-radius: 4px 4px 0 0;
+}
+nav button:hover { color: #fff; background: rgba(255,255,255,0.1); }
+nav button[aria-selected="true"] { color: var(--navy); border-bottom-color: var(--navy); background: #fff; }
+nav button:focus-visible { outline: 2px solid rgba(255,255,255,0.3); outline-offset: -2px; }
+
+/* ── CONTENT ── */
+#content { flex: 1; overflow-y: auto; padding: 40px 48px; max-width: 1100px; width: 100%; margin: 0 auto; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ── TYPE ── */
+.mono { font-family: 'JetBrains Mono', monospace; }
+.slide-h  { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; color: var(--navy); }
+.slide-sub { font-size: 20px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+.sec-intro { font-size: 20px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+
+/* ── CARD GRID ── */
+.card-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.card { border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; background: var(--white); }
+.card-num { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--border); letter-spacing: 0.08em; margin-bottom: 6px; }
+.card-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; color: var(--navy); }
+.card-desc { font-size: 17px; color: var(--muted); line-height: 1.65; }
+
+/* ── LAYER STACK ── */
+.layer-stack { display: flex; flex-direction: column; gap: 10px; }
+.layer-row { display: flex; align-items: flex-start; gap: 16px; padding: 14px 18px; border-radius: 10px; border-left: 4px solid; }
+.layer-label { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; letter-spacing: 0.05em; white-space: nowrap; padding-top: 3px; min-width: 160px; }
+.layer-desc { font-size: 20px; color: var(--muted); line-height: 1.65; }
+
+/* ── DIM CARDS ── */
+.dim-grid   { display: grid; gap: 14px; }
+.dim-grid-1 { grid-template-columns: 1fr; }
+.dim-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.dim-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.dim-card   { border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px 20px; background: var(--white); border-top-width: 4px; }
+.dim-label  { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.dim-name   { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.dim-desc   { font-size: 18px; color: var(--muted); line-height: 1.65; }
+.dim-hilo   { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 17px; color: var(--muted); line-height: 1.7; }
+.dim-hilo strong { color: var(--text); }
+
+.dim-S  { border-top-color: var(--c-S);  } .dim-S  .dim-label { color: var(--c-S);  }
+.dim-E  { border-top-color: var(--c-E);  } .dim-E  .dim-label { color: var(--c-E);  }
+.dim-I  { border-top-color: var(--c-I);  } .dim-I  .dim-label { color: var(--c-I);  }
+.dim-A  { border-top-color: var(--c-A);  } .dim-A  .dim-label { color: var(--c-A);  }
+.dim-Eq { border-top-color: var(--c-Eq); } .dim-Eq .dim-label { color: var(--c-Eq); }
+.dim-Hi { border-top-color: var(--c-Hi); } .dim-Hi .dim-label { color: var(--c-Hi); }
+.dim-Inf{ border-top-color: var(--c-Inf);} .dim-Inf .dim-label{ color: var(--c-Inf);}
+
+/* ── DEMO ── */
+.demo-wrap  { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; }
+.demo-intro { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+.pills-row  { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+
+.pill-btn {
+  padding: 8px 18px; border-radius: 22px; border: 2px solid;
+  cursor: pointer; font-size: 14px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; transition: all 0.15s ease; background: var(--white);
+}
+.pill-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+.pill-S { border-color: var(--c-S); color: var(--c-S); }
+.pill-E { border-color: var(--c-E); color: var(--c-E); }
+.pill-I { border-color: var(--c-I); color: var(--c-I); }
+.pill-A { border-color: var(--c-A); color: var(--c-A); }
+.pill-S.hi { background: var(--c-S); color: #fff; }
+.pill-E.hi { background: var(--c-E); color: #fff; }
+.pill-I.hi { background: var(--c-I); color: #fff; }
+.pill-A.hi { background: var(--c-A); color: #fff; }
+
+#demo-result {
+  padding: 18px 20px; border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surf); font-size: 16px; line-height: 1.8; min-height: 72px;
+}
+#demo-result .s { color: var(--c-S); font-weight: 700; background: var(--bg-S); padding: 2px 8px; border-radius: 4px; }
+#demo-result .e { color: var(--c-E); font-weight: 700; background: var(--bg-E); padding: 2px 8px; border-radius: 4px; }
+#demo-result .i { color: var(--c-I); font-weight: 700; background: var(--bg-I); padding: 2px 8px; border-radius: 4px; }
+#demo-result .a { color: var(--c-A); font-weight: 700; background: var(--bg-A); padding: 2px 8px; border-radius: 4px; }
+
+/* ── NEEDS ── */
+.needs-list { display: flex; flex-direction: column; gap: 12px; }
+.need-item  { display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); }
+.need-num   { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; color: var(--border); min-width: 28px; }
+.need-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--navy); }
+.need-desc  { font-size: 17px; color: var(--muted); line-height: 1.65; }
+
+/* ── CALENDAR ── */
+.cal-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.cal-table th { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 10px 16px; border-bottom: 2px solid var(--border); text-align: left; background: var(--surf); }
+.cal-table td { padding: 9px 16px; font-size: 17px; border-bottom: 1px solid #F3F4F6; vertical-align: middle; }
+.cal-table tr:last-child td { border-bottom: none; }
+.cal-date mono { white-space: nowrap; width: 110px; color: var(--muted); }
+.cal-ws   { background: var(--bg-A); } .cal-ws   .cal-event { font-weight: 600; color: var(--c-A); }
+.cal-kick { background: var(--bg-E); } .cal-kick .cal-event { font-weight: 600; color: var(--c-E); }
+.cal-adopt{ background: var(--bg-I); } .cal-adopt .cal-event{ font-weight: 700; color: var(--c-I); }
+.badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-left: 10px; vertical-align: middle; }
+.badge-ws  { background: var(--bg-A); color: var(--c-A); border: 1px solid rgba(76,29,149,0.2); }
+.badge-now { background: var(--bg-E); color: var(--c-E); border: 1px solid rgba(6,95,70,0.2); }
+
+/* ── TITLE ── */
+.title-panel { display: flex; flex-direction: column; justify-content: center; min-height: 60vh; padding: 20px 0; }
+.title-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+.title-main { font-size: 29px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--navy); margin-bottom: 18px; max-width: 780px; }
+.title-sub  { font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 640px; margin-bottom: 40px; }
+.title-rule { width: 56px; height: 4px; background: var(--navy); border-radius: 2px; margin-bottom: 32px; }
+.title-meta { font-size: 13px; color: var(--muted); display: flex; gap: 28px; flex-wrap: wrap; }
+
+/* ── CLOSING ── */
+.closing-panel { display: flex; flex-direction: column; justify-content: center; min-height: 60vh; padding: 20px 0; }
+.closing-label  { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+.closing-border { border-left: 5px solid var(--navy); padding: 20px 36px; max-width: 760px; }
+.closing-text   { font-size: 22px; font-weight: 500; line-height: 1.55; color: var(--navy); }
+
+/* ── AGENDA ── */
+.agenda-item { display:flex; align-items:flex-start; gap:10px; font-size:17px; color:var(--text); background:var(--white); border:1px solid var(--border); border-radius:8px; padding:10px 14px; line-height:1.4; }
+.agenda-num  { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--border); min-width:16px; padding-top:1px; }
+
+/* ── KB HINT ── */
+.kb-hint { position: fixed; bottom: 16px; right: 20px; font-size: 11px; color: rgba(0,0,0,0.28); font-family: 'JetBrains Mono', monospace; pointer-events: none; }
+
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="brand">
+    <span class="brand-name">SUNY POLY AIX</span>
+    <span class="brand-sub">SUNY Polytechnic Institute &nbsp;·&nbsp; Artificial Intelligence Exploration Center</span>
+    <span class="brand-date mono">March 25, 2026</span>
+  </div>
+  <nav role="tablist" aria-label="Presentation sections">
+    <button role="tab" aria-selected="true"  aria-controls="panel-0" id="tab-0" onclick="show(0)">Overview</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-1" id="tab-1" onclick="show(1)">2026 Workflow</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" onclick="show(2)">Calendar</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" onclick="show(3)">County's Role</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-4" id="tab-4" onclick="show(4)">Framing</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-5" id="tab-5" onclick="show(5)">Operational</button>
+    <button role="tab" aria-selected="false" aria-controls="panel-6" id="tab-6" onclick="show(6)">Explorer</button>
+  </nav>
+</header>
+
+<main id="content">
+
+<section class="panel active" id="panel-0" role="tabpanel" aria-labelledby="tab-0">
+    <div class="title-panel">
+      <div class="title-eyebrow">Kickoff Meeting · March 25, 2026</div>
+      <h1 class="title-main">Herkimer County AI &amp; Cybersecurity Policy Initiative</h1>
+      <p class="title-sub">A partnership between SUNY Polytechnic Institute and Herkimer County to develop a comprehensive AI and cybersecurity policy framework organized around county departments and operations. Target adoption by the county legislature: November 2026.</p>
+      <div class="title-rule"></div>
+      <div class="title-meta">
+        <span>Steve Schneider · Asela Abeya · SUNY Poly AIX</span>
+      </div>
+      <div style="margin-top:32px;display:grid;grid-template-columns:1fr;gap:8px;max-width:700px">
+        <div class="agenda-item"><span class="agenda-num">1</span>Project scope, deliverables, and timeline</div>
+        <div class="agenda-item"><span class="agenda-num">2</span>Shared workspace setup</div>
+        <div class="agenda-item"><span class="agenda-num">3</span>Operational materials — scope and protocols</div>
+        <div class="agenda-item"><span class="agenda-num">4</span>The seven dimensions — initial conversation</div>
+        <div class="agenda-item"><span class="agenda-num">5</span>Workshop staff: identify DSS and department audiences</div>
+        <div class="agenda-item"><span class="agenda-num">6</span>Neighboring county outreach — status update</div>
+        <div class="agenda-item"><span class="agenda-num">7</span>Next steps and April 22 agenda</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+    <h2 class="slide-h">2026 Workflow</h2>
+    
+    <details open style="background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;">
+      <summary style="padding:20px 24px;font-size:16px;font-weight:600;color:var(--navy);cursor:pointer;user-select:none;display:flex;align-items:center;gap:12px;transition:background 0.15s ease;">
+        Steps
+        <span style="margin-left:auto;font-size:13px;color:var(--muted);">↓</span>
+      </summary>
+      <div style="padding:24px;border-top:1px solid var(--border);">
+        <div style="display:grid;grid-template-columns:1fr;gap:16px;">
+          <div style="padding:16px;border-left:4px solid var(--muted);border-radius:6px;background:var(--white);"><strong style="color:var(--muted);">01 — Ingest</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">County operational documents: handbooks, job descriptions, procedures, and forms processed into structured knowledge base.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--muted);border-radius:6px;background:var(--white);"><strong style="color:var(--muted);">02 — Outline</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">Define full set of policy topics organized by department, role, and function. Table of contents for comprehensive policy document.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--c-I);border-radius:6px;background:var(--bg-I);"><strong style="color:var(--c-I);font-weight:700;">03 — Calibrate Framework</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">County administrator, IT director, and DSS leadership establish what the three framing dimensions (Equity, Human Impact, Infrastructure Impact) and four operational dimensions (Security, Innovation, Efficiency, Accountability) mean concretely for Herkimer County operations.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--c-E);border-radius:6px;background:var(--bg-E);"><strong style="color:var(--c-E);font-weight:700;">04 — Generate</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">For each topic, complete set of policy options across selected dimensions, each reflecting different value priorities.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--c-A);border-radius:6px;background:var(--bg-A);"><strong style="color:var(--c-A);font-weight:700;">05 — Recalibrate and Regenerate</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">Based on exploration and staff feedback, refine dimensional calibrations and regenerate policy options. Cycle through calibration, generation, and exploration until recommended policy package emerges.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--c-S);border-radius:6px;background:var(--bg-S);"><strong style="color:var(--c-S);font-weight:700;">06 — Formalize</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">Final generation rendered in formal policy language. Complete policy document prepared for county review and adoption.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--c-S);border-radius:6px;background:var(--bg-S);"><strong style="color:var(--c-S);font-weight:700;">07 — Review</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">County staff and leadership review formalized policy document. Final edits and sign-off before legislative presentation.</p></div>
+          <div style="padding:16px;border-left:4px solid var(--c-S);border-radius:6px;background:var(--bg-S);"><strong style="color:var(--c-S);font-weight:700;">08 — Adopt</strong><p style="font-size:17px;color:var(--muted);margin-top:6px;line-height:1.65;">County administrator presents recommended policy to County Legislature. Legislative adoption target: November 4, 2026.</p></div>
+        </div>
+      </div>
+    </details>
+
+    <details open style="background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;">
+      <summary style="padding:20px 24px;font-size:16px;font-weight:600;color:var(--navy);cursor:pointer;user-select:none;display:flex;align-items:center;gap:12px;transition:background 0.15s ease;">
+        Monthly Meetings
+        <span style="margin-left:auto;font-size:13px;color:var(--muted);">↓</span>
+      </summary>
+      <div style="padding:24px;border-top:1px solid var(--border);">
+        <div style="font-size:17px;line-height:1.8;">
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Mar 25</strong><p style="color:var(--muted);margin-top:4px;">Ingest (begin), Outline (review), Calibrate Framework (intro)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Apr 22</strong><p style="color:var(--muted);margin-top:4px;">Calibrate Framework (primary work)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed May 13</strong><p style="color:var(--muted);margin-top:4px;">Outline (refine), Calibrate Framework (refine)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Jun 10</strong><p style="color:var(--muted);margin-top:4px;">Generate (present)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Jul 8</strong><p style="color:var(--muted);margin-top:4px;">Recalibrate and Regenerate (review)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Aug 5</strong><p style="color:var(--muted);margin-top:4px;">Recalibrate and Regenerate (refine)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Sep 9</strong><p style="color:var(--muted);margin-top:4px;">Recalibrate and Regenerate (finalize)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Oct 7</strong><p style="color:var(--muted);margin-top:4px;">Formalize (final policy document)</p></div>
+          <div><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Oct 21</strong><p style="color:var(--muted);margin-top:4px;">Review (final edits and sign-off)</p></div>
+        </div>
+      </div>
+    </details>
+
+    <details open style="background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <summary style="padding:20px 24px;font-size:16px;font-weight:600;color:var(--navy);cursor:pointer;user-select:none;display:flex;align-items:center;gap:12px;transition:background 0.15s ease;">
+        Workshops
+        <span style="margin-left:auto;font-size:13px;color:var(--muted);">↓</span>
+      </summary>
+      <div style="padding:24px;border-top:1px solid var(--border);">
+        <div style="font-size:17px;line-height:1.8;">
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Jun 10</strong><p style="color:var(--muted);margin-top:4px;">Generate (present), Recalibrate and Regenerate (introduce)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Jul 15</strong><p style="color:var(--muted);margin-top:4px;">Recalibrate and Regenerate (deliberate)</p></div>
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Sep 23</strong><p style="color:var(--muted);margin-top:4px;">Recalibrate and Regenerate (finalize), Formalize (prepare)</p></div>
+          <div><strong style="color:var(--navy);font-family:'JetBrains Mono',monospace;">Wed Oct 21</strong><p style="color:var(--muted);margin-top:4px;">Adopt (present to Legislature)</p></div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2">
+    <h2 class="slide-h">March to November 2026</h2>
+    <p class="sec-intro">All dates are proposed and adjustable. Workshops are 2.5-hour facilitated sessions. Monthly meetings are working sessions with the county administrator, IT director, and DSS leadership.</p>
+    <table class="cal-table">
+      <thead><tr><th scope="col">Date</th><th scope="col">Event</th></tr></thead>
+      <tbody>
+        <tr class="cal-kick"><td class="cal-date mono">Wed Mar 25</td><td class="cal-event">Kickoff / Monthly Meeting #1 <span class="badge badge-now">Today</span></td></tr>
+        <tr><td class="cal-date mono">Wed Apr 22</td><td class="cal-event">Monthly Meeting #2: framework development and dimension calibration</td></tr>
+        <tr><td class="cal-date mono">Wed May 13</td><td class="cal-event">Monthly Meeting #3: synthesis document review and dimension refinement</td></tr>
+        <tr class="cal-ws"><td class="cal-date mono">Wed Jun 10</td><td class="cal-event">Workshop #1: AI landscape, values framework, policy options overview <span class="badge badge-ws">Workshop</span></td></tr>
+        <tr><td class="cal-date mono">Wed Jul 8</td><td class="cal-event">Monthly Meeting #4: policy draft review</td></tr>
+        <tr class="cal-ws"><td class="cal-date mono">Wed Jul 15</td><td class="cal-event">Workshop #2: policy deliberation and staff training track <span class="badge badge-ws">Workshop</span></td></tr>
+        <tr><td class="cal-date mono">Wed Aug 5</td><td class="cal-event">Monthly Meeting #5: policy iteration</td></tr>
+        <tr><td class="cal-date mono">Wed Sep 9</td><td class="cal-event">Monthly Meeting #6: legislative briefing preparation</td></tr>
+        <tr class="cal-ws"><td class="cal-date mono">Wed Sep 23</td><td class="cal-event">Workshop #3: policy review and staff training track <span class="badge badge-ws">Workshop</span></td></tr>
+        <tr><td class="cal-date mono">Wed Oct 7</td><td class="cal-event">Monthly Meeting #7: legislative briefing preparation</td></tr>
+        <tr class="cal-ws"><td class="cal-date mono">Wed Oct 21</td><td class="cal-event">Workshop #4: County Legislature <span class="badge badge-ws">Workshop</span></td></tr>
+        <tr class="cal-adopt"><td class="cal-date mono">Wed Nov 4</td><td class="cal-event">Legislative Adoption (target date)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3">
+    <h2 class="slide-h">What We Need from the County</h2>
+    <p class="slide-sub">Four asks. SUNY Poly handles framework design, policy generation, facilitation, and delivery.</p>
+    <div class="needs-list">
+      <div class="need-item"><div class="need-num" aria-hidden="true">1</div><div><div class="need-title">Operational Materials</div><div class="need-desc">Digital copies of policy handbooks, employee handbooks, job descriptions, departmental procedures, and forms at whatever scope the county determines is appropriate. These feed the Policy Explorer and ensure policy language reflects how Herkimer County actually operates.</div></div></div>
+      <div class="need-item"><div class="need-num" aria-hidden="true">2</div><div><div class="need-title">Staff Participation in Validation</div><div class="need-desc">Designated windows where county staff review generated policy text against their operational knowledge. Staff build familiarity with the AI and cybersecurity landscape by working through policy options. This serves both quality assurance and training functions.</div></div></div>
+      <div class="need-item"><div class="need-num" aria-hidden="true">3</div><div><div class="need-title">Workshop Attendance</div><div class="need-desc">Participation from county leadership, department heads, and designated staff across the four workshops. Workshops 2 and 3 include focused training tracks organized by department or function as determined by the county.</div></div></div>
+      <div class="need-item"><div class="need-num" aria-hidden="true">4</div><div><div class="need-title">Neighboring County Outreach</div><div class="need-desc">The county administrator has agreed to extend an invitation to peer counties for potential participation. The project methodology is designed for regional transferability, and participation from neighboring counties strengthens the process for all parties.</div></div></div>
+      <div class="need-item" style="border-color:var(--c-A);background:var(--bg-A)">
+        <div class="need-num" aria-hidden="true" style="color:var(--c-A)">?</div>
+        <div>
+          <div class="need-title" style="color:var(--c-A)">Discussion: Dimension Calibration, April 22</div>
+          <div class="need-desc">
+            <strong>Monthly Meeting #2 (April 22):</strong> This is our first dimension calibration session. We'll work through what each of the seven dimensions actually means for Herkimer County operations.
+            <br><br>
+            <strong>Core group:</strong> County administrator, IT director, and DSS leadership.
+            <br><br>
+            <strong>A few questions for today:</strong>
+            <ul style="margin: 12px 0 0 24px; line-height: 1.65;">
+              <li>Should we bring in additional department staff? If so, which ones?</li>
+              <li>How would you like to structure their participation?</li>
+              <li>Would pre-meeting materials help? We can provide them at three lengths: 25 words, 100 words, or 250 words — covering the full framework plus each dimension separately.</li>
+            </ul>
+            <br>
+            We'll prepare these materials for ourselves and share them with you in a week or two.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4">
+    <h2 class="slide-h">The Framing Dimensions</h2>
+    <p class="slide-sub">Three global constraints set once and applied to every policy item. These establish the ethical context for all policy option generation.</p>
+    <div class="dim-grid dim-grid-1">
+      <div class="dim-card dim-Eq">
+        <div class="dim-label">Equity</div>
+        <div class="dim-desc">AI tools and policies are transparent in how they treat employees, residents, service providers, and recipients, including the assumptions embedded in that treatment.</div>
+        <div class="dim-hilo">
+          <strong>Hi:</strong> Equity is an active constraint. All AI tools are reviewed for differential impact before deployment; treatment assumptions are documented and audited.<br>
+          <strong>Neutral:</strong> AI tools and policies should not systematically disadvantage any group; differential treatment is unintentional and addressed when identified.<br>
+          <strong>Lo:</strong> Equity is a goal but not a procedural requirement; concerns are addressed when raised.
+        </div>
+      </div>
+      <div class="dim-card dim-Hi">
+        <div class="dim-label">Human Impact</div>
+        <div class="dim-desc">The effects of AI-assisted decisions on individuals and families remain visible and subject to human review.</div>
+        <div class="dim-hilo">
+          <strong>Hi:</strong> No AI-assisted decision affecting an individual is final without human review; every determination is documented and appealable.<br>
+          <strong>Neutral:</strong> AI-assisted decisions affecting individuals remain subject to human oversight where practicable.<br>
+          <strong>Lo:</strong> Human review is available for AI-assisted decisions but not required as a standard step.
+        </div>
+      </div>
+      <div class="dim-card dim-Inf">
+        <div class="dim-label">Infrastructure Impact</div>
+        <div class="dim-desc">The material costs of AI adoption — energy use, data infrastructure, procurement, sustainability — are recognized as relevant to county operations and policy.</div>
+        <div class="dim-hilo">
+          <strong>Hi:</strong> Energy use, data infrastructure costs, vendor dependency, and sustainability are formally evaluated as criteria before any AI tool is adopted.<br>
+          <strong>Neutral:</strong> Material costs of AI adoption are considered in procurement planning alongside other operational factors.<br>
+          <strong>Lo:</strong> Infrastructure costs are tracked but do not constitute a barrier to adoption decisions.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-5" role="tabpanel" aria-labelledby="tab-5">
+    <h2 class="slide-h">The Operational Dimensions</h2>
+    <p class="slide-sub">Four dimensions. These placeholder definitions will be calibrated with the county on April 22.</p>
+    <div class="dim-grid dim-grid-1">
+      <div class="dim-card dim-S"><div class="dim-label">Security</div><div class="dim-desc">Protecting county systems, data, and residents from harm or exposure.</div><div class="dim-hilo"><strong>Hi:</strong> approved, vetted tools; data stays on county networks.<br><strong>Lo:</strong> any available tool permitted.</div></div>
+      <div class="dim-card dim-E"><div class="dim-label">Efficiency</div><div class="dim-desc">Reducing friction and cost in how county work gets done.</div><div class="dim-hilo"><strong>Hi:</strong> act on AI output directly; no extra approval step.<br><strong>Lo:</strong> supervisor sign-off required before use.</div></div>
+      <div class="dim-card dim-I"><div class="dim-label">Innovation</div><div class="dim-desc">Encouraging staff to use emerging tools that improve county services.</div><div class="dim-hilo"><strong>Hi:</strong> staff encouraged to experiment with new tools.<br><strong>Lo:</strong> one county-designated tool only.</div></div>
+      <div class="dim-card dim-A"><div class="dim-label">Accountability</div><div class="dim-desc">Clear human responsibility for AI-assisted decisions.</div><div class="dim-hilo"><strong>Hi:</strong> Every use logged with staff ID, tool, timestamp, 90 days.<br><strong>Lo:</strong> No logging required.</div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-6" role="tabpanel" aria-labelledby="tab-6">
+    <h2 class="slide-h">The Policy Explorer</h2>
+    <p class="slide-sub">Use case: County staff use AI to assist in drafting official communications: letters, notices, formal responses. Toggle each dimension Hi or Lo.</p>
+    <div class="demo-wrap">
+      <p class="demo-intro">Click a dimension to toggle Hi / Lo. The policy sentence updates instantly. Each dimension's contribution is highlighted in its color.</p>
+      <div class="pills-row" id="pills" role="group" aria-label="Dimension toggles"></div>
+      <div id="demo-result" aria-live="polite" aria-label="Generated policy text"></div>
+    </div>
+  </section>
+
+
+
+</main>
+
+<div class="kb-hint" aria-hidden="true">← → arrow keys</div>
+
+<script>
+const N = 8;
+let cur = 0;
+function show(i) {
+  document.querySelectorAll('.panel').forEach((p,idx) => p.classList.toggle('active', idx===i));
+  document.querySelectorAll('nav button').forEach((b,idx) => b.setAttribute('aria-selected', idx===i ? 'true':'false'));
+  cur = i;
+  document.getElementById('content').scrollTop = 0;
+}
+show(0);
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight' && cur < N-1) show(cur+1);
+  if (e.key==='ArrowLeft'  && cur > 0  ) show(cur-1);
+});
+
+// Demo
+const ds = {S:'Lo',E:'Lo',I:'Lo',A:'Lo'};
+const dl = {S:'Security',E:'Efficiency',I:'Innovation',A:'Accountability'};
+function sentence(){
+  const S = ds.S==='Hi' ? '<span class="s">approved, county-vetted AI tools; resident data shall not leave the county network</span>' : '<span class="s">any commercially available AI drafting tools</span>';
+  const I = ds.I==='Hi' ? ', and <span class="i">staff are encouraged to experiment with and adopt new approved tools</span>' : '';
+  const E = ds.E==='Hi' ? '<span class="e">Drafted output may be used after staff review of content; no additional approval step is required.</span>' : '<span class="e">All AI-drafted communications require supervisor sign-off before sending.</span>';
+  const A = ds.A==='Hi' ? ' <span class="a">Each use shall be logged with staff ID, tool name, and timestamp, retained for 90 days.</span>' : ' <span class="a">No logging is required.</span>';
+  return `County staff shall use ${S} to assist in drafting official county communications${I}. ${E}${A}`;
+}
+function renderDemo(){
+  document.getElementById('pills').innerHTML = ['S','E','I','A'].map(d => {
+    const hi = ds[d]==='Hi';
+    return `<button class="pill-btn pill-${d}${hi?' hi':''}" onclick="toggleDim('${d}')" aria-pressed="${hi}" aria-label="${dl[d]}: ${ds[d]}">${dl[d]}: ${ds[d]}</button>`;
+  }).join('');
+  document.getElementById('demo-result').innerHTML = sentence();
+}
+function toggleDim(d){ ds[d]=ds[d]==='Hi'?'Lo':'Hi'; renderDemo(); }
+renderDemo();
+</script>
+</body>
+</html>

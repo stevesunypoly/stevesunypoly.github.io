@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Literacy Conversations — Spring 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #8C1515;
+      --ink: #1a1a1a;
+      --mid: #555;
+      --light: #f7f5f2;
+      --rule: #d4cfc9;
+      --accent: #b8860b;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--light);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+    }
+
+    .page {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .from-line {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .from-line strong {
+      color: var(--crimson);
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--mid);
+      margin-bottom: 2rem;
+    }
+
+    .dates-block {
+      background: white;
+      border-left: 3px solid var(--crimson);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .date-row {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      font-size: 0.95rem;
+    }
+
+    .session-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      font-weight: 600;
+      min-width: 3.5rem;
+      padding-top: 0.1rem;
+    }
+
+    .session-date {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 700;
+    }
+
+    .session-topic {
+      color: var(--mid);
+      font-size: 0.9rem;
+    }
+
+    .time-note {
+      font-size: 0.8rem;
+      color: var(--mid);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .body-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .body-text + .body-text {
+      margin-top: -0.5rem;
+    }
+
+    .oer-block {
+      background: white;
+      border: 1px solid var(--rule);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .oer-block h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      color: var(--crimson);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    .oer-item {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      align-items: baseline;
+    }
+
+    .oer-label {
+      font-weight: 600;
+      min-width: 2rem;
+      color: var(--accent);
+    }
+
+    .join-section {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .join-section h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .join-note {
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .rsvp-link {
+      display: inline-block;
+      background: var(--crimson);
+      color: white;
+      text-decoration: none;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .rsvp-link:hover {
+      background: #6e1010;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.8rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .footer a { color: var(--crimson); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="from-line">
+    From <strong>Steven M. Schneider</strong> · SUNY AI Fellow for the Public Good, 2025–2026
+  </div>
+
+  <h1>AI Literacy Conversations</h1>
+  <p class="subtitle">A three-session working series for SUNY AI Fellows and faculty</p>
+
+  <div class="dates-block">
+    <div class="date-row">
+      <span class="session-num">Session 1</span>
+      <div>
+        <div class="session-date">Wednesday, March 25</div>
+        <div class="session-topic">What is AI literacy? The RTW framework, course design implications, assignment models</div>
+      </div>
+    </div>
+    <div class="date-row">
+      <span class="session-num">Session 2</span>
+      <div>
+        <div class="session-date">Wednesday, April 1</div>
+        <div class="session-topic">Work in progress: the Learner's Permit and Commercial License curricula</div>
+      </div>
+    </div>
+    <div class="date-row">
+      <span class="session-num">Session 3</span>
+      <div>
+        <div class="session-date">Wednesday, April 8</div>
+        <div class="session-topic">Cross-campus collaboration and AI FYE grant development</div>
+      </div>
+    </div>
+    <div class="time-note">9:30–10:30 AM &nbsp;·&nbsp; Zoom &nbsp;·&nbsp; No preparation required</div>
+  </div>
+
+  <p class="body-text">
+    I'm developing open AI literacy curriculum as part of my SUNY AI for the Public Good Fellowship — and I'd like your perspective on it while it's still being built.
+  </p>
+
+  <p class="body-text">
+    These three sessions are part presentation, part reflection, part conversation. I'll share the frameworks and materials I've developed so far; you'll help me understand what holds up, what's missing, and what's usable on your campus.
+  </p>
+
+  <div class="oer-block">
+    <h3>Materials we'll discuss</h3>
+    <div class="oer-item">
+      <span class="oer-label">RTW</span>
+      <span>A definition of AI literacy grounded in reading, thinking, and writing — designed to anchor course and assignment design across disciplines</span>
+    </div>
+    <div class="oer-item">
+      <span class="oer-label">LP</span>
+      <span><em>AI Literacy — Learner's Permit</em>: a 5-hour certificate giving students permission to use generative AI in courses that permit and require it</span>
+    </div>
+    <div class="oer-item">
+      <span class="oer-label">CDL</span>
+      <span><em>AI Literacy — Commercial License</em>: a 15-hour certificate for students ready to work with agentic AI systems</span>
+    </div>
+  </div>
+
+  <p class="body-text">
+    Everything is open. If something works for your campus, take it, adapt it, use it. Your reflection in these sessions is part of what shapes the final versions.
+  </p>
+
+  <div class="join-section">
+    <h2>Join us</h2>
+    <p class="join-note">
+      Open to SUNY AI Fellows and faculty across SUNY campuses. All three sessions are independent — come to one or all. Meeting link to follow.
+    </p>
+    <a class="rsvp-link" href="mailto:steve@sunypoly.edu?subject=AI Literacy Conversations — Spring 2026">
+      Express interest
+    </a>
+  </div>
+
+  <div class="footer">
+    Steven M. Schneider &nbsp;·&nbsp; <a href="mailto:steve@sunypoly.edu">steve@sunypoly.edu</a><br>
+    Professor of Information Design &amp; Technology, SUNY Polytechnic Institute<br>
+    Co-Director, AI Exploration Center &nbsp;·&nbsp; <a href="https://people.sunypoly.edu/~steve/">people.sunypoly.edu/~steve</a>
+  </div>
+
+</div>
+</body>
+</html>

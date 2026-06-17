@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNY Poly AIX Center — Africa Partnership: Pivot to Online Engagement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #f9f7f4;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e5ddd2;
+            padding-bottom: 1.5rem;
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        
+        .meta {
+            font-size: 13px;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .alert-holidays {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #856404;
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #1a1a1a;
+            border-left: 4px solid #2b6cb0;
+            padding-left: 1rem;
+        }
+        
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #2b6cb0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .situation {
+            background: #f0f4f8;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #2b6cb0;
+        }
+        
+        .cadence-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .cadence-card {
+            background: #fafaf8;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .cadence-card:hover {
+            border-color: #2b6cb0;
+            box-shadow: 0 4px 12px rgba(43, 108, 176, 0.1);
+        }
+        
+        .cadence-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cadence-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        
+        .cadence-detail {
+            font-size: 13px;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        
+        .pro {
+            background: #e6f4ea;
+            color: #137333;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-size: 13px;
+            border-left: 3px solid #137333;
+        }
+        
+        .con {
+            background: #fce8e6;
+            color: #9c1a1a;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-size: 13px;
+            border-left: 3px solid #9c1a1a;
+        }
+        
+        .duration-note {
+            background: #e8f4f8;
+            border-left: 4px solid #0277bd;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 13px;
+        }
+        
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5ddd2;
+        }
+        
+        .schedule-table th {
+            background: #f0f4f8;
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+        
+        .schedule-table tr:hover {
+            background: #fafaf8;
+        }
+        
+        .day-label {
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+        
+        .time-slot {
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .session-box {
+            background: #f9f7f4;
+            border-left: 4px solid #2b6cb0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .session-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 0.75rem;
+            color: #1a1a1a;
+        }
+        
+        .session-timing {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-item {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid #ddd;
+            position: relative;
+        }
+        
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #2b6cb0;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .timeline-time {
+            font-weight: 600;
+            color: #2b6cb0;
+            font-size: 12px;
+        }
+        
+        .timeline-content {
+            font-size: 13px;
+            margin-top: 0.25rem;
+        }
+        
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 13px;
+        }
+        
+        .project-table th,
+        .project-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5ddd2;
+        }
+        
+        .project-table th {
+            background: #f0f4f8;
+            font-weight: 600;
+            color: #2b6cb0;
+        }
+        
+        .project-table tr:hover {
+            background: #fafaf8;
+        }
+        
+        .coil-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0277bd;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+        
+        .coil-title {
+            font-weight: 600;
+            color: #0277bd;
+            margin-bottom: 1rem;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e5ddd2;
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cadence-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">SUNY Poly AIX Center — Africa Partnership: Pivot to Online Engagement</div>
+            <div class="meta">Working Memo | Draft for Circulation | Steve Schneider, Co-Director, AIX Center, SUNY Polytechnic Institute | April 2026</div>
+        </div>
+
+        <div class="alert-holidays">
+            <div class="alert-title">Key Africa Holidays</div>
+            <ul>
+                <li><strong>May 20 (Ascension Day):</strong> Public holiday in Nigeria and Cameroon</li>
+                <li><strong>May 25 (African Union Day / OAU Liberation Day):</strong> Institutional holiday across Africa</li>
+            </ul>
+        </div>
+
+        <h2>Situation</h2>
+        <div class="situation">
+            <p>The SUNY Poly AIX Center had planned an in-person partnership visit to Nigeria and Cameroon in May 2026, engaging institutions at five sites: NUC and NOUN (Abuja), Federal University of Technology Minna, University of Buea, and University of Yaoundé I. Due to a U.S. State Department Level 4 Travel Advisory, that visit has been postponed. Let's continue the partnerships, the projects, and the momentum.</p>
+            <p>I propose a virtual engagement model for May–June, keeping the spirit of the trip intact while establishing durable COIL-supported collaboration infrastructure that will set the stage for our upcoming in-person visit.</p>
+        </div>
+
+        <h2>Three Cadence Options</h2>
+        <p>We are considering three structural approaches for the four-session engagement. Each has trade-offs in terms of intensity, recovery time, and institutional bandwidth. All sessions are 2 hours each. <em>Note: Sessions could also be extended to 2.5 hours (with one 15-minute break) or 3 hours (with two 15-minute breaks) without changing the structure below.</em></p>
+
+        <div class="cadence-options">
+            <div class="cadence-card">
+                <div class="cadence-label">Option 1</div>
+                <div class="cadence-title">Four Consecutive Days</div>
+                <div class="cadence-detail"><strong>May 18, 19, 20, 21</strong> — back-to-back</div>
+                <div class="cadence-detail">Compressed intensity; full partnership arc in one week</div>
+                <div class="pro">✓ Momentum sustained; completion by May 21; energy and continuity across days; intensive engagement signal</div>
+                <div class="con">✗ Four early mornings in a row for both time zones; no recovery/iteration between sessions; tight feedback loops</div>
+            </div>
+
+            <div class="cadence-card">
+                <div class="cadence-label">Option 2</div>
+                <div class="cadence-title">Weekly Thursdays</div>
+                <div class="cadence-detail"><strong>May 22, 29, June 5, 12</strong> — one week apart</div>
+                <div class="cadence-detail">Spaced engagement; longest arc (4 weeks)</div>
+                <div class="pro">✓ Recovery & prep time between sessions; room for feedback and iteration on COIL micro-projects; sustainable rhythm; allows deeper institutional coordination</div>
+                <div class="con">✗ Longest timeline; momentum can dissipate; overlaps with competing institutional calendars</div>
+            </div>
+
+            <div class="cadence-card">
+                <div class="cadence-label">Option 3</div>
+                <div class="cadence-title">2/2 Over Two Weeks</div>
+                <div class="cadence-detail"><strong>May 20, 21, then May 27, 28</strong> — two days, week break, two days</div>
+                <div class="cadence-detail">Balanced intensity; geographic clustering possible</div>
+                <div class="pro">✓ Grouped focus (Nigeria cluster, then Cameroon cluster); one-week break for feedback and COIL refinement; regional coordination advantage</div>
+                <div class="con">✗ Two-day intensity per cluster; back-to-back sessions each week; less individual institution spotlight time; requires tight regional coordination</div>
+            </div>
+        </div>
+
+        <h2>Four Virtual Sessions (2 Hours Each)</h2>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Session</th>
+                    <th>Time Window</th>
+                    <th>Primary Focus</th>
+                    <th>Anchor Institution(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="day-label">Day 1</td>
+                    <td><span class="time-slot">8:30–10:30 AM EST</span><br><span class="time-slot">1:30–4:00 PM WAT</span><br><span class="time-slot">2:30–5:00 PM CAT</span></td>
+                    <td>Plenary, partnership framing, institutional commitment, project spotlight</td>
+                    <td>FUT Minna + NUC</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Day 2</td>
+                    <td><span class="time-slot">8:30–10:30 AM EST</span><br><span class="time-slot">1:30–4:00 PM WAT</span><br><span class="time-slot">2:30–5:00 PM CAT</span></td>
+                    <td>AI literacy, academic advising, gaming for education</td>
+                    <td>NOUN (Abuja)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Day 3</td>
+                    <td><span class="time-slot">8:30–10:30 AM EST</span><br><span class="time-slot">1:30–4:00 PM WAT</span><br><span class="time-slot">2:30–5:00 PM CAT</span></td>
+                    <td>Health access, AI for underserved communities</td>
+                    <td>University of Buea (Cameroon)</td>
+                </tr>
+                <tr>
+                    <td class="day-label">Day 4</td>
+                    <td><span class="time-slot">8:30–10:30 AM EST</span><br><span class="time-slot">1:30–4:00 PM WAT</span><br><span class="time-slot">2:30–5:00 PM CAT</span></td>
+                    <td>Advanced manufacturing, medical technology, 3D printing</td>
+                    <td>University of Yaoundé I (Cameroon)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Detailed Session Structure</h2>
+
+        <div class="session-box">
+            <div class="session-title">Day 1: Plenary & Partnership Vision</div>
+            <div class="session-timing">8:30–10:30 AM EST | 1:30–4:00 PM WAT | 2:30–5:00 PM CAT</div>
+            <p><strong>Audience:</strong> All five institutions (NUC, NOUN, FUT Minna, Buea, Yaoundé) — full partnership presence</p>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">0–45 min</div>
+                <div class="timeline-content"><strong>Intro & Spirit of Collaboration</strong> — Welcome, partnership framing, vision for five-institution network. Set tone for trust and mutual benefit.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">45–65 min (20 min)</div>
+                <div class="timeline-content"><strong>Wole Sobeyejo Keynote: "Collaboration as Institutional Commitment"</strong> — SUNY President affirms long-term commitment to the partnership, research synergies, and open educational resource sharing across borders.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">65–85 min (20 min)</div>
+                <div class="timeline-content"><strong>Talhah Folorunso Keynote: "AIX Minna Vision for African AI Innovation"</strong> — FUT Minna co-director shares institutional vision, capacity-building agenda, and how precision agriculture and signal interpretation anchor the partnership.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">85–120 min (35 min)</div>
+                <div class="timeline-content"><strong>COIL Big-Picture Framework</strong> — What SUNY COIL partnerships look like; how they scale from workshops to semester-long collaborative projects; how 12 SUNY Poly seats deploy across the partnership; how to structure micro-project commitments. All five institutions anchor their own COIL workshops in Days 2–4.</div>
+            </div>
+        </div>
+
+        <div class="session-box">
+            <div class="session-title">Days 2–4: Institutional Focus Sessions with COIL Micro-Projects</div>
+            <div class="session-timing">8:30–10:30 AM EST | 1:30–4:00 PM WAT | 2:30–5:00 PM CAT</div>
+            <p><strong>Audience:</strong> All five institutions (core partners) + local stakeholders invited by anchor institution (faculty, researchers, NGO partners, government education officials, tech entrepreneurs, health practitioners, manufacturers, etc.)</p>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">0–30 min</div>
+                <div class="timeline-content"><strong>Welcome & Stakeholder Introductions</strong> — Core partnership members and local stakeholders introduce themselves. Establish common ground and frame the micro-project opportunity.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">30–50 min (20 min)</div>
+                <div class="timeline-content"><strong>Institutional Partnership Presentation</strong> — Anchor institution leads a deep dive into the day's project stream. Covers scope, local context, research questions, and partnership opportunities.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">50–65 min (15 min)</div>
+                <div class="timeline-content"><strong>Discussion & Question-Gathering</strong> — Open dialogue between core partners and local stakeholders. Surface collaborations, data needs, methodological questions, resource gaps.</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-time">65–120 min (55 min)</div>
+                <div class="timeline-content"><strong>COIL Micro-Project Design Workshop</strong> — Hope Windle or designate frames the COIL model. All participants brainstorm one concrete micro-project tied to the day's theme. Settle on deliverable, named SUNY Poly lead, named local lead(s), timeline, and scope. Document the commitment. Pre-invited collaborators formally join the project team.</div>
+            </div>
+        </div>
+
+        <h2>Project Streams Mapped to Sessions</h2>
+        
+        <table class="project-table">
+            <thead>
+                <tr>
+                    <th>Session</th>
+                    <th>Project Stream(s)</th>
+                    <th>Lead Institution(s)</th>
+                    <th>COIL Commitment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Day 1</strong></td>
+                    <td>Precision Agriculture & PNT<br>Signal Interpretation / GiveSignal & MDUN</td>
+                    <td>FUT Minna (Talhah Folorunso, Eustace Dogo)<br>Rick Wolfel, Eustace Dogo, Steve Schneider</td>
+                    <td>Big-picture COIL framework for all institutions</td>
+                </tr>
+                <tr>
+                    <td><strong>Day 2</strong></td>
+                    <td>AI Teaching, Learning & Education (OER)<br>AI Academic Support (Advising/Tutoring)<br>Gaming, AI & Education<br>Signal Interpretation / GiveSignal & MDUN</td>
+                    <td>NOUN (Adebayo Adegboyega)<br>NOUN (Adebayo Adegboyega)<br>Nick Lejeune, Adebayo Adegboyega, NOUN<br>FUT Minna (Eustace Dogo)</td>
+                    <td>COIL Commitment 1: NOUN + SUNY Poly<br>COIL Commitment 2: FUT Minna + SUNY Poly</td>
+                </tr>
+                <tr>
+                    <td><strong>Day 3</strong></td>
+                    <td>Health Access</td>
+                    <td>University of Buea (Nkweteyim Denis)<br>Jerome Niyirora (SUNY Poly)</td>
+                    <td>COIL Commitment 3: Buea + SUNY Poly</td>
+                </tr>
+                <tr>
+                    <td><strong>Day 4</strong></td>
+                    <td>Advanced Manufacturing & Medical Technology</td>
+                    <td>University of Yaoundé I (Edwin Mbinkar)</td>
+                    <td>COIL Commitment 4: Yaoundé I + SUNY Poly</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>COIL Micro-Project Commitments</h2>
+        
+        <div class="coil-box">
+            <div class="coil-title">What We Mean by COIL Micro-Project</div>
+            <p>A COIL micro-project is a bounded, real collaboration between SUNY Poly faculty/students and partner institution faculty/researchers. It has:</p>
+            <ul>
+                <li><strong>One concrete deliverable</strong> (e.g., co-authored curriculum module, joint data audit, prototype design, research brief)</li>
+                <li><strong>Clear timeline</strong> (e.g., 8-week sprint, semester-long, with monthly check-ins)</li>
+                <li><strong>Named leads from both sides</strong> (SUNY Poly + partner institution)</li>
+                <li><strong>Pre-invited collaborators</strong> who join during the COIL workshop (NGO partners, tech companies, government officials, community health workers, manufacturers, etc.)</li>
+                <li><strong>Documented commitment</strong> signed off in the workshop, with next check-in date assigned</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            This memo draws on the AIX Africa Partnership overview (March 2026), ongoing email correspondence with Hope Windle, Adebayo Adegboyega, Talhah Folorunso, and partner institutions, and planning discussions with Wole Sobeyejo, Bill Thistleton, and the AIX Center team.
+        </div>
+    </div>
+</body>
+</html>

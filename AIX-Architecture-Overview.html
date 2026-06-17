@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIX Zettelkasten — Architecture & Workflow</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --border: #2a2d33;
+    --accent: #7eb8f7;
+    --accent2: #f7c87e;
+    --muted: #5a5f6e;
+    --text: #d4d8e2;
+    --text-dim: #8a8f9e;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 3rem 1.5rem 6rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .meta {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meta span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .meta span strong {
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+  section:nth-child(6) { animation-delay: 0.5s; }
+  section:nth-child(7) { animation-delay: 0.6s; }
+
+  h2 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h3 {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent2);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.85rem;
+  }
+
+  /* Flow diagram */
+  .flow {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    margin: 1.5rem 0;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.3rem 0;
+  }
+
+  .flow-label {
+    color: #fff;
+    background: #1e2128;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .flow-label.accent { border-color: var(--accent); color: var(--accent); }
+  .flow-label.gold { border-color: var(--accent2); color: var(--accent2); }
+
+  .flow-note {
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-style: italic;
+  }
+
+  .flow-arrow {
+    color: var(--muted);
+    padding-left: 0.5rem;
+  }
+
+  /* Schema block */
+  .schema {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 2;
+    margin: 1rem 0;
+  }
+
+  .schema-field { display: flex; gap: 1rem; }
+  .schema-key { color: var(--accent2); min-width: 160px; }
+  .schema-val { color: var(--text-dim); }
+
+  /* Tag list */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.75rem 0;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: var(--surface);
+  }
+
+  .tag.domain { border-color: #3a4a5e; color: #7eb8f7; background: #131a24; }
+  .tag.semantic { border-color: #4a3a20; color: #f7c87e; background: #1a1510; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin: 1rem 0;
+  }
+
+  th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1e2128;
+    vertical-align: top;
+  }
+
+  td:first-child {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  td:nth-child(2) { color: var(--text-dim); font-size: 0.85rem; }
+  td:last-child { color: var(--text); font-size: 0.85rem; }
+
+  tr:last-child td { border-bottom: none; }
+
+  /* Steps list */
+  .steps { list-style: none; counter-reset: steps; }
+
+  .steps li {
+    counter-increment: steps;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .steps li::before {
+    content: counter(steps);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: #131a24;
+    border: 1px solid #3a4a5e;
+    min-width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .steps li strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    animation: fadeUp 0.6s 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Project Documentation</div>
+  <h1>AIX Zettelkasten<br>Architecture &amp; Workflow</h1>
+  <p class="subtitle">From conversation to linked knowledge node — no copy-paste, no evaporation</p>
+  <div class="meta">
+    <span><strong>Date</strong> &nbsp;March 3, 2026</span>
+    <span><strong>Status</strong> &nbsp;Pre-build — schema finalized</span>
+    <span><strong>Source</strong> &nbsp;PKM / MICA schema design session</span>
+  </div>
+</header>
+
+<section>
+  <h2>The Problem</h2>
+  <p>Insights produced in AI conversations have two fates: manual copy-paste with degradation and friction, or evaporation when the tab closes. This system closes that gap.</p>
+  <p>Every significant idea generated in conversation becomes a durable, linked node in a living knowledge network — with no manual filing and full provenance preserved.</p>
+</section>
+
+<section>
+  <h2>The Architecture</h2>
+
+  <div class="flow">
+    <div class="flow-row">
+      <div class="flow-label accent">Claude Conversation</div>
+      <div class="flow-note">RTW cycles, prompting, synthesis</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓ /ark command</div></div>
+    <div class="flow-row">
+      <div class="flow-label">SharePoint Archive</div>
+      <div class="flow-note">MICA corpus — 65+ conversations</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓ synthesis document</div></div>
+    <div class="flow-row">
+      <div class="flow-label">.tid generator script</div>
+      <div class="flow-note">Node.js / Claude Code</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓</div></div>
+    <div class="flow-row">
+      <div class="flow-label gold">TiddlyWiki Zettelkasten</div>
+      <div class="flow-note">living knowledge network — GitHub repo</div>
+    </div>
+  </div>
+
+  <h3>Layer 1 — Conversation</h3>
+  <p>Where thinking happens. Prompt sequences are the cognitive work. The transcript is the primary record. RTW (Read-Think-Write) cycles produce ideas, corrections, and refinements. The <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent)">/ark</code> command closes each conversation, capturing metadata and exporting to SharePoint.</p>
+
+  <h3>Layer 2 — Archive (SharePoint)</h3>
+  <p>Where full conversation transcripts live as markdown exports. This is the MICA corpus. MICA (Monadic Inference Cycle Analysis) treats each prompt-response exchange as a discrete unit with its own context and timestamp — the archive is what MICA runs against.</p>
+
+  <h3>Layer 3 — Atomic Knowledge (TiddlyWiki)</h3>
+  <p>Where individual ideas live as nodes. Each tiddler is one concept, insight, definition, method, or question — tagged, linked, traversable. The wiki runs as a Node.js server in a GitHub repo. Forward and backlinks are automatic: TiddlyWiki parses <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent2)">[[wikilinks]]</code> and surfaces both directions without any manual field maintenance.</p>
+
+  <h3>Layer 4 — Generation (Node.js / Claude Code)</h3>
+  <p>Where tiddlers are produced programmatically. A synthesis document goes in; correctly-formatted <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent)">.tid</code> files come out, dropped directly into TiddlyWiki. No copy-paste. No reformatting.</p>
+</section>
+
+<section>
+  <h2>Tiddler Schema</h2>
+
+  <div class="schema">
+    <div class="schema-field"><span class="schema-key">title:</span><span class="schema-val">CamelCaseTitle</span></div>
+    <div class="schema-field"><span class="schema-key">created:</span><span class="schema-val">YYYYMMDDHHMMSS</span></div>
+    <div class="schema-field"><span class="schema-key">modified:</span><span class="schema-val">YYYYMMDDHHMMSS</span></div>
+    <div class="schema-field"><span class="schema-key">tags:</span><span class="schema-val">[domain] [semantic]</span></div>
+    <div class="schema-field"><span class="schema-key">type:</span><span class="schema-val">text/x-markdown</span></div>
+    <div class="schema-field"><span class="schema-key">source-conversation:</span><span class="schema-val">[ark ID or title]</span></div>
+    <div class="schema-field"><span class="schema-key">text:</span><span class="schema-val">markdown with [[wikilinks]] inline</span></div>
+  </div>
+
+  <p style="margin-top:1.25rem; font-size:0.88rem; color:var(--text-dim)">Domain tags — subject area:</p>
+  <div class="tags">
+    <span class="tag domain">MICA</span>
+    <span class="tag domain">AILiteracy</span>
+    <span class="tag domain">RTW</span>
+    <span class="tag domain">PKM</span>
+    <span class="tag domain">TiddlyWiki</span>
+    <span class="tag domain">Prompting</span>
+    <span class="tag domain">AssessmentTheory</span>
+    <span class="tag domain">IDT590</span>
+    <span class="tag domain">OER</span>
+    <span class="tag domain">LearnerPermit</span>
+  </div>
+
+  <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text-dim)">Semantic tags — kind of thing:</p>
+  <div class="tags">
+    <span class="tag semantic">concept</span>
+    <span class="tag semantic">question</span>
+    <span class="tag semantic">method</span>
+    <span class="tag semantic">insight</span>
+    <span class="tag semantic">revision</span>
+  </div>
+
+  <p style="margin-top:1rem; font-size:0.88rem;">The <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent2)">source-conversation</code> field is the MICA bridge — every tiddler points back to the conversation that produced it. The wiki is not just a knowledge base but a trace of how the knowledge was made.</p>
+</section>
+
+<section>
+  <h2>MICA &amp; Zettelkasten Together</h2>
+  <p>They operate at different scales and are complementary — not redundant.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Unit of Analysis</th>
+        <th>Question It Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MICA</td>
+        <td>Whole conversation</td>
+        <td>What patterns emerge across 65 conversations this semester?</td>
+      </tr>
+      <tr>
+        <td>Zettelkasten</td>
+        <td>Individual idea</td>
+        <td>What does [[InterCycleAnnotation]] link to?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent2)">source-conversation</code> field is the bridge. Analysis can move in either direction — from corpus to atom, or from atom back to its originating conversation.</p>
+</section>
+
+<section>
+  <h2>End-of-Conversation Workflow</h2>
+  <ol class="steps">
+    <li><div><strong>Conversation produces insight</strong> — through RTW cycles, directional correction, and synthesis</div></li>
+    <li><div><strong>Synthesis document written</strong> — in the same session, while the thinking is live. This is the markdown that captures the idea in full.</div></li>
+    <li><div><strong>/ark command</strong> — captures conversation metadata, exports transcript to SharePoint archive</div></li>
+    <li><div><strong>.tid generator runs</strong> — synthesis document fed to script; one or more <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent)">.tid</code> files produced with correct fields</div></li>
+    <li><div><strong>Tiddlers land in wiki</strong> — knowledge is now a linked node, not a lost conversation</div></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Build Order</h2>
+  <ol class="steps">
+    <li><div><strong>GitHub repo</strong> — initialized with Node.js TiddlyWiki server configuration</div></li>
+    <li><div><strong>Seed tiddlers</strong> — generate <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent)">.tid</code> files from the founding synthesis document (<code style="font-family:var(--mono);font-size:0.85em;color:var(--accent2)">PKMAtThePrompt</code>)</div></li>
+    <li><div><strong>Stub tiddlers</strong> — for each linked concept: <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent2)">MICA RTW InterCycleAnnotation RTWRubric ArkWorkflow LearnerPermit TranscriptAssessment</code></div></li>
+    <li><div><strong>Generator script</strong> — markdown synthesis → <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent)">.tid</code> files, with correct field population</div></li>
+    <li><div><strong>Workflow integration</strong> — script runs at conversation close, alongside <code style="font-family:var(--mono);font-size:0.85em;color:var(--accent)">/ark</code></div></li>
+  </ol>
+</section>
+
+<footer>
+  Architecture finalized March 3, 2026 &nbsp;·&nbsp; Source: PKM / TiddlyWiki / MICA schema design session &nbsp;·&nbsp; AIX Zettelkasten project
+  <br><br>
+  <a href="https://stevesunypoly.github.io/tilde-steve/transcripts/steve-claude-project-scope-and-workflow-planning.html" style="color:var(--accent);text-decoration:none;border-bottom:1px solid #3a4a5e;">Source transcript: Steve-Claude Project Scope and Workflow Planning →</a>
+</footer>
+
+</body>
+</html>

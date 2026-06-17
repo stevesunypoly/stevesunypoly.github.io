@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIX Zettelkasten v2 — Architecture & Workflow</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0f11;
+  --surface: #16181c;
+  --surface2: #1a1d22;
+  --border: #2a2d33;
+  --accent: #7eb8f7;
+  --accent2: #f7c87e;
+  --accent3: #7ef7c0;
+  --muted: #5a5f6e;
+  --text: #d4d8e2;
+  --text-dim: #8a8f9e;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+  padding: 3rem 1.5rem 6rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* version badge */
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent3);
+  border: 1px solid #2a4a3a;
+  background: #0d1a14;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+}
+.version-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent3);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.6s ease both;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-family: var(--mono);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.subtitle { color: var(--text-dim); font-size: 0.9rem; font-style: italic; }
+.meta { margin-top: 1.25rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.meta span { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+.meta span strong { color: var(--text-dim); font-weight: 600; }
+
+/* delta callout — what changed from v1 */
+.delta {
+  background: #0d1a14;
+  border: 1px solid #2a4a3a;
+  border-left: 3px solid var(--accent3);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.6s 0.05s ease both;
+}
+.delta-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.delta ul { list-style: none; }
+.delta li {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  padding: 0.2rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+.delta li::before {
+  content: '+';
+  position: absolute; left: 0;
+  color: var(--accent3);
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+section {
+  margin-bottom: 3rem;
+  animation: fadeUp 0.6s ease both;
+}
+section:nth-child(3) { animation-delay: 0.1s; }
+section:nth-child(4) { animation-delay: 0.2s; }
+section:nth-child(5) { animation-delay: 0.3s; }
+section:nth-child(6) { animation-delay: 0.4s; }
+section:nth-child(7) { animation-delay: 0.5s; }
+section:nth-child(8) { animation-delay: 0.6s; }
+
+h2 {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+h2::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+h3 {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent2);
+  margin: 1.5rem 0 0.5rem;
+}
+p { font-size: 0.95rem; color: var(--text); margin-bottom: 0.85rem; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--accent);
+}
+code.gold { color: var(--accent2); }
+code.green { color: var(--accent3); }
+
+/* Three-layer tiddler diagram */
+.layers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.layer {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.layer:last-child { border-bottom: none; }
+.layer-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 1rem;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.layer-num .n { font-size: 1.4rem; color: var(--accent); line-height: 1; }
+.layer-num .label { color: var(--muted); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.layer-content { padding: 1rem 1.25rem; background: var(--surface2); }
+.layer-title { font-family: var(--mono); font-size: 0.8rem; color: #fff; margin-bottom: 0.35rem; }
+.layer-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+.layer-note { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+
+.layer.l1 .layer-num .n { color: var(--accent2); }
+.layer.l2 .layer-num .n { color: var(--accent); }
+.layer.l3 .layer-num .n { color: var(--muted); }
+
+/* Pipeline flow */
+.flow {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.75rem 2rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  margin: 1.5rem 0;
+}
+.flow-row { display: flex; align-items: flex-start; gap: 1rem; padding: 0.35rem 0; }
+.flow-label {
+  color: #fff;
+  background: #1e2128;
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  min-width: 180px;
+}
+.flow-label.blue { border-color: var(--accent); color: var(--accent); }
+.flow-label.gold { border-color: var(--accent2); color: var(--accent2); }
+.flow-label.green { border-color: #2a4a3a; color: var(--accent3); }
+.flow-note { color: var(--muted); font-size: 0.7rem; font-style: italic; padding-top: 0.35rem; }
+.flow-arrow { color: var(--muted); padding-left: 0.5rem; }
+.flow-divider { border: none; border-top: 1px dashed var(--border); margin: 0.75rem 0; }
+
+/* Distill/Synth table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 1rem 0;
+}
+th {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #1e2128;
+  vertical-align: top;
+}
+td:first-child { font-family: var(--mono); font-size: 0.78rem; color: var(--accent2); white-space: nowrap; }
+td:nth-child(2) { color: var(--text-dim); font-size: 0.85rem; }
+td:last-child { color: var(--text); font-size: 0.85rem; }
+tr:last-child td { border-bottom: none; }
+
+/* Schema */
+.schema {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 2;
+  margin: 1rem 0;
+}
+.schema-field { display: flex; gap: 1rem; }
+.schema-key { color: var(--accent2); min-width: 180px; }
+.schema-val { color: var(--text-dim); }
+.schema-section {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 1rem 0 0.25rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+/* Tag list */
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0; }
+.tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: var(--surface);
+}
+.tag.domain { border-color: #3a4a5e; color: #7eb8f7; background: #131a24; }
+.tag.semantic { border-color: #4a3a20; color: #f7c87e; background: #1a1510; }
+.tag.platform { border-color: #3a4a3a; color: var(--accent3); background: #0d1a14; }
+
+/* Steps */
+.steps { list-style: none; counter-reset: steps; }
+.steps li {
+  counter-increment: steps;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+.steps li::before {
+  content: counter(steps);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: #131a24;
+  border: 1px solid #3a4a5e;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+.steps li strong { color: #fff; font-weight: 600; }
+
+/* callout */
+.callout {
+  background: #131a24;
+  border: 1px solid #3a4a5e;
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin: 1rem 0;
+  font-style: italic;
+}
+.callout strong { color: var(--accent); font-style: normal; }
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  animation: fadeUp 0.6s 0.7s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Project Documentation</div>
+  <div class="version-badge">v2 — March 12, 2026</div>
+  <h1>AIX Zettelkasten<br>Architecture &amp; Workflow</h1>
+  <p class="subtitle">Personal knowledge refinery for AI conversations — multi-platform, lazy-rendered, model-augmented</p>
+  <div class="meta">
+    <span><strong>Status</strong> &nbsp;Architecture revised</span>
+    <span><strong>Scope</strong> &nbsp;~1000 conversations / 3 platforms</span>
+    <span><strong>Supersedes</strong> &nbsp;v1 March 3, 2026</span>
+  </div>
+</header>
+
+<div class="delta">
+  <div class="delta-label">What changed from v1</div>
+  <ul>
+    <li>Scale: 27 DAC-AC conversations → ~1000 conversations across Claude, ChatGPT, Gemini</li>
+    <li>Normalization layer added: all platforms → common schema before distillation</li>
+    <li>Tiddler architecture split into three layers: atoms (upfront), conversation views (lazy), JSON archive (permanent)</li>
+    <li>Distillation vs synthesis formally distinguished — synthesis is now cheap, post-hoc, token-free</li>
+    <li>Inference cycle retained as provenance pointer only, not extraction unit</li>
+    <li>TW repositioned as display/probe interface with live model access</li>
+    <li>Vocabulary normalization deferred and scripted, not manual</li>
+    <li>RAG role of tiddler corpus made explicit</li>
+  </ul>
+</div>
+
+<section>
+  <h2>Core Distinction — Distillation vs Synthesis</h2>
+  <p>These are two different operations that happen at different times and different costs.</p>
+  <table>
+    <thead>
+      <tr><th>Operation</th><th>What it does</th><th>When / cost</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Distillation</td>
+        <td>Breaks conversations into atomic tiddlers — one concept, method, or insight per node. Removes scaffolding, retains essence.</td>
+        <td>Upfront, once per conversation. Costs API tokens.</td>
+      </tr>
+      <tr>
+        <td>Synthesis</td>
+        <td>Combines tiddlers into new understanding — patterns, connections, arguments. Operates on the distilled store.</td>
+        <td>On demand, any time. Cheap — queries the tiddler store, not raw conversations.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    The tiddler corpus is the RAG index. <strong>Synthesis happens against atoms, not against conversation tokens</strong> — which is why distillation is worth the upfront cost.
+  </div>
+</section>
+
+<section>
+  <h2>Three-Layer Tiddler Architecture</h2>
+  <p>Not all tiddlers are generated at the same time or in the same way.</p>
+
+  <div class="layers">
+    <div class="layer l1">
+      <div class="layer-num">
+        <span class="n">1</span>
+        <span class="label">Upfront</span>
+      </div>
+      <div class="layer-content">
+        <div class="layer-title">Idea Tiddlers</div>
+        <div class="layer-desc">Atomic concepts extracted by the distillation pipeline. One claim, method, or insight per tiddler. Generated in batch from the conversation corpus via API. These are the permanent nodes of the knowledge network.</div>
+        <div class="layer-note">source-conversation + exchange number as provenance fields</div>
+      </div>
+    </div>
+    <div class="layer l2">
+      <div class="layer-num">
+        <span class="n">2</span>
+        <span class="label">Lazy</span>
+      </div>
+      <div class="layer-content">
+        <div class="layer-title">Conversation Tiddlers</div>
+        <div class="layer-desc">Generated on demand when you follow a provenance link from an idea tiddler. TW Node.js reads the source JSON and renders the conversation — or just the relevant exchange — without pre-generating anything. You only pay the cost when you actually need to trace back.</div>
+        <div class="layer-note">not pre-stored — rendered from JSON on request</div>
+      </div>
+    </div>
+    <div class="layer l3">
+      <div class="layer-num">
+        <span class="n">3</span>
+        <span class="label">Permanent</span>
+      </div>
+      <div class="layer-content">
+        <div class="layer-title">JSON Archive</div>
+        <div class="layer-desc">The full conversation exports. Ground truth. Never modified. All three platforms normalized to a common schema. The distillation pipeline reads from here; the lazy renderer reads from here.</div>
+        <div class="layer-note">Claude JSON · ChatGPT export · Gemini export → normalized</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Full Pipeline</h2>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="flow-label">Claude / ChatGPT / Gemini</div>
+      <div class="flow-note">3 platforms, ~1000 conversations</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓ export (JSON / markdown)</div></div>
+    <div class="flow-row">
+      <div class="flow-label green">Normalization script</div>
+      <div class="flow-note">common schema: uuid, platform, timestamp, turns[ ]</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓</div></div>
+    <div class="flow-row">
+      <div class="flow-label">JSON Archive</div>
+      <div class="flow-note">permanent ground truth — never modified</div>
+    </div>
+    <hr class="flow-divider">
+    <div class="flow-row"><div class="flow-arrow">↓ distillation (Claude API, batch)</div></div>
+    <div class="flow-row">
+      <div class="flow-label gold">Idea Tiddlers (.tid files)</div>
+      <div class="flow-note">sparse yield — most cycles are scaffolding, not ideas</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓</div></div>
+    <div class="flow-row">
+      <div class="flow-label green">Vocabulary normalization script</div>
+      <div class="flow-note">post-hoc synonym consolidation — run after corpus stabilizes</div>
+    </div>
+    <div class="flow-row"><div class="flow-arrow">↓</div></div>
+    <div class="flow-row">
+      <div class="flow-label blue">TiddlyWiki Node.js</div>
+      <div class="flow-note">display · probe · lazy conversation render · live model access</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Tiddler Schema (v2)</h2>
+  <div class="schema">
+    <div class="schema-section">identity</div>
+    <div class="schema-field"><span class="schema-key">title:</span><span class="schema-val">CamelCaseConceptPhrase</span></div>
+    <div class="schema-field"><span class="schema-key">created:</span><span class="schema-val">YYYYMMDDHHMMSS</span></div>
+    <div class="schema-field"><span class="schema-key">modified:</span><span class="schema-val">YYYYMMDDHHMMSS</span></div>
+
+    <div class="schema-section">classification</div>
+    <div class="schema-field"><span class="schema-key">tags:</span><span class="schema-val">[platform] [domain] [semantic]</span></div>
+    <div class="schema-field"><span class="schema-key">type:</span><span class="schema-val">text/x-markdown</span></div>
+
+    <div class="schema-section">provenance — new in v2</div>
+    <div class="schema-field"><span class="schema-key">source-platform:</span><span class="schema-val">claude | chatgpt | gemini</span></div>
+    <div class="schema-field"><span class="schema-key">source-conversation:</span><span class="schema-val">[normalized conversation ID]</span></div>
+    <div class="schema-field"><span class="schema-key">source-exchange:</span><span class="schema-val">[turn index within conversation]</span></div>
+
+    <div class="schema-section">content</div>
+    <div class="schema-field"><span class="schema-key">text:</span><span class="schema-val">markdown with [[wikilinks]] inline</span></div>
+  </div>
+
+  <p style="margin-top:1.25rem; font-size:0.88rem; color:var(--text-dim)">Platform tags:</p>
+  <div class="tags">
+    <span class="tag platform">claude</span>
+    <span class="tag platform">chatgpt</span>
+    <span class="tag platform">gemini</span>
+  </div>
+
+  <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text-dim)">Domain tags:</p>
+  <div class="tags">
+    <span class="tag domain">MICA</span>
+    <span class="tag domain">DAC-AC</span>
+    <span class="tag domain">M-DUN</span>
+    <span class="tag domain">ICA</span>
+    <span class="tag domain">PKM</span>
+    <span class="tag domain">TiddlyWiki</span>
+    <span class="tag domain">AILiteracy</span>
+    <span class="tag domain">Prompting</span>
+    <span class="tag domain">RTW</span>
+  </div>
+
+  <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text-dim)">Semantic tags:</p>
+  <div class="tags">
+    <span class="tag semantic">concept</span>
+    <span class="tag semantic">method</span>
+    <span class="tag semantic">insight</span>
+    <span class="tag semantic">question</span>
+    <span class="tag semantic">revision</span>
+    <span class="tag semantic">finding</span>
+  </div>
+</section>
+
+<section>
+  <h2>Vocabulary Normalization Strategy</h2>
+  <p>Extract now, normalize later. Taxonomy anxiety should not block distillation. The corpus itself surfaces what the canonical terms are — synonym clusters appear once you have a full title list.</p>
+
+  <ol class="steps">
+    <li><div><strong>Distill all conversations</strong> — messy vocabulary is fine at this stage</div></li>
+    <li><div><strong>Export full tiddler title list</strong> — one pass over the corpus</div></li>
+    <li><div><strong>Feed title list to Claude</strong> — ask it to identify synonym clusters</div></li>
+    <li><div><strong>Build normalization map</strong> — e.g. <code>{"MDUN": "M-DUN", "inference cycle": "ICA"}</code></div></li>
+    <li><div><strong>Run normalization script</strong> — find-replace across all tiddler titles and text fields in JSON export</div></li>
+    <li><div><strong>Reimport to TW</strong> — coherent corpus from this point forward</div></li>
+  </ol>
+  <div class="callout">
+    The domain vocabulary is largely already known — <strong>M-DUN, ICA, DAC-AC, context contribution assay, paired artifact</strong>. Normalization here is enforcement, not discovery.
+  </div>
+</section>
+
+<section>
+  <h2>TiddlyWiki as Interface, Not Refinery</h2>
+  <p>TW's job is display, navigation, and probe — not storage or reasoning. The model lives behind it as an on-demand reasoning engine.</p>
+
+  <h3>What TW does</h3>
+  <p>Renders idea tiddlers. Generates conversation views lazily from JSON when you follow a provenance link. Maintains forward and backlinks automatically via <code class="gold">[[wikilinks]]</code>. Provides the navigation surface for browsing the distilled corpus.</p>
+
+  <h3>What the model does (live)</h3>
+  <p>When you're browsing a cluster of tiddlers and want to understand what connects them — ask the model in real time. It queries against the tiddler store and synthesizes across it. This is the AIX Workbench pattern applied to the personal knowledge base: TW as navigation layer, model as on-demand reasoning, tiddler corpus as the RAG index it queries against.</p>
+
+  <h3>What the JSON archive does</h3>
+  <p>Sits underneath everything as permanent ground truth. Never touched by TW or the model directly. The distillation pipeline reads from it once; the lazy renderer reads from it on demand.</p>
+</section>
+
+<section>
+  <h2>Build Order</h2>
+  <ol class="steps">
+    <li><div><strong>Normalization script</strong> — flatten Claude JSON, ChatGPT exports, and Gemini exports to common schema</div></li>
+    <li><div><strong>Distillation prompt design</strong> — get this right on 2-3 sample conversations before running batch; the prompt is the intellectual core</div></li>
+    <li><div><strong>Batch distillation</strong> — run all ~1000 conversations through Claude API; collect .tid output</div></li>
+    <li><div><strong>Vocabulary normalization</strong> — title list → Claude → normalization map → script → reimport</div></li>
+    <li><div><strong>TW Node.js setup</strong> — GitHub repo, server config, lazy conversation renderer</div></li>
+    <li><div><strong>Live model integration</strong> — synthesis queries against tiddler store from within TW</div></li>
+  </ol>
+</section>
+
+<footer>
+  Architecture revised March 12, 2026 &nbsp;·&nbsp; Source: AIX Zettelkasten design session (Claude + ChatGPT) &nbsp;·&nbsp; supersedes v1 March 3, 2026
+</footer>
+
+</body>
+</html>
