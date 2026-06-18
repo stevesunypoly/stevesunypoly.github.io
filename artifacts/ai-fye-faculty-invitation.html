@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-FYE — Faculty Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#f0ede8;padding:32px 24px;color:#1a1a2e}
+.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto}
+
+.page-header{text-align:center;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.page-header h1{font-size:36px;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px}
+.page-header .cred{font-size:13px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#2C5282;margin-bottom:8px}
+.page-header .sub{font-size:14px;color:rgba(0,0,0,0.38)}
+
+details{margin-bottom:14px}
+summary{font-size:17px;font-weight:600;color:#1a1a2e;cursor:pointer;padding:18px 26px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,0.03);list-style:none;display:flex;align-items:center;gap:12px;transition:all 0.2s ease;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'▸';font-size:13px;color:rgba(0,0,0,0.22);transition:transform 0.2s ease;display:inline-block;flex-shrink:0}
+details[open]>summary::before{transform:rotate(90deg)}
+summary:hover{background:#fefefe;border-color:rgba(44,82,130,0.18)}
+details[open]>summary{border-radius:12px 12px 0 0;border-bottom-color:transparent}
+.stag{font-size:11px;font-weight:500;letter-spacing:0.05em;padding:3px 10px;border-radius:6px;margin-left:auto;white-space:nowrap}
+.s-blue{background:rgba(44,82,130,0.1);color:#2C5282}
+.s-teal{background:rgba(26,107,94,0.1);color:#1A6B5E}
+.s-gold{background:rgba(146,98,10,0.1);color:#92620A}
+.s-gray{background:rgba(0,0,0,0.06);color:rgba(0,0,0,0.4)}
+.s-navy{background:rgba(27,58,107,0.1);color:#1B3A6B}
+.s-green{background:rgba(22,128,72,0.1);color:#166840}
+.s-purple{background:rgba(109,40,217,0.1);color:#6d28d9}
+
+.section-body{background:#fff;border:1px solid rgba(0,0,0,0.08);border-top:none;border-radius:0 0 12px 12px;padding:34px 38px;box-shadow:0 4px 16px -8px rgba(0,0,0,0.06)}
+.section-body p{font-size:14.5px;color:rgba(0,0,0,0.62);line-height:1.78;margin-bottom:12px}
+.section-body ul,.section-body ol{margin:10px 0 14px 22px}
+.section-body li{font-size:14.5px;color:rgba(0,0,0,0.6);line-height:1.7;margin-bottom:5px}
+.section-body h3{font-size:15px;font-weight:600;color:#2C5282;margin:22px 0 8px}
+.section-body strong{color:#1a1a2e}
+
+.phase-banner{background:#1B3A6B;border-radius:10px;padding:18px 26px;margin:4px 0 22px}
+.phase-banner .pnum{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.phase-banner h2{font-size:20px;font-weight:700;color:#fff;margin:0 0 3px}
+.phase-banner .psub{font-size:12.5px;color:rgba(255,255,255,0.5);font-style:italic}
+
+.phase-banner.green{background:#1A6B5E}
+.phase-banner.gold{background:#7a5010}
+
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.08)}
+.data-table th{background:#2C5282;color:#fff;text-align:left;padding:10px 15px;font-size:11.5px;font-weight:600;letter-spacing:0.04em}
+.data-table td{padding:8px 15px;font-size:13px;border-top:1px solid rgba(0,0,0,0.06);color:rgba(0,0,0,0.63)}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.018)}
+.data-table td:first-child{font-weight:500;color:#1a1a2e}
+
+.box{display:flex;border-radius:7px;overflow:hidden;margin:12px 0}
+.box-lbl{min-width:72px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#fff;padding:10px 6px;text-align:center;line-height:1.3}
+.box-cnt{flex:1;padding:11px 15px;font-size:13.5px;line-height:1.65}
+
+.invite-box .box-lbl{background:#1A6B5E}
+.invite-box .box-cnt{background:#e8f5f0;color:#1a3a1a;font-style:italic}
+
+.note-box .box-lbl{background:#92620A}
+.note-box .box-cnt{background:#fff8e1;color:#553300}
+
+.author-note{border:1px solid rgba(124,58,237,0.18);border-left:4px solid #7c3aed;background:rgba(124,58,237,0.03);padding:13px 17px;border-radius:0 8px 8px 0;margin:14px 0}
+.author-note p{font-size:13px;color:rgba(0,0,0,0.6);margin:0;line-height:1.65}
+.author-note strong{color:#6d28d9}
+
+.role-card{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.card{background:#f8f9fc;border:1px solid rgba(0,0,0,0.08);border-radius:10px;padding:18px 20px}
+.card h4{font-size:13px;font-weight:700;color:#1B3A6B;margin-bottom:8px;letter-spacing:0.02em;text-transform:uppercase}
+.card p{font-size:13px;color:rgba(0,0,0,0.55);line-height:1.65;margin-bottom:0}
+
+.timeline{margin:14px 0}
+.tl-row{display:flex;gap:14px;margin-bottom:10px;align-items:flex-start}
+.tl-marker{min-width:90px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#2C5282;padding-top:2px}
+.tl-content{font-size:13.5px;color:rgba(0,0,0,0.6);line-height:1.65;border-left:2px solid rgba(44,82,130,0.18);padding-left:14px;flex:1}
+
+.sep{height:1px;background:rgba(0,0,0,0.06);margin:20px 0}
+.note-text{font-size:13px;color:rgba(0,0,0,0.4);font-style:italic;margin-top:12px}
+
+@media(max-width:700px){.role-card{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="page-header">
+  <div class="cred">AI Literacy Curriculum · SUNY AI Fellows for the Public Good</div>
+  <h1>AI-FYE: AI in the First Year Experience</h1>
+  <p class="sub">Faculty Invitation &nbsp;·&nbsp; Pilot Cohort &nbsp;·&nbsp; SUNY AI Literacy Implementation &nbsp;·&nbsp; Board Resolution 2024-64 &nbsp;·&nbsp; Fall 2026</p>
+</div>
+
+<!-- WHAT THIS IS -->
+<details open>
+<summary>What This Is <span class="stag s-gray">Overview</span></summary>
+<div class="section-body">
+<p>AI literacy, as used throughout this framework, means <strong>reading, thinking, and writing using the tools, techniques, and technological systems consistent with one's peers.</strong> That definition — RTW — is not about AI as subject matter. It is about AI as the medium through which literate practice now happens. It begins with the same moves literacy has always required: reading carefully, thinking critically, writing with intention. What changes is the environment those moves are made in.</p>
+<p>This document is itself a product of that practice. It was developed through sustained conversation with an AI system — generating design specs, working through multiple versions, validating and verifying across models — with the human author reading outputs, thinking against them, and writing through the friction at every stage. The model got the last word on the artifact you are reading now. That is not a footnote. It is the point. The document enacts what it describes.</p>
+<p>AI-FYE is a first-year experience framework built around that premise. Many students are already using AI across multiple courses. This program makes that visible, structured, and academically productive.</p>
+<p>Rather than adding AI instruction on top of existing courses, AI-FYE creates a shared space — the <strong>AI Salon</strong> — where the AI-assisted work students produce in their regular courses becomes the primary text. Faculty bring their assignments. Students bring their artifacts. The Salon is where we examine what happened across disciplines.</p>
+<p>The pilot runs with <strong>20 students, one section of AI 188, and three participating faculty</strong> — two teaching general education courses and one teaching a disciplinary introduction. All three courses share the same cohort of students for the semester.</p>
+
+<div class="box invite-box">
+  <div class="box-lbl">The Ask</div>
+  <div class="box-cnt">We are looking for faculty who want to be part of the first cohort. You keep your course. You keep your assignments. You agree to coordinate timing on a few key assignments so the Salon has material to work with. That's it.</div>
+</div>
+</div>
+</details>
+
+<!-- THE COURSES -->
+<details open>
+<summary>The Course Structure <span class="stag s-blue">Architecture</span></summary>
+<div class="section-body">
+
+<div class="phase-banner">
+  <div class="pnum">Course 1</div>
+  <h2>AI 188 — The AI Salon</h2>
+  <div class="psub">1 credit · 16 weeks · 20 students · 1 section</div>
+</div>
+
+<p>AI 188 is the connective tissue. It does not teach AI tools in isolation. It creates a recurring space where students surface and examine the AI-assisted work they are producing in their other courses.</p>
+<p>The course has two phases. The first five hours function as a structured orientation — the <strong>Learner's Permit</strong> (see the separate LP document for full details). Every student, and every participating faculty member, completes this together before the semester begins. It establishes a shared baseline: common vocabulary, common tooling, common documentation practices.</p>
+<p>After the LP orientation, weeks 1–16 are Salon sessions. Students bring artifacts from their gen ed and major courses. The instructor facilitates cross-disciplinary comparison. A nursing student and an engineering student running similar prompts for different assignments produce different outputs — the differences, the surprises, and the patterns across disciplines are the curriculum.</p>
+
+<div class="sep"></div>
+
+<div class="phase-banner green">
+  <div class="pnum">Co-Requisite Courses</div>
+  <h2>Gen Ed 188 &amp; Major 188</h2>
+  <div class="psub">3 credits (gen ed) · 2–3 credits (major) · same 20 students</div>
+</div>
+
+<p>These are your existing courses. The only structural change is coordination: two or three assignments per semester timed to land in the same week across all participating courses, so the Salon has comparable artifacts to work with. What those assignments are, how they are graded, and what they ask — that remains entirely yours.</p>
+<p>The naming convention (Gen Ed 188, BIZ 188, EE 188, etc.) signals participation in the cohort. It does not create a new course. It signals to students and the institution that this section is part of the AI-FYE pilot.</p>
+
+<div class="box note-box">
+  <div class="box-lbl">Note</div>
+  <div class="box-cnt">The "188" suffix is a placeholder for discussion. The actual course number and section designation will depend on your department and registrar. What matters is that students and advisors can identify the cohort.</div>
+</div>
+
+</div>
+</details>
+
+<!-- THE LP ORIENTATION -->
+<details>
+<summary>Orientation Day — The Learner's Permit <span class="stag s-navy">Entry Point</span></summary>
+<div class="section-body">
+<p>Before the semester begins, all 20 students and all participating faculty gather for a shared orientation. The Learner's Permit is not homework — it happens here, together, in a single event.</p>
+<p>The LP is a structured 15-exercise scaffold that establishes functional AI literacy: setting up a working environment, running a first prompt, documenting a conversation, exporting a transcript, building a basic folder structure. By the end of the session, every participant has completed the same exercises and holds the same provisional credential to proceed.</p>
+<p>Faculty do this alongside students. That is not incidental — it is the point. The Salon works because it is a genuinely shared inquiry, not a top-down curriculum. Faculty who have done the LP have standing to participate in Salon discussions as practitioners, not just as instructors.</p>
+
+<table class="data-table">
+  <tr><th>What</th><th>Detail</th></tr>
+  <tr><td>Format</td><td>Single shared session, in-person or hybrid</td></tr>
+  <tr><td>Duration</td><td>~5 hours (can split across two sessions if needed)</td></tr>
+  <tr><td>Who attends</td><td>All 20 students + all participating faculty</td></tr>
+  <tr><td>Outcome</td><td>Every participant has a working AI environment, a documented first conversation, and a folder structure for the semester</td></tr>
+  <tr><td>Full LP scaffold</td><td>See the separate Learner's Permit document in this collection</td></tr>
+</table>
+</div>
+</details>
+
+<!-- THE SALON IN PRACTICE -->
+<details>
+<summary>How the Salon Works — A Typical Week <span class="stag s-teal">Practice</span></summary>
+<div class="section-body">
+<p>The Salon meets once per week for AI 188. Sessions are short — one credit means roughly one contact hour per week. The format is consistent:</p>
+
+<div class="timeline">
+  <div class="tl-row">
+    <div class="tl-marker">Before class</div>
+    <div class="tl-content">Students export and submit one AI conversation transcript from their gen ed or major coursework that week. No minimum length. The transcript is the artifact.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-marker">Opening (10 min)</div>
+    <div class="tl-content">Instructor selects two or three contrasting artifacts — same week, different courses — and projects them. No names attached unless students want credit.</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-marker">Discussion (35 min)</div>
+    <div class="tl-content">What did the model do differently for a business prompt vs. a chemistry prompt? Where did students push back? Where did they accept output uncritically? What patterns appear across disciplines?</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-marker">Closing (15 min)</div>
+    <div class="tl-content">Students write a brief reflection — what they noticed, what they'll do differently. This goes in their semester portfolio.</div>
+  </div>
+</div>
+
+<p>The Salon does not grade the quality of AI use in other courses. It creates a space to examine it. The gen ed and major instructors retain full authority over how AI is used in their courses and how work is assessed.</p>
+<p>AI-FYE is an AI-engaged program by design. Faculty who join have already agreed to that premise — the coordination model depends on it. Courses in the cohort are AI-forward; this is the selection condition, not a constraint imposed after the fact.</p>
+</div>
+</details>
+
+<!-- WHAT WE ASK OF FACULTY -->
+<details>
+<summary>What Participating Faculty Do <span class="stag s-gold">Roles</span></summary>
+<div class="section-body">
+
+<div class="role-card">
+  <div class="card">
+    <h4>Gen Ed Faculty</h4>
+    <p>Teach your course normally. Agree to have 2–3 major assignments land in coordinated weeks. Attend the LP orientation. Optionally, visit the Salon once or twice to see your assignments reflected back through student artifacts.</p>
+  </div>
+  <div class="card">
+    <h4>Major Faculty</h4>
+    <p>Same ask as gen ed. You are also the first representative of your discipline in the cohort — the first one in the pool. Your disciplinary framing of AI use helps define what "major-track" AI literacy looks like for your field.</p>
+  </div>
+  <div class="card">
+    <h4>AI 188 Instructor</h4>
+    <p>Facilitates the Salon. Coordinates artifact collection and timing with gen ed and major faculty. Maintains the cohort's shared documentation. Runs the LP orientation. One instructor, both semesters of the pilot.</p>
+  </div>
+</div>
+
+<div class="box invite-box">
+  <div class="box-lbl">The Upside</div>
+  <div class="box-cnt">You get direct, documented evidence of how your students are using AI — not self-reported, but artifact-based. The Salon generates a semester-long record of student AI practice across disciplines that has genuine research and assessment value.</div>
+</div>
+
+</div>
+</details>
+
+<!-- PILOT SCOPE -->
+<details>
+<summary>Pilot Scope &amp; Timeline <span class="stag s-green">Scale</span></summary>
+<div class="section-body">
+<p>The pilot is deliberately small. Twenty students. Three faculty. One AI 188 section. The goal is to build and document a model that scales, not to maximize enrollment in year one.</p>
+
+<table class="data-table">
+  <tr><th>Element</th><th>Pilot Spec</th></tr>
+  <tr><td>Cohort size</td><td>20 students</td></tr>
+  <tr><td>AI 188 sections</td><td>1 section, 1 instructor</td></tr>
+  <tr><td>Gen ed courses</td><td>2 (one section each, same 20 students)</td></tr>
+  <tr><td>Major course</td><td>1 (one section, same 20 students)</td></tr>
+  <tr><td>Total coordinating faculty</td><td>3 (ideally 3 different departments)</td></tr>
+  <tr><td>Duration</td><td>Full 16-week semester</td></tr>
+  <tr><td>LP orientation</td><td>Before semester begins (one shared session)</td></tr>
+</table>
+
+<p>Student artifacts — exported AI conversation transcripts — are stored in a shared Microsoft SharePoint environment with granular access controls. Students, participating faculty, and the AI 188 instructor each have appropriate access. Artifacts used in Salon sessions are anonymized by default unless students choose otherwise.</p>
+
+<p>Scaling to a second cohort — 40 students, 2 sections of AI 188, 4 gen ed faculty — is the natural next step once the pilot model is documented. The documentation happens during the pilot: every session, every artifact set, every coordination decision becomes part of the OER framework available to other SUNY campuses.</p>
+
+<div class="author-note">
+  <p><strong>Relationship to Board Resolution 2024-64:</strong> SUNY's mandate requires AI literacy integration into general education by Fall 2026. AI-FYE is one implementation model — designed to be lightweight enough for a pilot now and documented thoroughly enough to transfer. It is part of a broader AI literacy curriculum that includes the <a href="ai-literacy-learners-permit.html" style="color:#6d28d9">Learner's Permit</a> and <a href="ai-literacy-commercial-license.html" style="color:#6d28d9">Commercial Driver's License</a> frameworks detailed elsewhere in this collection.</p>
+</div>
+</div>
+</details>
+
+<!-- WHAT'S NEXT -->
+<details open>
+<summary>What's Next <span class="stag s-teal">Next Steps</span></summary>
+<div class="section-body">
+<p>Participating faculty join the project by joining the shared Claude Team Project where this document lives. From there, the work continues the same way this document was built: iterative conversation, generating and refining artifacts together, with the model getting the last word on each output.</p>
+<p>That process is worth naming directly. This entire program — course structure, pilot scope, faculty roles, assessment model — emerged from a single sustained thread of reading, thinking, and writing with AI. At an early stage, the program ran AI 188 as a 2-credit course alongside a 2-credit gen ed. A reviewer flagged that as too narrow for a general education context. One prompt, one iteration, and the change propagated through the entire program design. That is not editing. That is how RTW works at scale: a reflection generates a revision that regenerates the whole.</p>
+<p>The next artifacts to generate are the ones the pilot needs: a coordination agreement for participating faculty, a session template for the Salon, and a student-facing orientation guide. All of these will be built the same way, in the same shared space.</p>
+
+<div class="box invite-box">
+  <div class="box-lbl">Grant Track</div>
+  <div class="box-cnt">Faculty interested in funding a full AI-FYE implementation for Fall 2027 are invited to join a grant development team. The goal is a proposal that funds the expanded cohort, the OER documentation, and the cross-campus transfer model. Reach out to join that conversation.</div>
+</div>
+</div>
+</details>
+
+<!-- NEXT STEP -->
+<details open>
+<summary>If You're Interested <span class="stag s-purple">Join</span></summary>
+<div class="section-body">
+<p>The pilot needs faculty who are willing to try something, document what happens, and help build the model from the inside. You do not need to be an AI expert. You do not need to redesign your course. You need to be willing to have your students' AI work surface in a shared conversation.</p>
+<p>If that sounds like something you'd want to be part of, the next step is a single conversation — to confirm timeline, identify the coordination points in your existing syllabus, and confirm your participation in the LP orientation.</p>
+
+<div class="box invite-box">
+  <div class="box-lbl">Contact</div>
+  <div class="box-cnt">Reach out to the AI-FYE coordinator to discuss your course and the pilot timeline. No commitment required to have the conversation.</div>
+</div>
+
+<p class="note-text">This document is part of the SUNY AI Literacy Curriculum collection. Related documents: Learner's Permit · Commercial Driver's License · AI Literacy Implementation Synthesis. All materials are open and freely adaptable under Creative Commons.</p>
+</div>
+</details>
+
+</div>
+</body>
+</html>

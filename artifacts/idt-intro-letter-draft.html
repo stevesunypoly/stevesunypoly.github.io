@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter to IDT Students — AIX Center · SUNY Poly · Spring 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy:   #002D62;
+  --text:   #0D1B2A;
+  --muted:  #4B5563;
+  --border: #D1D5DB;
+  --surf:   #F9FAFB;
+  --white:  #FFFFFF;
+  --green:  #006633;
+  --red:    #8B0000;
+  --blue:   #003399;
+  --purple: #6600CC;
+}
+html, body { height: 100%; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #F3F4F6;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER */
+#site-header { background: var(--navy); padding: 14px 32px 0; flex-shrink: 0; }
+.brand { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; }
+.brand-name { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+.brand-sub  { font-size: 13px; color: rgba(255,255,255,0.7); }
+.brand-date { margin-left: auto; font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'JetBrains Mono', monospace; }
+
+nav[role="tablist"] { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+nav[role="tablist"]::-webkit-scrollbar { display: none; }
+nav button {
+  background: none; border: none; border-bottom: 3px solid transparent;
+  color: rgba(255,255,255,0.7); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; padding: 10px 18px;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.15s ease; border-radius: 4px 4px 0 0;
+}
+nav button:hover { color: #fff; background: rgba(255,255,255,0.1); }
+nav button[aria-selected="true"] { color: var(--navy); border-bottom-color: var(--navy); background: #fff; }
+
+/* CONTENT */
+#content { flex: 1; overflow-y: auto; padding: 40px 48px; max-width: 900px; width: 100%; margin: 0 auto; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* TYPE */
+.panel h2 { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 8px; letter-spacing: -0.02em; }
+.panel .lead { font-size: 18px; color: var(--muted); line-height: 1.75; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.panel p { font-size: 17px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+
+/* PROJECT CARDS */
+.project { border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; background: var(--white); margin-bottom: 18px; border-top: 4px solid var(--navy); }
+.project h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.project p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+.project .opp { background: #EEF2FF; border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 4px; font-size: 15px; color: var(--text); line-height: 1.65; margin-top: 10px; }
+.project .opp strong { color: var(--blue); display: block; margin-bottom: 4px; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
+.project .skills { font-size: 13px; font-style: italic; color: #6B7280; margin-top: 8px; }
+
+/* GA CARDS */
+.ga-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; background: var(--white); margin-bottom: 18px; border-top: 4px solid var(--green); }
+.ga-card h3 { font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+.ga-card .hours { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.ga-card p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+.ga-card .skills { font-size: 13px; font-style: italic; color: #6B7280; margin-top: 8px; }
+
+/* SUMMER ITEMS */
+.summer-item { border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; background: var(--white); margin-bottom: 14px; }
+.summer-item h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.summer-item p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+.course-list { list-style: none; margin: 10px 0 0 0; }
+.course-list li { font-size: 16px; color: var(--muted); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.course-list li:last-child { border-bottom: none; }
+.course-list li::before { content: "→"; color: var(--navy); font-weight: bold; }
+.trigger-note { font-size: 13px; font-family: 'JetBrains Mono', monospace; color: var(--muted); margin-top: 8px; }
+
+/* KB HINT */
+.kb-hint { position: fixed; bottom: 16px; right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9CA3AF; pointer-events: none; }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="brand">
+    <span class="brand-name">AIX Center</span>
+    <span class="brand-sub">SUNY Polytechnic Institute</span>
+    <span class="brand-date">Spring 2026</span>
+  </div>
+  <nav role="tablist" aria-label="Letter sections">
+    <button role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true">Welcome</button>
+    <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false">Summer of AIX</button>
+    <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">Research Ecosystem</button>
+    <button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">Graduate Assistants</button>
+  </nav>
+</header>
+
+<main id="content">
+
+  <!-- WELCOME -->
+  <section class="panel active" id="panel-0" role="tabpanel" aria-labelledby="tab-0">
+    <h2>A Letter to IDT Students</h2>
+    <p class="lead">A community of AI — an invitation to think together about what AI means for your work, your learning, and the world you're entering.</p>
+
+    <p>I'm writing to invite you to participate in a journey of exploring artificial intelligence as you complete your degree in Information Design &amp; Technology.</p>
+
+    <p>As some of you know, I've embraced using generative AI as a tool for teaching and learning over the past few semesters, and I'll continue to adjust my approach. As I prepare for a summer of reading, reflection, and research — and in preparation for teaching two IDT courses next year — I'll be reconsidering and likely refining how I work. I'd welcome your feedback and reflection throughout.</p>
+
+    <p>My framework for working with AI is something I call RTW — Reading, Thinking, Writing with AI. It's not a doctrine; it's a practice, and it's still developing. What I believe, and what I'd invite you to test for yourself, is that the most interesting work happens at the edge where human judgment meets machine inference.</p>
+
+    <p>I'm a professor here at SUNY Poly and Co-Director of the AI Exploration (AIX) Center, where we work at the intersection of AI literacy, research, and real-world application. The questions AI raises — about knowledge, about work, about what it means to be human in a world of increasingly capable machines — are not questions any of us can answer alone. The AIX Center is a community as much as a research unit, and what makes it work is people who are genuinely curious, willing to share what they're learning, and open to being surprised.</p>
+
+    <p>That's the kind of student I'm hoping to meet. Explore the tabs above.</p>
+  </section>
+
+  <!-- SUMMER OF AIX -->
+  <section class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+    <h2>Summer of AIX</h2>
+    <p class="lead">The summer isn't dead time — it's when some of the most interesting work happens. Here's what's available right now.</p>
+
+    <div class="summer-item">
+      <h3>Open Mic AI — Tuesday nights online</h3>
+      <p>Show and tell, or just talk and listen. People share what they're actually doing with AI — a tool they tried, a project they're working on, something that surprised them, something that didn't work. Low-key, participatory, no agenda. If you want to take the mic, you're welcome to.</p>
+    </div>
+
+    <div class="summer-item">
+      <h3>Pizza Nights on Campus — Wednesdays</h3>
+      <p>Show up, eat, talk about what you're building. On campus, informal, open to anyone in the community.</p>
+    </div>
+
+    <div class="summer-item">
+      <h3>Getting Up to Speed with AI — On-Demand Short Courses</h3>
+      <p>Anytime four students are ready to go, we launch. Each course runs three sessions: Getting Started, Moving Forward, Wrapping Up. Teams-based, lunch/learn format.</p>
+      <ul class="course-list">
+        <li>Exploring AI Chatbots</li>
+        <li>Exploring AI Agents</li>
+        <li>Building My AI Workbench</li>
+      </ul>
+      <p class="trigger-note">Minimum 4 students → we launch. Sign up and we'll notify you when a cohort forms.</p>
+    </div>
+
+    <div class="summer-item">
+      <h3>Research Projects</h3>
+      <p>Several active AIX projects have room for student contributors this summer — as paid assistants, independent study participants, or capstone researchers. See the Research Ecosystem and Graduate Assistants tabs for details.</p>
+    </div>
+  </section>
+
+  <!-- RESEARCH ECOSYSTEM -->
+  <section class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2">
+    <h2>Research Ecosystem</h2>
+    <p class="lead">The AIX Center is a working lab — projects with real clients, real stakes, and real opportunities. Email to ask about a project. See if there's a capstone, independent study, or course-related project that fits. Or take a short course to get started.</p>
+
+    <div class="project">
+      <h3>Herkimer County AI Governance Initiative</h3>
+      <p>Herkimer County has invited the AIX Center to help them think through responsible AI adoption for a rural county government. We've developed a seven-dimension framework — three Framing dimensions (Equity, Human Impact, Infrastructure Impact) and four Operational dimensions (Security, Efficiency, Innovation, Accountability) — and are now in working sessions moving from framework to policy.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Document the role of values in establishing Herkimer County AI policy — tracing how the seven dimensions translate into concrete governance choices, and what that process reveals about the relationship between institutional values and AI adoption.
+      </div>
+      <p class="skills">Skills of value: analytical writing, policy analysis, attention to detail, comfort with ambiguity.</p>
+    </div>
+
+    <div class="project">
+      <h3>Analytic Capabilities — Citation Network and Digital Library Construction</h3>
+      <p>This project supports the development of an analytical framework for societal vulnerability analysis, grounded in political science and used to understand conditions that precede institutional instability. The research task is building out a citation network — starting from a key anchor paper and mapping connections forward, backward, and sideways. Part digital library construction, part intellectual cartography. Much of this work is machine-assisted and would benefit from someone with library science instincts.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Design and implement an experiment or validation/verification test suite to assess the accuracy and reliability of knowledge generated by LLMs within this analytical framework. Methodological research with real stakes — the outputs inform how AI-assisted analysis gets used and trusted.
+      </div>
+      <p class="skills">Skills of value: research methods, information organization, AI-assisted literature tools, interest in epistemology and knowledge quality.</p>
+    </div>
+
+    <div class="project">
+      <h3>AI Literacy Curriculum — FYS 111</h3>
+      <p>We are building the AI literacy curriculum for SUNY Poly's First Year Seminar from the ground up — slides, exercises, activities, and assessments — as an open educational resource. Students who join this project help shape what thousands of first-year students will encounter as their first formal introduction to AI in higher education.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Test and refine the five-hour intro to AI curriculum and the Google AI Essentials certificate pathway. Generate a Brightspace cartridge for institutional ingestion. Refine, validate, and document that workflow end to end. An instructional design capstone with a real deliverable and a real audience.
+      </div>
+      <p class="skills">Skills of value: instructional design, writing, curriculum development, interest in pedagogy and learning management systems.</p>
+    </div>
+
+    <div class="project">
+      <h3>AI and the Human Future — Course and Knowledge Base Development</h3>
+      <p>Science, Technology, and Society studies — STS — is a discipline that refuses to treat technology as separate from the human world that produces it. It asks who built things, under what pressures, for whose benefit, and with what consequences, drawing on history, philosophy, sociology, anthropology, and cultural theory. I am building a new course — working title "AI and the Human Future" — that asks those questions of AI. How do different intellectual and cultural traditions — Indigenous knowledge systems, postcolonial theory, feminist philosophy of science, religious ethics, critical race theory — illuminate what AI is doing in the world? I'm building this course as a learner, not an STS expert.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Build an active, annotated bibliographic tool — probably in Zotero using tags — to serve as a dynamic literature base for the introductory class launching fall 2026. Combines information architecture, library science practice, and instructional design into a single deliverable that will be used immediately.
+      </div>
+      <p class="skills">Skills of value: curiosity, research, information architecture, instructional design, comfort working at the edges of your knowledge.</p>
+    </div>
+
+    <div class="project">
+      <h3>Legal and Ethical Issues in the Information Age</h3>
+      <p>The legal and ethical landscape around AI and information technology is moving fast — data center moratoriums, state versus federal preemption battles, child safety legislation, consumer protection frameworks. This is both a course under development and an ongoing research project. One organizing thread: Maslow's hierarchy of needs as a lens on information ethics — security and privacy at the safety level, identity and belonging complicated by platforms and algorithmic curation, self-actualization running up against intellectual freedom and access.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Develop and test a workflow using a cube/voxel approach to resource organization — mapping legal, ethical, and policy resources into a multidimensional structure that allows navigation across topics, scales, and frameworks. The goal is a navigable resource architecture for the course that can be traversed in multiple directions rather than consumed linearly.
+      </div>
+      <p class="skills">Skills of value: research, legal and policy analysis, information architecture, writing, comfort with fast-moving material.</p>
+    </div>
+
+    <div class="project">
+      <h3>Workshop Design — NYHIMA and AI Training Materials</h3>
+      <p>We are designing and co-delivering a three-hour AI literacy workshop for the New York Health Information Management Association — practitioners working at the intersection of healthcare, data, and technology. Real audience, real deadline (early June), real deliverable. This project connects to the broader AIX open educational resource ecosystem — the AIX Workbench, Exploring AI Chatbots, Exploring AI Agents, and Building My AI Workbench short course series.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Design the full NYHIMA workshop as an instructional design project — learning objectives, instructional design objects, facilitation guide, and participant materials. Students credited as co-designers and co-facilitators. Timeline is tight; this one moves fast.
+      </div>
+      <p class="skills">Skills of value: instructional design, facilitation, writing, interest in health informatics or professional development.</p>
+    </div>
+
+    <div class="project">
+      <h3>Africa Partnerships — COIL and International AI Literacy</h3>
+      <p>The AIX Center maintains active academic partnerships with institutions in Nigeria and Cameroon, with work focused on AI literacy, curriculum development, and institutional capacity. This work is grounded in the COIL framework — Collaborative Online International Learning — which creates structured opportunities for cross-institutional engagement across contexts. COIL itself is a rich IDT topic: designing learning experiences that work across time zones, cultures, languages, and institutional constraints is a genuine instructional design challenge with growing relevance as AI reshapes what's possible in international collaboration.</p>
+      <div class="opp">
+        <strong>Capstone / Independent Study</strong>
+        Design and implement a COIL experience focused on AI literacy in collaboration with a partner institution in Nigeria or Cameroon. Or develop a capstone examining COIL as an instructional design framework — its affordances, constraints, and future directions in an AI-enabled environment.
+      </div>
+      <p class="skills">Skills of value: research, writing, cross-cultural communication, instructional design, interest in international and collaborative learning.</p>
+    </div>
+
+  </section>
+
+  <!-- GRADUATE ASSISTANTS -->
+  <section class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3">
+    <h2>Graduate Assistant Positions</h2>
+    <p class="lead">Three paid GA positions are available this summer across AIX projects. Each supports a different dimension of the Center's work. Email to express interest and describe your background.</p>
+
+    <div class="ga-card">
+      <h3>GA — AIX Communications &amp; Research</h3>
+      <div class="hours">10–20 hrs/week</div>
+      <p>Support the Center's communication, accessibility, and research efforts. Manage digital communication platforms (Discord, Teams, website, podcast), curate workshop and course materials, support accessible web content for AIX, coordinate outreach and communication strategy, and document ongoing research and teaching activities related to AI adoption and innovation.</p>
+      <p>This position offers hands-on experience in applied AI research, educational communication, and project coordination. The ideal candidate will have strong writing and organizational skills, familiarity with collaborative digital platforms, and an interest in AI, media design, and accessibility best practices.</p>
+      <p class="skills">Skills of value: writing, organizational skills, digital platforms, interest in AI communication and accessibility.</p>
+    </div>
+
+    <div class="ga-card">
+      <h3>GA — LLM Validation &amp; Verification Research</h3>
+      <div class="hours">10–12 hrs/week</div>
+      <p>Develop and implement protocols for the validation and verification of text generated by large language models across three active AIX projects: AI governance policy formulation (Herkimer County), open educational resource development (AI literacy curriculum), and societal vulnerability analysis (analytic capabilities framework).</p>
+      <p>LLM-generated materials raise specific and consequential questions about accuracy, consistency, and fitness for purpose. This GA will design systematic protocols for evaluating those materials — checking factual claims, assessing internal consistency, verifying alignment with source frameworks, and documenting where and how AI-generated content meets or falls short of standards required for real-world use. The work is methodological as much as editorial: you're not just proofreading, you're building a replicable approach to quality assurance in LLM-assisted research and curriculum production.</p>
+      <p class="skills">Skills of value: analytical rigor, technical writing, research methods, attention to detail, interest in AI reliability and accountability.</p>
+    </div>
+
+    <div class="ga-card">
+      <h3>GA — Production Pipeline Manager</h3>
+      <div class="hours">Hours negotiable</div>
+      <p>Design and manage the production pipeline for materials developed with LLMs across AIX projects. Map existing workflows, identify where LLMs are integrated into content production, and design pipeline architecture that ensures materials move efficiently from prompt to draft to review to publication.</p>
+      <p>Responsibilities include coordinating handoffs between contributors, maintaining version control, documenting tool choices and prompting strategies, and ensuring that production processes are transparent and transferable. This is a design and systems role as much as a coordination role — the ideal candidate thinks in workflows and finds satisfaction in making complex processes legible and reproducible.</p>
+      <p class="skills">Skills of value: systems thinking, project management, workflow design, familiarity with digital production tools, interest in AI-assisted content development.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<div class="kb-hint" aria-hidden="true">← → arrow keys</div>
+
+<script>
+let cur = 0;
+const panels = document.querySelectorAll('.panel');
+const tabs = document.querySelectorAll('nav button');
+function show(i) {
+  panels.forEach((p, idx) => p.classList.toggle('active', idx === i));
+  tabs.forEach((b, idx) => b.setAttribute('aria-selected', idx === i ? 'true' : 'false'));
+  cur = i;
+  document.getElementById('content').scrollTop = 0;
+}
+tabs.forEach((btn, i) => btn.addEventListener('click', () => show(i)));
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' && cur < panels.length - 1) show(cur + 1);
+  if (e.key === 'ArrowLeft' && cur > 0) show(cur - 1);
+});
+show(0);
+</script>
+</body>
+</html>

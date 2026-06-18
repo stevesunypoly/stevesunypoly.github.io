@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Assisted Review of D2L Common Cartridge Courses</title>
+  <style>
+    /* ── Variables ─────────────────────────────────────────── */
+    :root {
+      --navy:    #1a2744;
+      --teal:    #1a7f7a;
+      --crimson: #9b2335;
+      --gold:    #b8860b;
+      --purple:  #5b3fa6;
+      --green:   #2e6b3e;
+      --gray:    #6b7280;
+      --bg:      #f7f8fa;
+      --surface: #ffffff;
+      --border:  #e2e5ea;
+      --text:    #1f2937;
+      --muted:   #6b7280;
+      --font-body: Georgia, 'Times New Roman', serif;
+      --font-sans: 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'Courier New', monospace;
+    }
+
+    /* ── Reset & Base ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    a { color: var(--teal); }
+
+    /* ── Page wrapper ───────────────────────────────────────── */
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    .page-header {
+      border-bottom: 3px solid var(--navy);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cred {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 1.75rem;
+      font-weight: normal;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+    }
+
+    .page-header .sub {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Author note ────────────────────────────────────────── */
+    .author-note {
+      background: #f0f4ff;
+      border-left: 4px solid var(--navy);
+      padding: 1rem 1.25rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: #374151;
+    }
+
+    /* ── Section (details/summary) ──────────────────────────── */
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    summary {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      padding: 0.9rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      list-style: none;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    details[open] summary {
+      border-bottom-color: var(--border);
+      background: #fafbfc;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: '▸';
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+
+    .section-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .section-body p { margin-bottom: 1rem; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    .section-body h3 {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 1.25rem 0 0.35rem;
+    }
+
+    .section-body h3:first-child { margin-top: 0; }
+
+    /* ── Section tags ───────────────────────────────────────── */
+    .stag {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.15em 0.55em;
+      border-radius: 3px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .s-gray   { background: #e5e7eb; color: #374151; }
+    .s-navy   { background: #dce3f5; color: var(--navy); }
+    .s-teal   { background: #d1f0ee; color: var(--teal); }
+    .s-crimson{ background: #fde8ea; color: var(--crimson); }
+    .s-gold   { background: #fef3c7; color: var(--gold); }
+    .s-purple { background: #ede9ff; color: var(--purple); }
+    .s-green  { background: #d1fae5; color: var(--green); }
+
+    /* ── Table ──────────────────────────────────────────────── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      margin: 1rem 0;
+    }
+
+    .data-table th {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .data-table td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--navy);
+      width: 30%;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #fafbfc; }
+
+    /* ── Info boxes ─────────────────────────────────────────── */
+    .box {
+      border-radius: 5px;
+      padding: 0.85rem 1.1rem;
+      margin-top: 1.25rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+    }
+    .box-lbl {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .box-navy   { background: #dce3f5; border-left: 4px solid var(--navy); }
+    .box-navy .box-lbl { color: var(--navy); }
+    .box-crimson{ background: #fde8ea; border-left: 4px solid var(--crimson); }
+    .box-crimson .box-lbl { color: var(--crimson); }
+    .box-teal   { background: #d1f0ee; border-left: 4px solid var(--teal); }
+    .box-teal .box-lbl { color: var(--teal); }
+
+    /* ── Role cards grid ────────────────────────────────────── */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .role-card {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.9rem 1rem;
+      background: var(--bg);
+    }
+
+    .role-card h4 {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .role-card p {
+      font-size: 0.875rem;
+      margin: 0 !important;
+      color: #374151;
+    }
+
+    /* ── Milestone row ──────────────────────────────────────── */
+    .milestone-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.85rem;
+      margin: 1rem 0;
+    }
+
+    .ms-card {
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.85rem;
+      background: var(--bg);
+    }
+
+    .ms-week {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .ms-card p {
+      font-size: 0.875rem;
+      margin: 0 !important;
+      color: #374151;
+    }
+
+    /* ── List ───────────────────────────────────────────────── */
+    .section-body ul {
+      padding-left: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-body li {
+      margin-bottom: 0.4rem;
+      font-size: 0.9375rem;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 1.4rem; }
+      .role-grid, .milestone-row { grid-template-columns: 1fr; }
+      .data-table td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-header">
+    <div class="cred">SUNY AI Fellows · Course Infrastructure Exploration</div>
+    <h1>AI-Assisted Review of D2L Common Cartridge Courses</h1>
+    <p class="sub">Exploratory Proposal · LMS Content Pipelines · SUNY Polytechnic Institute</p>
+  </div>
+
+  <div class="author-note">
+    <strong>Context:</strong> This document outlines a possible workflow for using large language models
+    such as ChatGPT or Claude to review and improve LMS course materials exported in IMS Common Cartridge
+    format. The proposal is exploratory and intended for discussion with Distance &amp; Online Learning
+    leadership and AI Fellows across SUNY.
+  </div>
+
+  <!-- OVERVIEW -->
+  <details open>
+    <summary>Overview <span class="stag s-gray">Concept</span></summary>
+    <div class="section-body">
+      <p>Large language models are increasingly capable of reviewing and revising structured documents.
+      One potential application in higher education is using AI to analyze course packages exported from
+      learning management systems.</p>
+
+      <p>D2L and many other LMS platforms support the <strong>IMS Common Cartridge (CC)</strong> standard,
+      which packages course content into a portable format containing HTML pages, XML manifests, assessments,
+      and supporting files.</p>
+
+      <p>The proposed idea is to build a workflow that allows course cartridges to be exported, interpreted
+      as structured content, reviewed or revised with AI tools, and then rebuilt for re-import into the LMS.</p>
+
+      <p>The intention is not to automate course design, but to create a <strong>human-in-the-loop review
+      pipeline</strong> that could support instructional design teams and faculty.</p>
+    </div>
+  </details>
+
+  <!-- WORKFLOW -->
+  <details open>
+    <summary>Conceptual Workflow <span class="stag s-navy">Pipeline</span></summary>
+    <div class="section-body">
+      <p>The proposed workflow follows a structured pipeline from export through re-import:</p>
+
+      <table class="data-table">
+        <tr><th>Stage</th><th>Description</th></tr>
+        <tr>
+          <td>1. Course Export</td>
+          <td>Course exported from D2L as a Common Cartridge (.imscc) file.</td>
+        </tr>
+        <tr>
+          <td>2. Cartridge Extraction</td>
+          <td>The cartridge is unpacked into its underlying files: manifest XML, HTML pages, assessment XML, and linked resources.</td>
+        </tr>
+        <tr>
+          <td>3. Structured Interpretation</td>
+          <td>Content is parsed into a structured representation of modules, pages, assignments, and resources.</td>
+        </tr>
+        <tr>
+          <td>4. AI Review</td>
+          <td>AI systems analyze course content and suggest revisions or improvements.</td>
+        </tr>
+        <tr>
+          <td>5. Reconstruction</td>
+          <td>Revised content is written back into the course structure.</td>
+        </tr>
+        <tr>
+          <td>6. Cartridge Rebuild</td>
+          <td>The package is rebuilt into a valid .imscc file.</td>
+        </tr>
+        <tr>
+          <td>7. LMS Re-Import</td>
+          <td>The updated course package is imported back into D2L for faculty review.</td>
+        </tr>
+      </table>
+
+      <div class="box box-navy">
+        <div class="box-lbl">Principle</div>
+        <div class="box-cnt">The AI system operates primarily on course content — pages, text, explanations —
+        while structural metadata and packaging remain controlled by software tools.</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- USE CASES -->
+  <details open>
+    <summary>Potential Use Cases <span class="stag s-teal">Applications</span></summary>
+    <div class="section-body">
+      <p>If implemented carefully, this workflow could support several instructional design tasks:</p>
+
+      <div class="role-grid">
+        <div class="role-card">
+          <h4>Course Refresh</h4>
+          <p>Identify outdated references, broken links, or unclear explanations in older courses.</p>
+        </div>
+        <div class="role-card">
+          <h4>Accessibility Review</h4>
+          <p>Flag missing alt text, unclear headings, or readability issues.</p>
+        </div>
+        <div class="role-card">
+          <h4>Instructional Design Support</h4>
+          <p>Generate draft discussion questions, summaries, or formative prompts for existing content.</p>
+        </div>
+        <div class="role-card">
+          <h4>Consistency Checks</h4>
+          <p>Review for formatting consistency across modules and pages.</p>
+        </div>
+        <div class="role-card">
+          <h4>Content Summaries</h4>
+          <p>Generate module summaries or study guides from existing materials.</p>
+        </div>
+        <div class="role-card">
+          <h4>Course Documentation</h4>
+          <p>Convert course exports into human-readable documentation for program review or accreditation.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- LIMITATIONS -->
+  <details open>
+    <summary>Limitations and Risks <span class="stag s-crimson">Constraints</span></summary>
+    <div class="section-body">
+      <p>Important technical and policy limitations must be acknowledged before attempting a system like this.</p>
+
+      <h3>Packaging Complexity</h3>
+      <p>Common Cartridge files depend on precise XML relationships between resources. Incorrect edits can
+      easily break cartridge imports.</p>
+
+      <h3>Assessment Formats</h3>
+      <p>Quizzes and tests rely on QTI XML formats that vary between LMS platforms. Automated editing of
+      assessments could introduce errors.</p>
+
+      <h3>Vendor Extensions</h3>
+      <p>Although Common Cartridge is a recognized standard, LMS platforms frequently add proprietary
+      extensions that complicate automated manipulation.</p>
+
+      <h3>AI Reliability</h3>
+      <p>LLMs generate plausible language but may introduce inaccuracies. All AI-generated revisions
+      require human review before adoption.</p>
+
+      <h3>Compliance Considerations</h3>
+      <p>Course materials may contain licensed or copyrighted content. Any AI workflow must align with
+      institutional policies regarding FERPA, copyright, and AI governance.</p>
+
+      <div class="box box-crimson">
+        <div class="box-lbl">Reality Check</div>
+        <div class="box-cnt">This approach should be considered an instructional design support tool,
+        not an automated course generation system.</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- NEXT STEPS -->
+  <details open>
+    <summary>Possible Next Steps <span class="stag s-gold">Pilot</span></summary>
+    <div class="section-body">
+      <p>If there is interest in exploring this concept, a small prototype could test the workflow
+      before any broader commitment:</p>
+
+      <div class="milestone-row">
+        <div class="ms-card">
+          <div class="ms-week">Stage 1</div>
+          <p>Build a parser that safely extracts content from a D2L cartridge.</p>
+        </div>
+        <div class="ms-card">
+          <div class="ms-week">Stage 2</div>
+          <p>Run AI analysis on HTML course pages only.</p>
+        </div>
+        <div class="ms-card">
+          <div class="ms-week">Stage 3</div>
+          <p>Rebuild a valid cartridge without modifying structural metadata.</p>
+        </div>
+        <div class="ms-card">
+          <div class="ms-week">Stage 4</div>
+          <p>Test import into D2L and review results with instructional designers.</p>
+        </div>
+      </div>
+
+      <p>This staged approach allows feasibility testing before considering broader adoption.</p>
+    </div>
+  </details>
+
+  <!-- QUESTIONS -->
+  <details open>
+    <summary>Questions for the SUNY Community <span class="stag s-purple">Inquiry</span></summary>
+    <div class="section-body">
+      <p>Before pursuing development, it would help to know whether similar work is already underway
+      across SUNY:</p>
+
+      <ul>
+        <li>Are any campuses experimenting with AI tools to review or revise LMS course exports?</li>
+        <li>Are there existing scripts or tools that parse D2L Common Cartridge packages?</li>
+        <li>Has anyone explored AI-assisted course refresh workflows within instructional design teams?</li>
+      </ul>
+
+      <p>If work is already happening in this space, coordination could help avoid duplication and
+      accelerate development.</p>
+    </div>
+  </details>
+
+  <!-- CONTACT -->
+  <details open>
+    <summary>Contact <span class="stag s-green">Discussion</span></summary>
+    <div class="section-body">
+      <div class="box box-teal">
+        <div class="box-lbl">Contact</div>
+        <div class="box-cnt">
+          <strong>Steven M. Schneider</strong><br>
+          Professor of Information Design &amp; Technology<br>
+          Co-Director, AIX Center<br>
+          SUNY AI Fellow for the Public Good<br>
+          SUNY Polytechnic Institute
+        </div>
+      </div>
+    </div>
+  </details>
+
+</div>
+</body>
+</html>

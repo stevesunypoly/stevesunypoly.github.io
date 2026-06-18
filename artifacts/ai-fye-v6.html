@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-FYE — Faculty Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#f0ede8;padding:32px 24px;color:#1a1a2e}
+.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1100px;margin:0 auto}
+
+.page-header{text-align:center;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.page-header h1{font-family:'DM Serif Display',serif;font-size:38px;font-weight:400;letter-spacing:-0.01em;margin-bottom:8px}
+.page-header .cred{font-size:13px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#2C5282;margin-bottom:8px}
+.page-header .sub{font-size:14px;color:rgba(0,0,0,0.38)}
+
+details{margin-bottom:14px}
+summary{font-size:17px;font-weight:600;color:#1a1a2e;cursor:pointer;padding:18px 26px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,0.03);list-style:none;display:flex;align-items:center;gap:12px;transition:all 0.2s ease;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'▸';font-size:13px;color:rgba(0,0,0,0.22);transition:transform 0.2s ease;display:inline-block;flex-shrink:0}
+details[open]>summary::before{transform:rotate(90deg)}
+summary:hover{background:#fefefe;border-color:rgba(44,82,130,0.18)}
+details[open]>summary{border-radius:12px 12px 0 0;border-bottom-color:transparent}
+.stag{font-size:11px;font-weight:500;letter-spacing:0.05em;padding:3px 10px;border-radius:6px;margin-left:auto;white-space:nowrap}
+.s-blue{background:rgba(44,82,130,0.1);color:#2C5282}
+.s-teal{background:rgba(26,107,94,0.1);color:#1A6B5E}
+.s-gold{background:rgba(146,98,10,0.1);color:#92620A}
+.s-gray{background:rgba(0,0,0,0.06);color:rgba(0,0,0,0.4)}
+.s-navy{background:rgba(27,58,107,0.1);color:#1B3A6B}
+.s-green{background:rgba(22,128,72,0.1);color:#166840}
+.s-purple{background:rgba(109,40,217,0.1);color:#6d28d9}
+.s-crimson{background:rgba(120,20,30,0.08);color:#78141e}
+
+.section-body{background:#fff;border:1px solid rgba(0,0,0,0.08);border-top:none;border-radius:0 0 12px 12px;padding:34px 38px;box-shadow:0 4px 16px -8px rgba(0,0,0,0.06)}
+.section-body p{font-size:14.5px;color:rgba(0,0,0,0.62);line-height:1.78;margin-bottom:12px}
+.section-body ul,.section-body ol{margin:10px 0 14px 22px}
+.section-body li{font-size:14.5px;color:rgba(0,0,0,0.6);line-height:1.7;margin-bottom:5px}
+.section-body h3{font-size:15px;font-weight:600;color:#2C5282;margin:22px 0 8px}
+.section-body strong{color:#1a1a2e}
+.section-body a{color:#2C5282}
+
+.phase-banner{border-radius:10px;padding:20px 26px;margin:4px 0 22px}
+.phase-banner.navy{background:#1B3A6B}
+.phase-banner.teal{background:#1A6B5E}
+.phase-banner.gold{background:#7a5010}
+.phase-banner .pnum{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px;font-family:'JetBrains Mono',monospace}
+.phase-banner h2{font-family:'DM Serif Display',serif;font-size:21px;font-weight:400;color:#fff;margin:0 0 4px;line-height:1.25}
+.phase-banner .psub{font-size:12.5px;color:rgba(255,255,255,0.55);line-height:1.55}
+
+.data-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.08)}
+.data-table th{background:#2C5282;color:#fff;text-align:left;padding:10px 15px;font-size:11.5px;font-weight:600;letter-spacing:0.04em}
+.data-table td{padding:9px 15px;font-size:13px;border-top:1px solid rgba(0,0,0,0.06);color:rgba(0,0,0,0.63)}
+.data-table tr:nth-child(even) td{background:rgba(0,0,0,0.018)}
+.data-table td:first-child{font-weight:500;color:#1a1a2e}
+
+.box{display:flex;border-radius:7px;overflow:hidden;margin:14px 0}
+.box-lbl{min-width:76px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#fff;padding:10px 6px;text-align:center;line-height:1.3}
+.box-cnt{flex:1;padding:12px 16px;font-size:13.5px;line-height:1.65}
+.box-teal .box-lbl{background:#1A6B5E}
+.box-teal .box-cnt{background:#e8f4f0;color:#1a3a2a}
+.box-gold .box-lbl{background:#92620A}
+.box-gold .box-cnt{background:#fdf6e3;color:#4a3000}
+.box-navy .box-lbl{background:#1B3A6B}
+.box-navy .box-cnt{background:#eef2f9;color:#1a1a3a}
+.box-crimson .box-lbl{background:#6e1020}
+.box-crimson .box-cnt{background:#fdf0f2;color:#3a0008}
+
+.author-note{border:1px solid rgba(124,58,237,0.18);border-left:4px solid #7c3aed;background:rgba(124,58,237,0.03);padding:13px 17px;border-radius:0 8px 8px 0;margin-bottom:22px}
+.author-note p{font-size:13px;color:rgba(0,0,0,0.6);margin:0;line-height:1.65}
+.author-note strong{color:#6d28d9}
+
+.role-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.role-card{background:#f8f9fc;border:1px solid rgba(0,0,0,0.08);border-radius:10px;padding:18px 20px}
+.role-card h4{font-size:12px;font-weight:700;color:#1B3A6B;margin-bottom:8px;letter-spacing:0.04em;text-transform:uppercase}
+.role-card p{font-size:13px;color:rgba(0,0,0,0.55);line-height:1.65;margin:0}
+
+.milestone-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin:16px 0}
+.ms-card{background:#f8f9fc;border:1px solid rgba(0,0,0,0.08);border-radius:10px;padding:16px 18px;border-top:3px solid #2C5282}
+.ms-card .ms-week{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:#2C5282;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px}
+.ms-card p{font-size:13px;color:rgba(0,0,0,0.55);line-height:1.6;margin:0}
+
+.sep{height:1px;background:rgba(0,0,0,0.06);margin:22px 0}
+.note-text{font-size:13px;color:rgba(0,0,0,0.38);font-style:italic;margin-top:14px;line-height:1.6}
+
+@media(max-width:720px){
+  .role-grid,.milestone-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .role-grid,.milestone-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="page-header">
+  <div class="cred">AI Literacy Curriculum · SUNY AI Fellows for the Public Good · AIX Center</div>
+  <h1>AI-FYE: AI in the First Year Experience</h1>
+  <p class="sub">Faculty Invitation &nbsp;·&nbsp; Pilot &nbsp;·&nbsp; Fall 2026 &nbsp;·&nbsp; SUNY Polytechnic Institute</p>
+</div>
+
+<div class="author-note">
+  <p><strong>A note on authorship:</strong> This document was written by Claude, Steve Schneider's AI collaborator, drawing on months of accumulated project context and development. It was developed through sustained conversation with a generative AI system — with the human author reading outputs, thinking against them, and writing through the friction at every stage. The model got the last word on the artifact you are reading. That is not a footnote. It is the point. The document enacts what it describes. The model occasionally gets ahead. Consider this preliminary.</p>
+</div>
+
+<!-- PROJECT BRIEF -->
+<details open>
+<summary>Project Brief <span class="stag s-gray">Three Lengths</span></summary>
+<div class="section-body">
+
+<div class="phase-banner navy">
+  <div class="pnum">25 words</div>
+  <h2>A pilot placing twenty first-year students in AI-enhanced gen ed courses, with a shared framework, shared tools, and a weekly cross-disciplinary session.</h2>
+</div>
+
+<div class="sep"></div>
+
+<h3>100 Words</h3>
+<p>AI-FYE places twenty incoming students in a first-year experience organized around one idea: AI literacy is a practice, not a subject. Students in two existing gen ed courses use generative AI as part of normal coursework, document what they do, and bring their documentation to a weekly cross-disciplinary session. A shared framework — RTW, reading, thinking, and writing with AI — runs underneath all three courses. The pilot runs Fall 2026, drawing on AIX Center seed funding, with student platform access covered and faculty stipends in place.</p>
+
+<div class="sep"></div>
+
+<h3>400 Words</h3>
+<p>AI-FYE is a first-year experience pilot built around a single definitional claim: AI literacy means reading, thinking, and writing using the tools, techniques, and technological systems consistent with one's peers. That definition — RTW — treats AI not as a subject to be studied but as the medium through which literate practice now happens. The pilot tests what it looks like to take that claim seriously at the program level, not just the course level.</p>
+
+<p>Twenty incoming students self-select into the AI-FYE cohort for Fall 2026. They register into two existing general education sections whose faculty have agreed to coordinate milestone assignments and adopt the RTW framework. They also register into AI 188 — an experimental section of FYS 111 — a one-credit weekly session where the generative AI work they produce in their other courses becomes the primary text. Students bring their documentation. The session examines what happened across disciplines and across LLMs.</p>
+
+<p>LLM comparison is built into the curriculum from the first day. Through the Google NASH program — the National Association of System Heads initiative funding Google AI certificates — students complete AI Essentials and Prompting Essentials through Coursera. They then build their working practice in Claude through the Learner's Permit, a fifteen-exercise scaffold. Google's AI certificates teach operational fluency with generative AI. AI 188 builds on that foundation — extending it into critical practice, asking what it means to read LLM outputs carefully, think against them, and write with intention.</p>
+
+<p>The assessment layer is student-driven. Common learning objectives are clearly established and operationalized at the orientation session before the semester begins. Students assess their own progress at four milestone points — weeks two, six, ten, and fourteen — each time identifying a specific moment in their documentation archive that demonstrates change. Transcripts of their conversations with LLMs are the primary evidence of thinking. The artifact — the essay, the analysis, the design — is evidence the work concluded.</p>
+
+<p>The pilot draws on AIX Center seed funding. Student platform access is covered. Faculty receive development stipends. The orientation runs before the semester begins, with all students and faculty completing the Learner's Permit together. Co-requisite faculty keep their courses, keep their assignments, and coordinate four milestone dates.</p>
+
+</div>
+</details>
+
+<!-- RTW FRAMEWORK -->
+<details open>
+<summary>The RTW Framework <span class="stag s-navy">Foundation</span></summary>
+<div class="section-body">
+
+<div class="phase-banner navy">
+  <div class="pnum">25 words</div>
+  <h2>AI literacy means reading, thinking, and writing using the tools, techniques, and technological systems consistent with one's peers. That is RTW.</h2>
+</div>
+
+<div class="sep"></div>
+
+<h3>100 Words</h3>
+<p>RTW treats AI literacy as a practice rather than a body of knowledge. The question is not whether students can describe how a large language model works. The question is whether they can read its outputs critically, think against them, and write with enough intention to shape what the model produces. That is what literate people have always done with the dominant technological systems of their moment. What changes is the environment — not the moves. Google's AI certificates teach operational fluency with generative AI. AI 188 builds on that foundation — extending it into critical practice, asking what it means to read LLM outputs carefully, think against them, and write with intention.</p>
+
+<div class="sep"></div>
+
+<h3>400 Words</h3>
+<p>AI literacy, as used throughout this program, means <strong>reading, thinking, and writing using the tools, techniques, and technological systems consistent with one's peers.</strong> That definition — RTW — is not about AI as subject matter. It is about AI as the medium through which literate practice now happens. It begins with the same moves literacy has always required: reading carefully, thinking critically, writing with intention. What changes is the environment those moves are made in.</p>
+
+<p>Literacy has always been bound to its medium. Manuscript culture shaped what could be read and who could read it. Print democratized access but created new expectations — fluency, speed, critical distance from the text. Digital literacy added navigation, evaluation, and the management of information at scale. Each transition produced a new set of practices that literate people were expected to master. AI is the current transition. The practices it requires are not yet settled, but the shape of them is clear: reading outputs with the same critical attention once trained on sources, directing the model as one would direct a research process, and writing — not just prompting — through the work toward knowledge. Reading the output and reading the input are both acts of interpretation. Writing for knowledge and writing for production are both acts of authorship. RTW names that continuity.</p>
+
+<p>Most existing AI literacy programs focus on conceptual understanding — what AI systems are, how they work, what their limits are — or on operational fluency: how to write a better prompt, how to structure a query. Both are useful. Neither is sufficient. RTW asks a different question: given that generative AI is now the medium, what does it mean to be literate in it? Not to use it, but to read it, think with it, and write through it with authorial intention intact.</p>
+
+<p>The Google AI Essentials and Prompting Essentials certificates — funded through the National Association of System Heads — establish operational fluency with generative AI systems. They are a strong foundation. AI 188 builds on that foundation. The Learner's Permit opens the course: five hours establishing a working environment, a documentation practice, and a first sustained conversation with an LLM. The sixteen weeks that follow develop what fluency alone doesn't — the habit of reading LLM outputs critically, pushing back on confident-sounding claims, and treating transcripts of those conversations as the primary record of thinking. That is what the course is for.</p>
+
+<p>This pilot works at the generative AI layer — LLMs, conversational interfaces, text and image generation. A second semester may extend the curriculum into agentic AI systems that execute multi-step tasks, simulative systems that model complex phenomena, and robotic systems that act in physical space. RTW scales to all of them.</p>
+
+</div>
+</details>
+
+<!-- FALL COURSE: AI IN CONTEXT -->
+<details open>
+<summary>Fall 2026 — AI in Context <span class="stag s-teal">The Pilot</span></summary>
+<div class="section-body">
+
+<p>The Fall 2026 pilot runs the <strong>AI in Context</strong> model. Generative AI is present in each course as a tool and a condition — not as the thing being studied. The discipline frames everything. The LLM is the medium.</p>
+
+<p><strong>Low barrier to entry.</strong> No new courses. Faculty decide independently to participate. Once faculty are in place, the next step is a conversation with the Student Affairs office and the Provost's Office to formalize the cohort and reserve seats.</p>
+
+<p>Students register into two existing gen ed sections and into AI 188 — an experimental section of FYS 111. The anchor course is one credit, meeting once per week, where the documentation students produce in their other courses becomes the shared text.</p>
+
+<div class="box box-teal">
+  <div class="box-lbl">The Ask</div>
+  <div class="box-cnt">Faculty keep their courses and their assignments. They agree to coordinate four milestone assignments — at weeks two, six, ten, and fourteen — so the weekly session has comparable material across disciplines at the same point in the semester. They attend the LP orientation before the semester begins.</div>
+</div>
+
+</div>
+</details>
+
+<!-- ELIGIBLE COURSES -->
+<details>
+<summary>Eligible Courses — Fall 2026 <span class="stag s-gray">Schedule</span></summary>
+<div class="section-body">
+
+<p>Sixteen courses across the Fall 2026 schedule are eligible — 43 sections total, drawn from in-person 100 and 200-level gen ed offerings. No faculty have been approached.</p>
+
+<table class="data-table">
+  <tr><th>Course</th><th>Sections</th><th>Instructor(s)</th></tr>
+  <tr><td>ANT 101 — General Anthropology</td><td>1</td><td>Margaret Wehrer</td></tr>
+  <tr><td>ANT 110 — Cultural Anthropology</td><td>1</td><td>Anna Woodworth</td></tr>
+  <tr><td>ART 110 — Art History Survey</td><td>3</td><td>Rainer Wehner · Michael De Cicco</td></tr>
+  <tr><td>ART 135 — Drawing</td><td>1</td><td>Mark Medici</td></tr>
+  <tr><td>ART 140 — 2D Design</td><td>1</td><td>Carolyn Comfort</td></tr>
+  <tr><td>ECO 110 — Microeconomics</td><td>2</td><td>Benjamin Osenbach</td></tr>
+  <tr><td>ENG 101 — First-Year Composition</td><td>9</td><td>Lena Bertone · Alexander Bulson · Kaylynn Picente · Heather Banek · David Wojciechowski · TBD</td></tr>
+  <tr><td>HIS 101 — American History I</td><td>3</td><td>George Whitton · James Dupree · Amy Russell</td></tr>
+  <tr><td>HIS 102 — American History II</td><td>3</td><td>George Whitton · Jack Green · Amy Russell</td></tr>
+  <tr><td>HIS 150 — World History</td><td>1</td><td>George Whitton</td></tr>
+  <tr><td>IDS 102 — Interdisciplinary Studies</td><td>1</td><td>Marye Ianno</td></tr>
+  <tr><td>IDS 103 — Science/Technology/Human Values</td><td>1</td><td>Daryl Lee</td></tr>
+  <tr><td>PHI 130 — World Religions</td><td>2</td><td>Joseph Elacqua</td></tr>
+  <tr><td>PSY 100 — Principles of Psychology</td><td>7</td><td>Yopina Pertiwi · Valerie Colasante DiPierro · Derek Mizerak · Stephanie Poplock</td></tr>
+  <tr><td>SOC 100 — Introduction to Sociology</td><td>5</td><td>David Pasick · Sheilamae Ablay · Donna Manion · Shelby Mancuso · TBD</td></tr>
+  <tr><td>SOC 110 — Social Problems</td><td>3</td><td>Donna Manion · Michael Fischer</td></tr>
+</table>
+
+<p class="note-text">GenEd 2023 category data available on request — useful for curriculum analysis or scheduling once faculty are identified.</p>
+
+</div>
+</details>
+
+<!-- ORIENTATION -->
+<details>
+<summary>Orientation Week &amp; First Week of Class <span class="stag s-blue">Entry Point</span></summary>
+<div class="section-body">
+
+<p>The pilot begins before the semester starts and carries through the first week of class. All twenty students and all participating faculty move through the same entry sequence together.</p>
+
+<h3>Google Certificate Sequence</h3>
+<p>Students complete <strong>Google AI Essentials</strong> and <strong>Google Prompting Essentials</strong> through Coursera, funded by the National Association of System Heads Google NASH program. These establish a common operational baseline — how generative AI systems work, how to structure prompts, how to evaluate outputs.</p>
+
+<h3>The Learner's Permit</h3>
+<p>The LP is a fifteen-exercise scaffold — approximately five hours — building RTW practice in Claude: working environment, first prompt, documented conversation with a generative AI system, exported transcript, folder structure for the semester. Faculty complete the LP alongside students. At the close, learning objectives are clearly established and operationalized for the semester ahead.</p>
+
+<table class="data-table" style="margin-top:18px">
+  <tr><th>Element</th><th>Detail</th></tr>
+  <tr><td>Format</td><td>Shared session, in-person — orientation week or first week of class</td></tr>
+  <tr><td>Duration</td><td>~5 hours (can split across two sessions)</td></tr>
+  <tr><td>Who attends</td><td>All 20 students + all participating faculty</td></tr>
+  <tr><td>Outcome</td><td>Google certificates in progress · LP complete · learning objectives established</td></tr>
+</table>
+
+</div>
+</details>
+
+<!-- WHAT PARTICIPATING FACULTY DO -->
+<details open>
+<summary>What Participating Faculty Do <span class="stag s-gold">Roles</span></summary>
+<div class="section-body">
+
+<div class="role-grid">
+  <div class="role-card">
+    <h4>Co-Requisite Faculty</h4>
+    <p>Teach your course normally. Coordinate four milestone assignments at weeks two, six, ten, and fourteen. Attend the LP orientation and help establish the common learning objectives. Optionally attend one or two weekly sessions to see your assignments reflected back across disciplines.</p>
+  </div>
+  <div class="role-card">
+    <h4>Across Gen Ed Courses</h4>
+    <p>Milestone timing and RTW framework adoption are coordinated among participating faculty. Course content, assignments, and assessment remain entirely yours. Changes within your gen ed course are yours to make — the coordination is limited to when milestone assignments land.</p>
+  </div>
+  <div class="role-card">
+    <h4>AI 188 Instructor</h4>
+    <p>Facilitates weekly sessions. Coordinates milestone timing with co-requisite faculty. Maintains the shared documentation environment. Runs the LP orientation.</p>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<h3>Four Milestone Weeks</h3>
+<div class="milestone-row">
+  <div class="ms-card">
+    <div class="ms-week">Week 2</div>
+    <p>First generative AI-assisted assignment. Students document their process. Baseline for the semester's self-assessment.</p>
+  </div>
+  <div class="ms-card">
+    <div class="ms-week">Week 6</div>
+    <p>Second milestone. Cross-disciplinary comparison in AI 188 — same week, different courses, different LLMs.</p>
+  </div>
+  <div class="ms-card">
+    <div class="ms-week">Week 10</div>
+    <p>Third milestone. Students self-assess progress against established objectives. Documentation archive reviewed.</p>
+  </div>
+  <div class="ms-card">
+    <div class="ms-week">Week 14</div>
+    <p>Final milestone. Full semester portfolio review. Self-assessment complete.</p>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<h3>Budget — Fall 2026</h3>
+<p>This pilot is a joint effort of the AIX Center and the Google NASH program (National Association of System Heads).</p>
+<table class="data-table">
+  <tr><th>Item</th><th>Amount</th></tr>
+  <tr><td>Claude Team — 23 seats × $30/month × 4 months</td><td>$2,760</td></tr>
+  <tr><td>Google AI Essentials + Prompting Essentials (20 students, Coursera)</td><td>Covered — Google NASH program</td></tr>
+  <tr><td>2 faculty development stipends — includes commitment to co-author ARKiv paper evaluating the pilot</td><td>$2,000</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>$4,760</strong></td></tr>
+</table>
+<p class="note-text">AIX Center seed funding covers Claude Team access and faculty stipends. Faculty are not asked to absorb costs.</p>
+
+</div>
+</details>
+
+<!-- IF YOU'RE INTERESTED -->
+<details open>
+<summary>If You're Interested <span class="stag s-purple">Join</span></summary>
+<div class="section-body">
+
+<p>If any of this sounds interesting, let's talk. The coordination ask is light — four assignment dates and an orientation session before the semester starts. I'm happy to work around your syllabus rather than the other way around. Reach out and we'll figure out if your course is a good fit.</p>
+
+<div class="box box-teal">
+  <div class="box-lbl">Contact</div>
+  <div class="box-cnt"><strong>Steven M. Schneider</strong> · Professor of Communications &amp; Humanities · Co-Director, AIX Center · SUNY AI Fellow for the Public Good, 2025–2026 · SUNY Polytechnic Institute · <a href="/cdn-cgi/l/email-protection#a0d3d4c5d6c5e0d3d5ced9d0cfccd98ec5c4d5"><span class="__cf_email__" data-cfemail="dcafa8b9aab99cafa9b2a5acb3b0a5f2b9b8a9">[email&#160;protected]</span></a></div>
+</div>
+
+</div>
+</details>
+
+<!-- RESEARCH OUTPUTS AND FUNDING -->
+<details>
+<summary>Research Outputs &amp; Foundation Funding <span class="stag s-crimson">What Comes Next</span></summary>
+<div class="section-body">
+
+<p>If the pilot runs as designed, the documentation it produces — cross-disciplinary LLM conversation records from twenty students over a full semester — is the foundation for something more. A small team of faculty and the AI 188 instructor could take that record in two directions.</p>
+
+<p>The first is a scholarly preprint on the ARKiv documenting what the RTW framework looks like at the program level — what the cross-disciplinary comparison revealed, what the self-assessment captured. Participating faculty would be co-authors contingent on their contribution to the research design and data review.</p>
+
+<p>The second is a foundation funding proposal for a full AI-FYE implementation the following year — larger cohort, more faculty, documented model ready for transfer to other SUNY campuses.</p>
+
+<p>Neither is the reason to participate in the pilot. The pilot is worth running on its own terms. But if the work produces something worth building on, the infrastructure to do that will be in place.</p>
+
+<div class="box box-crimson">
+  <div class="box-lbl">Interested?</div>
+  <div class="box-cnt">Faculty who want to be part of a research and funding team after the pilot — reach out separately. That conversation is a different commitment than participating in the Fall cohort, and it can happen later.</div>
+</div>
+
+<p class="note-text">This document is part of the SUNY AI Literacy Curriculum collection. Related documents: Learner's Permit · Commercial Driver's License · AI Literacy Implementation Guide.</p>
+
+</div>
+</details>
+
+<!-- PROVENANCE -->
+<details>
+<summary>Provenance <span class="stag s-gray">Source Record</span></summary>
+<div class="section-body">
+<h3>Source Transcripts</h3>
+<ul>
+  <li><a href="https://stevesunypoly.github.io/tilde-steve/transcripts/steve-claude-low-friction-ai-first-year-experience-pilot-for-fall-2026.html">Steve-Claude — Low Friction AI First Year Experience Pilot for Fall 2026</a></li>
+  <li><a href="https://stevesunypoly.github.io/tilde-steve/transcripts/steve-claude-ai-literacy-development-through-iterative-refinement.html">Steve-Claude — AI Literacy Development Through Iterative Refinement</a></li>
+  <li><a href="https://stevesunypoly.github.io/tilde-steve/transcripts/steve-chatgpt-ai-curriculum-simulation-layer.html">Steve-ChatGPT — AI Curriculum Simulation Layer</a></li>
+</ul>
+<h3>Version History</h3>
+<ul>
+  <li><a href="https://stevesunypoly.github.io/tilde-steve/artifacts/ai-fye-faculty-invitation.html">Previous version: AI FYE Faculty Invitation</a></li>
+</ul>
+</div>
+</details>
+
+</div>
+</body>
+</html>

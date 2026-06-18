@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Literacy Curriculum — Steven M. Schneider</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a1a;
+      --mid: #555;
+      --rule: #d0ccc4;
+      --bg: #f7f5f1;
+      --cream: #ede9e2;
+      --accent: #2b4a8c;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid var(--rule);
+      padding: 2.5rem 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .site-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .site-meta {
+      font-size: 0.78rem;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 3rem 6rem;
+    }
+
+    .page-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .intro {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 580px;
+      margin-bottom: 3.5rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.25rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 3rem;
+    }
+
+    .doc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .doc-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1.5rem;
+      align-items: start;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .doc-item:nth-child(1) { animation-delay: 0.1s; }
+    .doc-item:nth-child(2) { animation-delay: 0.22s; }
+    .doc-item:nth-child(3) { animation-delay: 0.34s; }
+    .doc-item:nth-child(4) { animation-delay: 0.46s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .doc-number {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      color: var(--rule);
+      padding-top: 0.1rem;
+      user-select: none;
+    }
+
+    .doc-content {}
+
+    .doc-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .doc-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .doc-desc {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: var(--mid);
+      margin-bottom: 1rem;
+      max-width: 540px;
+    }
+
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .doc-link:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .doc-link::after {
+      content: '→';
+      font-size: 0.9em;
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 3rem;
+      font-size: 0.78rem;
+      color: var(--mid);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .doc-item { grid-template-columns: 1fr; }
+      .doc-number { display: none; }
+      .site-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="site-name" href="https://stevesunypoly.github.io/tilde-steve/">Steven M. Schneider</a>
+  <div class="site-meta">
+    SUNY Polytechnic Institute<br>
+    AI Fellow for the Public Good, 2025–2026
+  </div>
+</header>
+
+<main>
+  <p class="page-label">AI Literacy Curriculum</p>
+  <h1>Current Work</h1>
+  <p class="intro">These documents from an ongoing curriculum development project, developed as part of my work as a SUNY AI Fellow for the Public Good. Each is an open educational resource, generated with AI assistance and part of the AIX OER project, Spring 2026.</p>
+
+  <hr class="divider">
+
+  <div class="doc-list">
+
+    <div class="doc-item">
+      <div class="doc-number">1</div>
+      <div class="doc-content">
+        <div class="doc-tag">Wednesday Sessions</div>
+        <div class="doc-title">AI Literacy — Wednesday Sessions</div>
+        <p class="doc-desc"></p>
+        <a class="doc-link" href="https://stevesunypoly.github.io/tilde-steve/artifacts/ai-literacy-wednesday-sessions.html" target="_blank">View document</a>
+      </div>
+    </div>
+
+    <div class="doc-item">
+      <div class="doc-number">2</div>
+      <div class="doc-content">
+        <div class="doc-tag">First Year Experience</div>
+        <div class="doc-title">AI-FYE — Faculty Invitation</div>
+        <p class="doc-desc">An integrated first-year curriculum combining AI-specific courses, general education requirements, and a discipline-based introduction to AI — designed so students learn AI literacy through their major from day one.</p>
+        <a class="doc-link" href="https://stevesunypoly.github.io/tilde-steve/artifacts/ai-fye-faculty-invitation.html" target="_blank">View document</a>
+      </div>
+    </div>
+
+    <div class="doc-item">
+      <div class="doc-number">3</div>
+      <div class="doc-content">
+        <div class="doc-tag">Student Credential</div>
+        <div class="doc-title">AI Literacy — Learner's Permit</div>
+        <p class="doc-desc">A 5-hour certificate program giving students permission to use generative AI in any course that permits and requires it. Grounded in the Read-Think-Write framework, built around conversation transcripts and artifacts.</p>
+        <a class="doc-link" href="https://stevesunypoly.github.io/tilde-steve/artifacts/ai-literacy-learners-permit.html" target="_blank">View document</a>
+      </div>
+    </div>
+
+    <div class="doc-item">
+      <div class="doc-number">4</div>
+      <div class="doc-content">
+        <div class="doc-tag">Advanced Credential</div>
+        <div class="doc-title">AI Literacy — Commercial License</div>
+        <p class="doc-desc">A 15-hour certificate program giving students permission to use agentic AI in any course that permits and requires it. The advanced counterpart to the Learner's Permit, for students ready to work with AI systems that act, not just generate.</p>
+        <a class="doc-link" href="https://stevesunypoly.github.io/tilde-steve/artifacts/ai-literacy-commercial-license.html" target="_blank">View document</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <span>Steven M. Schneider · <a href="mailto:steve@sunypoly.edu" style="color:inherit">steve@sunypoly.edu</a></span>
+  <span>AIX OER Project · Spring 2026</span>
+</footer>
+
+</body>
+</html>
