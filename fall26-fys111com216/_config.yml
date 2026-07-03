@@ -1,0 +1,37 @@
+title: "SUNY Poly AI FYE"
+description: >
+  SUNY Poly experience combining FYS 111 -- first year seminar -- with COM 216, using AI to examine the history of human communication.
+baseurl: "/fall26-fys111com216"
+url: "https://stevesunypoly.github.io"
+author: "Steven M. Schneider"
+email: "steves@sunypoly.edu"
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Collections
+collections:
+  tabs3:
+    output: false
+  tabs2:
+    output: false
+  conversations:
+    output: true
+    permalink: /conversations/:name/
+  bib:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: conversations
+    values:
+      layout: conversation
+
+# Exclude non-content files from build
+exclude:
+  - "*.DS_Store"
+  - "shared/lit-review/*.bib"
+  - "lit-rev-v0"
+  - "_bib/*.bib"

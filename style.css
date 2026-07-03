@@ -55,6 +55,32 @@ body {
 .nav-link:hover { text-decoration: underline; }
 .nav-link.active { color: #333; text-decoration: underline; }
 
+.courses {
+    margin: -8px 0 15px 0;
+    border-bottom: 1px solid #ccc;
+    padding: 6px 0;
+    font-size: 0.82em;
+}
+
+.courses-label {
+    color: #999;
+    font-style: italic;
+    margin-right: 6px;
+}
+
+.course-link {
+    color: #8C1515;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 8px;
+}
+.course-link:hover { text-decoration: underline; }
+.course-link.course-placeholder {
+    color: #bbb;
+    pointer-events: none;
+    cursor: default;
+}
+
 /* Page content wrapper */
 .page-container {
     max-width: 800px;
