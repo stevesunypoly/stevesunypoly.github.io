@@ -27,4 +27,3 @@ exclude:
   - "*.DS_Store"
   - "_bib/*.bib"
   - "fall26-fys111com216/_bib/*.bib"
-  - "fall26-idt555/"
