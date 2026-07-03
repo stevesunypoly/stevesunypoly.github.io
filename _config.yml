@@ -1,0 +1,30 @@
+title: "Steven M. Schneider"
+url: "https://stevesunypoly.github.io"
+baseurl: ""
+author: "Steven M. Schneider"
+email: "steves@sunypoly.edu"
+
+markdown: kramdown
+
+# Tell Jekyll to look for collections inside this subdirectory
+collections_dir: fall26-fys111com216
+
+collections:
+  tabs3:
+    output: false
+  conversations:
+    output: true
+    permalink: /fall26-fys111com216/conversations/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: conversations
+    values:
+      layout: conversation
+
+exclude:
+  - "*.DS_Store"
+  - "_bib/*.bib"
+  - "fall26-fys111com216/_bib/*.bib"
+  - "fall26-idt555/"
