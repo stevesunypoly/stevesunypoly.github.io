@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Steven M. Schneider</title>
 <style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: Georgia, serif;
     display: flex;
@@ -12,10 +13,12 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0;
     background: #f9f9f9;
     color: #333;
+    cursor: pointer;
+    user-select: none;
   }
+  body:hover { background: #f0f0f0; }
   h1 { font-size: 1.4em; font-weight: normal; margin-bottom: 0.5em; }
   p { font-size: 1em; color: #666; margin: 0.3em 0; }
   #count {
@@ -24,15 +27,11 @@
     margin: 0.4em 0;
     color: #333;
   }
-  a {
-    margin-top: 1em;
-    font-size: 0.9em;
-    color: #555;
-    text-decoration: none;
-    border-bottom: 1px solid #aaa;
-    cursor: pointer;
+  #hint {
+    margin-top: 1.5em;
+    font-size: 0.85em;
+    color: #aaa;
   }
-  a:hover { color: #000; }
 </style>
 </head>
 <body>
@@ -40,11 +39,10 @@
 <p>This page has moved.</p>
 <div id="count">5</div>
 <p>Redirecting to <strong>sunypolysteve.github.io</strong></p>
-<a id="stay" href="stevesunypoly.html">Stay Here</a>
+<div id="hint">click anywhere to stay here</div>
 <script>
   let n = 5;
   const el = document.getElementById('count');
-  const stay = document.getElementById('stay');
   const t = setInterval(() => {
     n--;
     el.textContent = n;
@@ -53,8 +51,9 @@
       window.location = 'https://sunypolysteve.github.io';
     }
   }, 1000);
-  stay.addEventListener('click', () => {
+  document.body.addEventListener('click', () => {
     clearInterval(t);
+    window.location = 'stevesunypoly.html';
   });
 </script>
 </body>
