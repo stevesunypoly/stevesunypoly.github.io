@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Centers: A Briefing for Herkimer County</title>
+<style>
+  :root{
+    --paper:#f5f3ee;
+    --paper-2:#ece8df;
+    --ink:#1c2230;
+    --ink-soft:#3d4557;
+    --slate:#2b3a55;
+    --slate-deep:#1a2540;
+    --line:#c9c3b6;
+    --line-soft:#ddd7ca;
+    --amber:#a86a2c;
+    --amber-soft:#f0e2cd;
+    --green:#3f6152;
+    --green-soft:#dde7df;
+    --rule:#b7b0a1;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    font-size:18px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sans{font-family:"Helvetica Neue",Arial,"Segoe UI",system-ui,sans-serif;}
+
+  /* ---------- Masthead ---------- */
+  header.mast{
+    background:var(--slate-deep);
+    color:var(--paper);
+    border-bottom:5px solid var(--amber);
+  }
+  .mast-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:34px 28px 30px;
+  }
+  .kicker{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#b9c4d8;
+    font-weight:600;
+    margin:0 0 14px;
+  }
+  h1.title{
+    font-size:2.85rem;
+    line-height:1.05;
+    margin:0 0 12px;
+    font-weight:600;
+    letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-size:1.18rem;
+    color:#d7ddea;
+    max-width:60ch;
+    margin:0;
+    font-style:italic;
+  }
+  .mast-meta{
+    margin-top:22px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.16);
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13.5px;
+    color:#aeb9cd;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 26px;
+  }
+  .mast-meta strong{color:#e7ebf3;font-weight:600;}
+
+  /* ---------- Tab navigation ---------- */
+  nav.tabs{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--paper-2);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 1px 0 rgba(0,0,0,.03);
+  }
+  .tabs-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:stretch;
+  }
+  .tab-btn{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:14.5px;
+    font-weight:600;
+    letter-spacing:.01em;
+    color:var(--ink-soft);
+    background:none;
+    border:none;
+    border-bottom:3px solid transparent;
+    padding:16px 20px 13px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    transition:color .15s, border-color .15s, background .15s;
+  }
+  .tab-btn .tnum{
+    font-size:12px;
+    color:var(--amber);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:1px 5px;
+    background:var(--paper);
+  }
+  .tab-btn:hover{color:var(--ink);background:rgba(0,0,0,.02);}
+  .tab-btn.active{
+    color:var(--slate-deep);
+    border-bottom-color:var(--amber);
+  }
+  .tab-btn.active .tnum{background:var(--amber);color:#fff;border-color:var(--amber);}
+
+  /* ---------- Layout ---------- */
+  main{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px 90px;
+  }
+  .panel{display:none;animation:fade .25s ease both;}
+  .panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  .panel-head{
+    padding:40px 0 8px;
+    border-bottom:2px solid var(--rule);
+    margin-bottom:30px;
+  }
+  .panel-eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--amber);
+    font-weight:700;
+    margin:0 0 10px;
+  }
+  h2.panel-title{
+    font-size:2.15rem;
+    line-height:1.1;
+    margin:0 0 14px;
+    font-weight:600;
+    letter-spacing:-.01em;
+  }
+  .panel-lede{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:70ch;
+    margin:0 0 6px;
+  }
+
+  section.block{
+    padding:26px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  section.block:last-child{border-bottom:none;}
+  h3.block-title{
+    font-size:1.42rem;
+    margin:0 0 6px;
+    font-weight:600;
+    letter-spacing:-.005em;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+  }
+  h3.block-title .marker{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--amber);
+    letter-spacing:.08em;
+  }
+  p{margin:0 0 16px;}
+  a{color:var(--slate);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px;}
+  a:hover{text-decoration-color:var(--amber);}
+
+  /* ---------- Executive summary landing ---------- */
+  .es-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin:26px 0 8px;
+  }
+  .es-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--slate);
+    padding:20px 22px;
+    text-decoration:none;
+    color:var(--ink);
+    display:block;
+    transition:border-color .15s, transform .12s, box-shadow .15s;
+  }
+  .es-card:hover{
+    border-left-color:var(--amber);
+    box-shadow:0 6px 22px rgba(26,37,64,.09);
+    transform:translateY(-2px);
+  }
+  .es-card .ec-tag{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    font-weight:700;
+    margin:0 0 6px;
+  }
+  .es-card h4{
+    font-size:1.22rem;
+    margin:0 0 8px;
+    font-weight:600;
+  }
+  .es-card p{
+    font-size:.98rem;
+    color:var(--ink-soft);
+    margin:0;
+    line-height:1.5;
+  }
+  .es-card .ec-go{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--slate);
+    margin-top:12px;
+    display:inline-block;
+  }
+
+  /* stat strip */
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    border:1px solid var(--line);
+    background:#fff;
+    margin:30px 0;
+  }
+  .stat{
+    padding:22px 18px;
+    border-right:1px solid var(--line-soft);
+    text-align:left;
+  }
+  .stat:last-child{border-right:none;}
+  .stat .snum{
+    font-size:2.1rem;
+    font-weight:600;
+    color:var(--slate-deep);
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .stat .slabel{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:8px;
+    line-height:1.35;
+  }
+
+  /* callouts */
+  .callout{
+    background:var(--amber-soft);
+    border:1px solid #e3cfa8;
+    border-left:4px solid var(--amber);
+    padding:16px 20px;
+    margin:20px 0;
+    font-size:.99rem;
+  }
+  .callout .co-h{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--amber);
+    margin:0 0 6px;
+  }
+  .callout.ny{
+    background:var(--green-soft);
+    border-color:#bcd0c3;
+    border-left-color:var(--green);
+  }
+  .callout.ny .co-h{color:var(--green);}
+
+  /* pull data table */
+  table.dt{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+    font-size:.95rem;
+  }
+  table.dt th, table.dt td{
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid var(--line-soft);
+    vertical-align:top;
+  }
+  table.dt th{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border-bottom:2px solid var(--rule);
+  }
+  table.dt tr:last-child td{border-bottom:none;}
+  table.dt td.em{font-weight:600;color:var(--slate-deep);white-space:nowrap;}
+
+  ul.tight{margin:0 0 16px;padding-left:22px;}
+  ul.tight li{margin-bottom:8px;}
+
+  .ref{font-size:.72em;vertical-align:super;line-height:0;}
+  .ref a{color:var(--amber);text-decoration:none;font-weight:600;}
+
+  /* ---------- Print toolbar ---------- */
+  .toolbar{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:60;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    align-items:stretch;
+    background:var(--slate-deep);
+    padding:14px;
+    border-radius:4px;
+    box-shadow:0 10px 34px rgba(16,24,44,.32);
+    width:210px;
+  }
+  .toolbar .tb-h{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#aeb9cd;
+    font-weight:700;
+    margin-bottom:2px;
+  }
+  .toolbar button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    text-align:left;
+    color:#e7ebf3;
+    background:#2c3c5b;
+    border:1px solid #3d4f72;
+    border-radius:3px;
+    padding:9px 12px;
+    cursor:pointer;
+    transition:background .14s,border-color .14s;
+  }
+  .toolbar button:hover{background:var(--amber);border-color:var(--amber);color:#fff;}
+  .toolbar button span{display:block;font-weight:400;font-size:11.5px;color:#aeb9cd;margin-top:1px;}
+  .toolbar button:hover span{color:#fbeed9;}
+  .tb-collapse{
+    position:absolute;
+    top:-11px;left:-11px;
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--amber);
+    color:#fff;border:none;
+    font-size:15px;cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.28);
+    padding:0;
+  }
+  .toolbar.min{width:auto;}
+  .toolbar.min .tb-body{display:none;}
+  .toolbar.min .tb-open{
+    display:flex;align-items:center;gap:8px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;font-weight:600;color:#e7ebf3;
+    background:none;border:none;padding:2px 4px;cursor:pointer;
+  }
+  .tb-open{display:none;}
+
+  footer.site{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:30px 28px 60px;
+    border-top:2px solid var(--rule);
+    font-size:.86rem;
+    color:var(--ink-soft);
+  }
+  footer.site h3{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);margin:0 0 12px;
+  }
+  .srclist{columns:2;column-gap:34px;font-size:.8rem;line-height:1.45;}
+  .srclist p{margin:0 0 9px;break-inside:avoid;}
+  .srclist a{color:var(--slate);}
+
+  @media (max-width:760px){
+    body{font-size:16.5px;}
+    h1.title{font-size:2.05rem;}
+    .es-grid{grid-template-columns:1fr;}
+    .stat-row{grid-template-columns:1fr 1fr;}
+    .stat:nth-child(2){border-right:none;}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line-soft);}
+    .srclist{columns:1;}
+    .toolbar{right:12px;bottom:12px;width:180px;}
+    .tab-btn{padding:13px 14px 11px;font-size:13.5px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+
+  /* ================= PRINT ================= */
+  @media print{
+    nav.tabs,.toolbar,.es-card .ec-go{display:none!important;}
+    body{background:#fff;color:#000;font-size:11pt;line-height:1.4;}
+    header.mast{background:#fff;color:#000;border-bottom:3px solid #000;}
+    .kicker{color:#444;}
+    .subtitle,.mast-meta{color:#333;}
+    .mast-meta{border-top-color:#bbb;}
+    main{padding:0;max-width:100%;}
+    /* by default (10-page) show everything */
+    .panel{display:block!important;page-break-before:always;}
+    #es{page-break-before:avoid;}
+    .es-grid{grid-template-columns:1fr 1fr;}
+    .es-card{border:1px solid #999;break-inside:avoid;}
+    .stat-row,.callout,table.dt,section.block{break-inside:avoid;}
+    a{color:#000;text-decoration:none;}
+    .ref a{color:#000;}
+    footer.site{page-break-before:always;}
+    .srclist{columns:2;}
+
+    /* 1-pager: only exec summary, compact */
+    body.print-1 .panel:not(#es){display:none!important;}
+    body.print-1 #es .es-grid,
+    body.print-1 #es .es-detail{display:none!important;}
+    body.print-1 footer.site{display:none!important;}
+    body.print-1 .mast-inner{padding:14px 0;}
+    body.print-1 h1.title{font-size:20pt;}
+    body.print-1 .stat-row{margin:12px 0;}
+
+    /* 5-pager: exec summary + condensed tabs, drop bibliography + es cards */
+    body.print-5 footer.site{display:none!important;}
+    body.print-5 .es-grid{display:none!important;}
+    body.print-5 .print-only-full{display:none!important;}
+  }
+  @page{margin:1.5cm;}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-inner">
+    <p class="kicker">Herkimer County &nbsp;/&nbsp; Legislative Briefing</p>
+    <h1 class="title">Data Centers and the County</h1>
+    <p class="subtitle">A nonpartisan briefing on what data center development would mean for Herkimer County: the power and water it draws, the money it moves, the land it occupies, and the decisions that fall to local government.</p>
+    <div class="mast-meta sans">
+      <span><strong>Prepared for</strong> the County Administrator and Legislature</span>
+      <span><strong>Scope</strong> Verified evidence review</span>
+      <span><strong>Reading time</strong> ~25 min &nbsp;|&nbsp; Print: 1 / 5 / 10 pages</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Briefing sections">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="es" role="tab" aria-selected="true"><span class="tnum">S</span>Summary</button>
+    <button class="tab-btn" data-tab="t1" role="tab"><span class="tnum">1</span>What They Are</button>
+    <button class="tab-btn" data-tab="t2" role="tab"><span class="tnum">2</span>Power &amp; Water</button>
+    <button class="tab-btn" data-tab="t3" role="tab"><span class="tnum">3</span>Money &amp; Jobs</button>
+    <button class="tab-btn" data-tab="t4" role="tab"><span class="tnum">4</span>Politics &amp; the Local Decision</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ EXECUTIVE SUMMARY ============ -->
+<section id="es" class="panel active" role="tabpanel">
+  <div class="panel-head">
+    <p class="panel-eyebrow">Executive Summary</p>
+    <h2 class="panel-title">The short version</h2>
+    <p class="panel-lede">Data centers have moved from a technical curiosity to one of the most contested land-use questions facing local government. For a county that has not yet hosted one, the moment to understand the trade-offs is before a developer arrives, not after.</p>
+  </div>
+
+  <p>A data center is a building full of computer servers. The current wave is driven by artificial intelligence and cloud computing, and the largest facilities now rival small cities in the electricity and water they consume. National electricity use from data centers roughly doubled over the past decade and is projected to double again by 2030, at which point they could account for a large share of all growth in U.S. power demand.<span class="ref"><a href="#s-lbnl">1</a></span> That single fact drives most of what follows: higher pressure on the grid, competition for water, new tax revenue, and, increasingly, organized public opposition.</p>
+
+  <p>The politics have shifted sharply. In July 2026 New York became the first state in the nation to pause new large data centers, through an executive order that halts state permits for facilities of 50 megawatts or more while regulators write new standards.<span class="ref"><a href="#s-ny">2</a></span> Opposition is now measurably bipartisan, and in several communities officials who approved data center deals have been voted out.<span class="ref"><a href="#s-recall">3</a></span> At the same time, the counties that host these facilities have seen genuine fiscal windfalls. Both things are true, and the difference between them usually comes down to the terms a local government negotiates.</p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="snum">~4%&#8594;12%</div><div class="slabel sans">Share of U.S. electricity from data centers, 2023 to 2028 (DOE / LBNL)</div></div>
+    <div class="stat"><div class="snum">50 MW</div><div class="slabel sans">Threshold for New York's 2026 state permitting pause</div></div>
+    <div class="stat"><div class="snum">~50</div><div class="slabel sans">Permanent jobs at a typical 250,000 sq ft facility once operating (JLARC)</div></div>
+    <div class="stat"><div class="snum">61-70%</div><div class="slabel sans">Americans opposing a data center in their own area (2026 polls)</div></div>
+  </div>
+
+  <p>The through-line of this briefing is that a data center is neither a gift nor a threat by nature. It is an industrial facility whose local effects depend almost entirely on the terms under which it is admitted. Counties that treated it as a windfall to be captured quickly have often regretted the process; counties that treated it as a negotiation to be conducted carefully have fared better. Herkimer County has the advantage of considering the question before a specific proposal forces a rushed answer.</p>
+
+  <p>This briefing is organized into four sections. Each is designed to stand on its own, so a reader can go straight to the question in front of them.</p>
+
+  <div class="es-grid">
+    <a class="es-card" href="#" data-goto="t1">
+      <div class="ec-tag sans">Section 1</div>
+      <h4>What data centers actually are</h4>
+      <p>The types of facilities, the difference between a small edge site and a hyperscale campus, and why the AI build-out changed the scale of everything.</p>
+      <span class="ec-go sans">Read section &#8594;</span>
+    </a>
+    <a class="es-card" href="#" data-goto="t2">
+      <div class="ec-tag sans">Section 2</div>
+      <h4>Power, water, and the neighbors</h4>
+      <p>Grid demand and electricity bills, water for cooling, air quality from backup and on-site generation, and the noise that reshapes a rural soundscape.</p>
+      <span class="ec-go sans">Read section &#8594;</span>
+    </a>
+    <a class="es-card" href="#" data-goto="t3">
+      <div class="ec-tag sans">Section 3</div>
+      <h4>The money and the jobs</h4>
+      <p>Where the revenue comes from, the Loudoun County windfall and its risks, the gap between construction and operating jobs, and what tax incentives really cost.</p>
+      <span class="ec-go sans">Read section &#8594;</span>
+    </a>
+    <a class="es-card" href="#" data-goto="t4">
+      <div class="ec-tag sans">Section 4</div>
+      <h4>Politics and the local decision</h4>
+      <p>The bipartisan backlash, the New York moratorium, the tools a county actually controls, and the questions to ask before any deal is signed.</p>
+      <span class="ec-go sans">Read section &#8594;</span>
+    </a>
+  </div>
+
+  <div class="es-detail">
+    <div class="callout ny">
+      <p class="co-h sans">Why this matters here</p>
+      <p style="margin:0;">Herkimer County sits in Upstate New York, exactly the region developers are now scouting as land in Virginia and Northern Virginia grows scarce. New York's own moratorium was prompted in part by a $19.4 billion project in Genesee County. The state framework being written now will shape, but not replace, the decisions a county makes about zoning, water, and local incentives. Understanding the terms early is the difference between setting them and inheriting them.<span class="ref"><a href="#s-ny">2</a></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 1 ============ -->
+<section id="t1" class="panel" role="tabpanel">
+  <div class="panel-head">
+    <p class="panel-eyebrow">Section 1</p>
+    <h2 class="panel-title">What a data center actually is</h2>
+    <p class="panel-lede">Before weighing costs and benefits, it helps to be precise about what is being proposed. "Data center" covers everything from a spare server room to a campus the size of a small town.</p>
+  </div>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">1.1</span>The basic definition</h3>
+    <p>A data center is a physical building or facility that houses computer systems: servers that store, process, and move digital information, along with the networking, power, and cooling equipment that keeps them running.<span class="ref"><a href="#s-wiki">4</a></span> Federal law defines it plainly as any facility that primarily contains electronic equipment used to process, store, and transmit digital information. Everything that happens online lives in one. When you stream a film, back up a phone, run a payroll system, or send a prompt to an AI model, a data center somewhere is doing the work.</p>
+    <p>What has changed is not the concept but the scale. Data centers are among the most energy-intensive building types in existence, consuming ten to fifty times the energy per square foot of a typical commercial office.<span class="ref"><a href="#s-doe13">5</a></span> A modern AI-focused facility can draw as much electricity as 100,000 households, and the largest now under construction are expected to use roughly twenty times that.<span class="ref"><a href="#s-pew">6</a></span> A county evaluating a proposal is not evaluating an office park. It is evaluating an industrial power and water customer.</p>
+    <p>That framing is the single most useful mental shift for a local official. The building may look unremarkable from the road, often a low, windowless box behind a berm, but its demands on shared infrastructure resemble those of a factory or a small municipality more than a commercial tenant. It signs long-term contracts for power, it competes for water, it runs continuously, and it changes the load profile of the grid it connects to. Every question that follows in this briefing flows from taking that industrial character seriously from the first meeting rather than discovering it after approval.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">1.2</span>The types, from small to enormous</h3>
+    <p>Not every facility carries the same footprint, and the distinctions matter for local planning. Broadly, developments fall into a few categories.</p>
+    <table class="dt">
+      <thead><tr><th>Type</th><th>What it is</th><th>Local footprint</th></tr></thead>
+      <tbody>
+        <tr><td class="em">Edge</td><td>Small, decentralized sites placed close to users to reduce lag</td><td>Modest power and land; often fits existing zoning</td></tr>
+        <tr><td class="em">Enterprise</td><td>A single company's own facility for its own operations</td><td>Variable; scaled to one business</td></tr>
+        <tr><td class="em">Colocation</td><td>Space rented out to multiple companies in one building</td><td>Larger; a commercial real-estate model</td></tr>
+        <tr><td class="em">Hyperscale</td><td>Massive campuses run by cloud and AI providers</td><td>Very large land, power, and water demands</td></tr>
+      </tbody>
+    </table>
+    <p>The facilities generating headlines and opposition are almost entirely hyperscale. In one Louisiana deal, a single project was large enough to cover nearly six square miles.<span class="ref"><a href="#s-meta">7</a></span> Hyperscale and colocation centers together held roughly three-quarters of all U.S. computer servers as of 2023.<span class="ref"><a href="#s-wiki">4</a></span> When a developer approaches a rural county, the question to establish first is which of these categories the proposal falls into, because the answer changes everything downstream.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">1.3</span>Why AI changed the equation</h3>
+    <p>For fifteen years, U.S. electricity consumption was essentially flat. That era is over, and data centers are the primary reason.<span class="ref"><a href="#s-qz">8</a></span> The training and operation of large AI models depend on specialized chips that consume several times more power than conventional servers, and demand for them has driven an unprecedented construction race. There were more than 5,000 data centers in the United States as of 2024, and more than 1,500 additional facilities have since been proposed.<span class="ref"><a href="#s-belfer">9</a></span></p>
+    <p>This surge is what pushes data center questions onto county agendas that never had to consider them before. The growth is also uneven: it concentrates where land, power, and favorable policy align. As the established markets fill up, developers are looking to new regions, including Upstate New York. A rural county with available land and proximity to transmission lines is now, whether it sought the attention or not, a candidate site.</p>
+    <p>The way that attention arrives is itself worth understanding. In several recent cases, developers approached small or rural jurisdictions quietly, sometimes through intermediaries or under nondisclosure, pitching enormous investment figures to officials who were eager for a deal but did not yet know the full terms.<span class="ref"><a href="#s-mystery">32</a></span> In one instance a company arrived in a New Mexico county with a $165 billion proposal that local officials welcomed even before they understood its details.<span class="ref"><a href="#s-mystery">32</a></span> The pattern is not unique to any one region. A county that has thought through its priorities in advance is far less likely to be rushed into commitments it cannot evaluate.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">1.4</span>What the industry says it can be</h3>
+    <p>It is worth stating the optimistic case fairly, because responsible development is possible and some operators pursue it. Data centers can, in principle, be built to return more water to a community than they draw, to run on cleaner power, to avoid disturbing neighbors with noise, and to avoid raising local utility rates.<span class="ref"><a href="#s-mims">10</a></span> Some facilities are designed as genuine community assets, and a share of the public says it would welcome one built responsibly and with local input.<span class="ref"><a href="#s-mims">10</a></span></p>
+    <p>The gap, as one technology columnist put it, is that this is largely not what is happening right now.<span class="ref"><a href="#s-mims">10</a></span> The difference between the good-neighbor version and the extractive version is rarely the technology. It is the terms: what the operator commits to, what the community secures in writing, and whether local government has the capacity to hold the line during negotiation. That is the theme the remaining sections return to.</p>
+    <p>It is also worth noting that data centers are, in a real sense, essential infrastructure. They underpin the digital economy, government services, healthcare records, and the AI tools that are reshaping many fields.<span class="ref"><a href="#s-wiki">4</a></span> The question facing counties is therefore not whether these facilities should exist, but where, on what terms, and at whose cost. Framing the decision that way keeps the conversation grounded. It avoids both the reflexive boosterism that waves through any project promising investment and the blanket opposition that treats all development as identical. The next three sections give a county the specific facts it needs to make that distinction for a real proposal.</p>
+  </section>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section id="t2" class="panel" role="tabpanel">
+  <div class="panel-head">
+    <p class="panel-eyebrow">Section 2</p>
+    <h2 class="panel-title">Power, water, and the neighbors</h2>
+    <p class="panel-lede">The physical demands of a data center are what most directly touch residents. These are also the impacts that local government has the clearest standing to examine and to condition.</p>
+  </div>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">2.1</span>Electricity and the grid</h3>
+    <p>The central fact is demand growth. The U.S. Department of Energy's national laboratory found that data centers consumed about 4.4% of total U.S. electricity in 2023 and projected that share would reach between 6.7% and 12% by 2028.<span class="ref"><a href="#s-brookings">11</a></span> The International Energy Agency projects U.S. data center demand will rise roughly 130% by 2030, and that data centers will account for nearly half of all growth in U.S. electricity demand through the end of the decade.<span class="ref"><a href="#s-brookings">11</a></span> The Electric Power Research Institute projects the national share could reach 9% to 17% by 2030.<span class="ref"><a href="#s-qz">8</a></span></p>
+    <p>For a county, the practical concern is who pays for the new supply. New power plants and transmission lines take years to permit and build, and where data center growth has outpaced the grid, utilities have struggled to keep up.<span class="ref"><a href="#s-qz">8</a></span> When the cost of that build-out is spread across all ratepayers, ordinary households can end up subsidizing an industrial user's demand. One study estimated data centers and related computing could raise the average U.S. electricity bill by around 8% by 2030, and by considerably more in the highest-demand markets.<span class="ref"><a href="#s-pew">6</a></span></p>
+    <div class="callout">
+      <p class="co-h sans">A New York data point</p>
+      <p style="margin:0;">At a July 2026 event, an Oneonta-area resident reported that his monthly utility bill had risen from about $250 in October 2025 to $528 by July 2026, a jump residents connected to surging regional demand. New York already hosts roughly 135 data centers.<span class="ref"><a href="#s-noc">12</a></span> Whether or not any single bill is fully attributable to data centers, ratepayer cost is now the dominant political concern statewide.</p>
+    </div>
+    <p>There is a technical wrinkle that matters for grid planning. AI workloads do not draw steady power; they surge and drop as training runs start and stop, and those rapid swings are harder for a grid to accommodate than a constant industrial load. In Zimbabwe, volatile AI power demand has been documented damaging the facilities' own equipment, and utilities everywhere are working out how to integrate loads that can spike and fall within seconds.<span class="ref"><a href="#s-zim">35</a></span> For a county, the point is not the engineering detail but its implication: a large data center is not a passive tenant on the grid. It changes how the local system must be operated, and the party responsible for managing and paying for that should be settled in advance.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">2.2</span>Where the power comes from</h3>
+    <p>The source of a facility's electricity determines much of its environmental profile. As of 2024, natural gas supplied over 40% of U.S. data center electricity, with renewables around 24%, nuclear around 20%, and coal around 15%.<span class="ref"><a href="#s-pew">6</a></span> Some operators have turned to on-site or dedicated generation to secure supply, and in at least one Texas case a data center's associated natural-gas plant raised concern that it could become one of the most polluting power sources in its area, even as the operator maintained climate pledges.<span class="ref"><a href="#s-amazon">13</a></span></p>
+    <p>Nuclear power has re-entered the conversation as operators seek firm, carbon-free supply, with several announcing agreements with nuclear providers and plans to revive retired plants.<span class="ref"><a href="#s-pew">6</a></span> Notably, public opinion has shifted: in 2026 polling, more people said they would accept a nuclear plant near their home than a data center.<span class="ref"><a href="#s-reg">14</a></span> For a county, the key questions are whether a proposed facility brings its own generation, what fuel it burns, and whether its power arrangements shift costs onto local ratepayers.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">2.3</span>Water for cooling</h3>
+    <p>Servers generate enormous heat, and many facilities use water to cool them. U.S. data centers collectively consume very large volumes of water, and hyperscale facilities alone were projected to use between 16 billion and 33 billion gallons annually by 2028.<span class="ref"><a href="#s-hydro">15</a></span> In a rural county, the relevant question is not the national total but the local one: can the aquifer or municipal system absorb the draw, and what happens in a drought year when residential and agricultural needs compete with an industrial user that runs around the clock?</p>
+    <p>Oversight gaps are real. In one Georgia case, a large data center campus had two unaccounted-for water connections that drained roughly 30 million gallons before the utility noticed, discovered only after residents complained about low pressure.<span class="ref"><a href="#s-ga">16</a></span> Cooling demand is also weather-dependent, spiking in heat, which means the peak draw can arrive precisely when a community's own water stress is highest.<span class="ref"><a href="#s-burden">17</a></span> Metering, reporting requirements, and clear limits are the tools that prevent surprises.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">2.4</span>Air, noise, and the rural soundscape</h3>
+    <p>Two impacts are easy to overlook until residents live with them. The first is air quality. Backup generators, and in some cases on-site gas generation, emit pollutants, and one neighborhood-scale modeling study underscored how localized these exposures can be, disproportionately affecting those closest to a source.<span class="ref"><a href="#s-air">18</a></span> Permit reviews do not always capture the full emissions picture, a gap advocates have flagged in specific cases.<span class="ref"><a href="#s-wri">19</a></span></p>
+    <p>The second is noise. Cooling systems and generators run continuously, and in quiet rural and suburban areas the effect on the local soundscape can be dramatic even when average sound levels seem modest on paper.<span class="ref"><a href="#s-sound">20</a></span> A constant low-frequency hum is a documented source of complaints near these facilities, and low-frequency sound travels farther and penetrates buildings more readily than the higher frequencies that standard noise ordinances tend to measure. For a county whose character and quality of life depend on rural quiet, setback distances, sound limits, and buffer requirements are not minor details. They are central to whether residents experience a facility as a neighbor or a nuisance.</p>
+    <p>Taken together, the impacts in this section share a common feature: each is manageable with the right conditions attached at the front end, and each becomes a lasting grievance if it is not. Power arrangements can protect ratepayers or shift costs onto them. Water use can be metered and capped or left unmonitored. Emissions and noise can be bounded by permit or discovered by complaint. The county's leverage over all of these is greatest before approval and shrinks sharply afterward. That timing, more than any single technical standard, is what determines how a facility is experienced by the people who live nearest to it.</p>
+  </section>
+</section>
+
+<!-- ============ TAB 3 ============ -->
+<section id="t3" class="panel" role="tabpanel">
+  <div class="panel-head">
+    <p class="panel-eyebrow">Section 3</p>
+    <h2 class="panel-title">The money and the jobs</h2>
+    <p class="panel-lede">The case for data centers is fiscal. The revenue can be transformative for a local budget, but the benefits are uneven, the jobs are fewer than the headlines suggest, and dependence carries its own risk.</p>
+  </div>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">3.1</span>The Loudoun County windfall</h3>
+    <p>The clearest example of the upside is Loudoun County, Virginia, the densest concentration of data centers in the country. In fiscal year 2026, data centers generated roughly $1.2 billion in real and personal property tax revenue, close to 40% of the county's entire budget.<span class="ref"><a href="#s-loud">21</a></span> That revenue let the county cut its real property tax rate every year for a decade, from $1.145 per $100 of assessed value in 2016 to $0.805 in 2026, while still funding schools, roads, and public safety.<span class="ref"><a href="#s-loud">21</a></span></p>
+    <p>The counterfactual is striking. A 2026 analysis for the Northern Virginia Technology Council estimated that without data center revenue, Loudoun's residential property tax rate would have to nearly double, adding roughly $5,800 a year to the typical homeowner's bill.<span class="ref"><a href="#s-nvtc">22</a></span> For a county weighing whether to invite this industry at all, Loudoun is the strongest evidence that the fiscal benefits are real and large.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">3.2</span>The dependence risk</h3>
+    <p>The same example carries the warning. Loudoun officials and residents have openly questioned whether the county has become too dependent on a single, volatile industry.<span class="ref"><a href="#s-nyt-loud">23</a></span> Data center revenue can swing with technology cycles and is difficult to forecast, so the county created a Revenue Stabilization Fund specifically to cushion against sudden changes, contributing tens of millions of dollars to it and targeting a fixed share of data center revenue as reserve.<span class="ref"><a href="#s-loud">21</a></span></p>
+    <p>The lesson for a smaller, rural county is sharper still. Loudoun could absorb rapid growth because it already had the electric grid, water system, planning staff, and diversified tax base to do so.<span class="ref"><a href="#s-nolabels">24</a></span> A rural county might see a handful of facilities produce a major new revenue stream, but without that existing capacity, the same growth can strain infrastructure faster than the revenue can repair it. The upside is real; so is the concentration risk. Prudent host counties plan for both from the start.</p>
+    <p>Loudoun has also begun tightening its own rules even after a decade of benefit. The county ended the arrangement that let many data centers be built by right, giving officials and residents more say, and a supervisor proposed a temporary pause on new applications while the county reassessed its approach.<span class="ref"><a href="#s-nolabels">24</a></span> The signal for any county at the front end of this decision is instructive: the jurisdiction with the most experience and the most to gain is still choosing to slow down and add guardrails. Building those guardrails before the first approval is far easier than retrofitting them after.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">3.3</span>The jobs question</h3>
+    <p>This is where expectations most often outrun reality. Data centers create substantial employment during construction, which can run for a few years and support many trades. But once a facility is operating, it runs largely on automation. Virginia's nonpartisan legislative commission found that a typical 250,000-square-foot facility may employ only about 50 full-time workers once running.<span class="ref"><a href="#s-money">25</a></span></p>
+    <p>The state-level figures make the pattern plain: Virginia's data center industry supports an estimated 74,000 jobs and billions in economic activity, but most of that benefit comes from building the facilities rather than operating them.<span class="ref"><a href="#s-money">25</a></span> For a county, this means the permanent local employment from a single facility is modest, and any deal that is justified primarily on operating jobs deserves careful scrutiny. The durable benefit is fiscal, not employment, and the two should not be conflated in public presentations.</p>
+    <p>There is a legitimate counterpoint worth stating. The construction phase is real work, often union work, and for the building trades a multi-year project can matter a great deal; some labor advocates have championed data centers on exactly those grounds.<span class="ref"><a href="#s-elec">34</a></span> The honest framing is that construction employment is substantial but temporary, while operating employment is permanent but small. A county deciding how to describe a project to residents should present both figures side by side, with time horizons attached, rather than blending them into a single impressive-sounding number.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">3.4</span>What incentives actually cost</h3>
+    <p>Many communities compete for these projects by offering tax breaks, and the sums can be extraordinary. In Independence, Missouri, a council approved incentives reported in the billions of dollars, including a 20-year, 90% tax abatement, for a single AI data center project.<span class="ref"><a href="#s-recall">3</a></span> When abatements are that deep and that long, the promised revenue can be substantially reduced or deferred for a generation, and the fiscal case that made the project attractive can hollow out.</p>
+    <p>State-level exemptions compound the effect. One accountability group cited state revenue losses to data center tax breaks running into the billions of dollars annually in individual states, with Georgia estimating $2.5 billion in losses in a single year and other large states close behind.<span class="ref"><a href="#s-noc">12</a></span> New York's governor has moved to repeal sales-tax exemptions for the largest data centers precisely to address this.<span class="ref"><a href="#s-nygov">26</a></span> The practical guidance is straightforward: model the deal with and without incentives, over the full abatement term, before treating any revenue projection as real. A headline investment figure is not a revenue figure.</p>
+    <p>The constructive alternative to a bare tax break is a community benefits agreement, a binding contract in which the operator commits to specific, enforceable contributions in exchange for local approval. Analysts increasingly point to these agreements as the mechanism that separates responsible development from the extractive kind, covering things like infrastructure upgrades, water stewardship, workforce commitments, and direct payments.<span class="ref"><a href="#s-wri2">33</a></span> New York's forthcoming Community Investment Framework is designed to give localities exactly this kind of template.<span class="ref"><a href="#s-nygov">26</a></span> The essential discipline is that whatever a developer promises verbally should appear in an enforceable document, with clear remedies if the commitments are not kept.</p>
+  </section>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section id="t4" class="panel" role="tabpanel">
+  <div class="panel-head">
+    <p class="panel-eyebrow">Section 4</p>
+    <h2 class="panel-title">Politics and the local decision</h2>
+    <p class="panel-lede">Data centers have become one of the few issues that unite voters across the political spectrum, almost always in opposition. Understanding that landscape, and the tools a county genuinely controls, is the practical heart of this briefing.</p>
+  </div>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">4.1</span>A bipartisan backlash</h3>
+    <p>Public opinion has turned, and it has turned across party lines. A Gallup poll found roughly seven in ten Americans opposed building data centers in their areas, and a 2026 Fox News poll put opposition at 70%.<span class="ref"><a href="#s-abc">27</a></span> A Reuters/Ipsos poll found 77% of Americans concerned that data centers would raise electricity costs, with two-thirds of Democrats and half of Republicans opposed to one in their community.<span class="ref"><a href="#s-npr">28</a></span> An Annenberg survey found opposition to a nearby facility rising twelve points in four months, to 61%.<span class="ref"><a href="#s-ann">29</a></span></p>
+    <p>What makes the issue unusual is that it gives both parties something to run on: affordability and corporate accountability for some, environmental protection for others. Analysts describe it as a rare issue where very different constituencies land in the same place.<span class="ref"><a href="#s-npr">28</a></span> For a county official, the takeaway is not which side to take but that a data center proposal will draw organized, cross-partisan public attention, and should be handled with transparency from the first conversation.</p>
+    <p>The depth of feeling is easy to underestimate. In one striking measure of how far sentiment has shifted, 2026 polling found more people willing to accept a nuclear power plant near their home than a data center, reversing decades of nuclear wariness.<span class="ref"><a href="#s-reg">14</a></span> Opposition has also proven durable under persuasion: in at least one survey, showing respondents the economic and technological benefits barely moved the numbers.<span class="ref"><a href="#s-reg">14</a></span> This is not a communications problem that better messaging solves. It reflects genuine concern about cost, resources, and control, which means the credible response is substance, transparent process and enforceable terms, rather than reassurance.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">4.2</span>When officials get it wrong</h3>
+    <p>The political risk to officials is no longer abstract. In Independence, Missouri, voters recalled a ten-year council member in September 2026, with about 68% voting to remove him, after he supported tax breaks for an AI data center. Two other members who backed the project had already lost their seats earlier that year.<span class="ref"><a href="#s-recall">3</a></span> In Festus, Missouri, voters removed half the city council after it approved a data center project.<span class="ref"><a href="#s-recall">3</a></span></p>
+    <p>The scale of resistance is national. By late 2026, the number of data center bans and moratoriums across towns, cities, counties, and states exceeded 500.<span class="ref"><a href="#s-recall">3</a></span> The recurring pattern in the recalls is not opposition to technology as such; it is a sense that deals were made quickly, with deep public subsidies, and without adequate community input. Process, in other words, is often what residents punish. A deliberate, transparent, well-documented decision process is the single best protection for both the community and the officials who serve it.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">4.3</span>New York's moratorium and what it means here</h3>
+    <div class="callout ny">
+      <p class="co-h sans">The governing fact for New York counties</p>
+      <p style="margin:0;">In July 2026, Governor Hochul signed Executive Order No. 62, making New York the first state with a statewide data center permitting pause. It halts certain state environmental permits for facilities of 50 megawatts or more for up to one year, while the Department of Public Service prepares a Generic Environmental Impact Statement covering energy demand, water use and quality, and air quality.<span class="ref"><a href="#s-ny">2</a></span></p>
+    </div>
+    <p>The order does more than pause. It directs the state to create a Community Investment Framework to help localities negotiate benefits such as infrastructure improvements and direct financial support, and the governor has moved to repeal sales-tax exemptions for the largest facilities.<span class="ref"><a href="#s-nygov">26</a></span> The pause was prompted in part by a $19.4 billion project in Genesee County, a signal that Upstate New York is squarely in developers' sights.<span class="ref"><a href="#s-axios">30</a></span></p>
+    <p>For Herkimer County, the moratorium buys time but does not remove local responsibility. The state framework will set a floor for environmental review and give counties a template for community benefits, but zoning, local permitting, water agreements, and local incentives remain county and municipal decisions. The prudent posture is to use this window to prepare, so that if and when a proposal arrives, the county is setting terms rather than reacting to them.</p>
+  </section>
+
+  <section class="block">
+    <h3 class="block-title"><span class="marker sans">4.4</span>The questions to ask before any deal</h3>
+    <p>Land-use scholars describe a structural mismatch in data center governance: parcel-based local authority confronting a form of development whose effects on power, water, and public finance cross jurisdictional lines.<span class="ref"><a href="#s-plan">31</a></span> A county cannot control the national build-out, but it does control the terms of entry. The following questions distill this briefing into a practical checklist.</p>
+    <ul class="tight">
+      <li><strong>Scale and type.</strong> Is this edge, colocation, or hyperscale? What is the megawatt draw, and does it cross the state's 50 MW review threshold?</li>
+      <li><strong>Power.</strong> Where does the electricity come from, does the facility bring its own generation, and who bears the cost of any grid upgrades: the operator or local ratepayers?</li>
+      <li><strong>Water.</strong> What is the projected draw, can the local system sustain it in a drought year, and will use be metered and publicly reported?</li>
+      <li><strong>Neighbors.</strong> What are the setbacks, sound limits, and buffers, and how will air emissions from generators be permitted and monitored?</li>
+      <li><strong>Money.</strong> What is the revenue net of incentives over the full abatement term, and how many permanent jobs, not construction jobs, will the facility support?</li>
+      <li><strong>Community benefits.</strong> What is committed in writing, and what recourse does the county have if commitments are not met?</li>
+      <li><strong>Process.</strong> Is the review transparent, are residents heard before decisions are made, and is the record complete enough to defend later?</li>
+    </ul>
+    <p>None of these questions presumes an answer for or against. Their purpose is to ensure that whatever the county decides, it decides with eyes open, on terms it set deliberately, and with a record that serves residents and officials alike.</p>
+  </section>
+</section>
+
+</main>
+
+<footer class="site" id="sources">
+  <h3 class="sans">Sources and verification</h3>
+  <p style="max-width:72ch;">This briefing draws on a curated research library assembled for the AIX Center's county policy work, supplemented by direct verification of the most consequential figures against primary and authoritative sources in September 2026. Key statistics on electricity demand, the New York moratorium, county fiscal impact, operating employment, and public opinion were confirmed against government, peer-reviewed, and major-outlet reporting. Figures reflect the best available estimates at time of writing and will evolve.</p>
+  <div class="srclist sans">
+    <p id="s-lbnl">1. U.S. Department of Energy / Lawrence Berkeley National Laboratory, 2024 Report on U.S. Data Center Energy Use. <a href="https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers">energy.gov</a></p>
+    <p id="s-ny">2. "New York Enacts Nation's First Statewide Moratorium on Data Centers," and Executive Order No. 62 coverage, July 2026. <a href="https://www.governor.ny.gov/news/first-statewide-moratorium-new-hyperscale-data-centers-launched-governor-kathy-hochul">governor.ny.gov</a> / <a href="https://www.nytimes.com/2026/07/14/nyregion/new-york-data-center-moratorium.html">NYT</a></p>
+    <p id="s-recall">3. Recall and moratorium coverage, Independence and Festus, Missouri, 2026. <a href="https://www.nbcnews.com/politics/elections/recall-vote-missouri-ai-data-center-rcna595690">NBC News</a> / <a href="https://www.tomshardware.com/tech-industry/data-centers/almost-70-percent-of-voters-in-missouri-city-recall-council-member-who-said-yes-to-ai-data-center-tax-breaks-councilor-said-disagreement-over-an-issue-shouldnt-be-enough-to-unseat-him">Tom's Hardware</a></p>
+    <p id="s-wiki">4. "Data center," reference overview, 2026.</p>
+    <p id="s-doe13">5. U.S. Department of Energy, "Data Centers and Servers." <a href="https://www.energy.gov/cmei/buildings/data-centers-and-servers">energy.gov</a></p>
+    <p id="s-pew">6. Pew Research Center, "What we know about energy use at U.S. data centers amid the AI boom," 2025. <a href="https://www.pewresearch.org/short-reads/2025/10/24/what-we-know-about-energy-use-at-us-data-centers-amid-the-ai-boom/">pewresearch.org</a></p>
+    <p id="s-meta">7. "How Meta Got Everything It Wanted in a Secret Louisiana Data Center Deal," 2026. <a href="https://www.nytimes.com/2026/07/27/technology/meta-data-center-louisiana.html">NYT</a></p>
+    <p id="s-qz">8. "Data centers drive 55% of U.S. electricity demand growth" (EPRI, NERC figures), 2026. <a href="https://qz.com/data-center-electricity-demand-growth-us-081726">qz.com</a></p>
+    <p id="s-belfer">9. Belfer Center, "AI, Data Centers, and the U.S. Electric Grid," 2026. <a href="https://www.belfercenter.org/research-analysis/ai-data-centers-us-electric-grid">belfercenter.org</a></p>
+    <p id="s-mims">10. "How to Build a Data Center Without Making Enemies," WSJ Tech News Briefing. <a href="https://www.wsj.com/podcasts/tech-news-briefing/how-to-build-a-data-center-without-making-enemies">WSJ</a></p>
+    <p id="s-brookings">11. Brookings, "Global energy demands within the AI regulatory landscape," 2026 (IEA, DOE/LBNL figures). <a href="https://www.brookings.edu/articles/global-energy-demands-within-the-ai-regulatory-landscape/">brookings.edu</a></p>
+    <p id="s-noc">12. "Three-quarters of Americans would oppose a data center near their home" (incl. Oneonta testimony, Good Jobs First state figures), 2026. <a href="https://www.nationofchange.org/2026/08/21/three-quarters-of-americans-would-oppose-a-data-center-near-their-home-new-polling-finds/">NationofChange</a></p>
+    <p id="s-amazon">13. "New Amazon Data Center Stokes Worry It Would Be the Most Polluting Power Plant," 2026. <a href="https://www.nytimes.com/2026/08/08/climate/amazon-data-center-texas.html">NYT</a></p>
+    <p id="s-reg">14. "Americans would rather have a nuclear plant in their backyard than a datacenter," 2026. <a href="https://www.theregister.com/on-prem/2026/05/14/americans_would_rather_nuclear/">The Register</a></p>
+    <p id="s-hydro">15. HydroScale, UC Berkeley School of Information; hyperscale water projections via Pew (DOE). <a href="https://www.ischool.berkeley.edu/projects/2024/hydroscale">berkeley.edu</a></p>
+    <p id="s-ga">16. "A data center drained 30M gallons of water unnoticed," Fayetteville, Georgia, 2026. <a href="https://www.politico.com/news/2026/05/08/georgia-data-center-water-00335433">Politico</a></p>
+    <p id="s-burden">17. "Uncovering the burden shifting of data center cooling: System-level water-energy nexus," 2026. <a href="https://www.sciencedirect.com/science/article/pii/S0959652626...">ScienceDirect</a></p>
+    <p id="s-air">18. "Neighborhood-Scale O3, NO2, and PM2.5" modeling study, 2026. peer-reviewed.</p>
+    <p id="s-wri">19. World Resources Institute, "From Energy Use to Air Quality, the Many Ways Data Centers Affect US Communities," 2026. <a href="https://www.wri.org/insights/us-data-center-growth-impacts">wri.org</a></p>
+    <p id="s-sound">20. "Changes to rural and suburban soundscapes due to data centers and natural gas power plants," 2026. <a href="https://doi.org/10.1121/10.0045610">Journal of the Acoustical Society of America</a></p>
+    <p id="s-loud">21. Loudoun County, VA, "Data Centers: The Loudoun Story," FY2026-2027 budget figures; Revenue Stabilization Fund. <a href="https://www.loudoun.gov/6408/Data-Centers-The-Loudoun-Story">loudoun.gov</a></p>
+    <p id="s-nvtc">22. Northern Virginia Technology Council / Mangum Economics 2026 report, homeowner counterfactual. <a href="https://progresschamber.org/insights/data-centers-cut-property-taxes-virginia-homeowners/">Progress Chamber</a></p>
+    <p id="s-nyt-loud">23. "A County Got Rich From Data Centers. Some Question 'At What Cost?'" 2026. <a href="https://www.nytimes.com/2026/08/19/technology/data-centers-loudoun-county.html">NYT</a></p>
+    <p id="s-nolabels">24. No Labels, "The Data Center Boom, Explained by One Virginia County," 2026. <a href="https://nolabels.org/the-latest/the-data-center-boom-explained-by-one-virginia-county/">nolabels.org</a></p>
+    <p id="s-money">25. Virginia JLARC via "Loudoun County's AI data centers generate 38% of revenue," 2026 (operating-jobs and industry totals). <a href="https://moneywise.com/news/top-stories/loudoun-county-virginia-ai-data-center-tax-revenue">Moneywise</a></p>
+    <p id="s-nygov">26. Governor Hochul, Community Investment Framework and sales-tax exemption repeal, 2026. <a href="https://www.governor.ny.gov/news/governor-hochul-highlights-first-statewide-moratorium-new-hyperscale-data-centers-support">governor.ny.gov</a></p>
+    <p id="s-abc">27. Gallup and Fox News polling via national reporting, 2026. <a href="https://abcnews4.com/news/nation-world/data-centers-emerge-as-bipartisan-flashpoint-ahead-of-2026-midterm-elections-political-issues-national-president-donald-trump">ABC News 4</a> / <a href="https://news.gallup.com/poll/709772/americans-oppose-data-centers.aspx">Gallup</a></p>
+    <p id="s-npr">28. "Voters are fed up with data centers" (Reuters/Ipsos figures), NPR, 2026. <a href="https://www.npr.org/2026/09/05/nx-s1-5913671/ai-data-center-campaign-spending">NPR</a></p>
+    <p id="s-ann">29. Annenberg Public Policy Center, "Opposition to Local Data Centers Rises Sharply," 2026. <a href="https://www.annenbergpublicpolicycenter.org/opposition-to-local-data-centers-rises-sharply-annenberg-survey-finds/">annenbergpublicpolicycenter.org</a></p>
+    <p id="s-axios">30. Axios, "N.Y. Gov. Kathy Hochul signs data center moratorium executive order" (Genesee County project), 2026. <a href="https://www.axios.com/2026/07/14/ny-gov-kathy-hochul-data-center-moratorium-executive-order">axios.com</a></p>
+    <p id="s-plan">31. "Planning Conflict in the Age of AI Infrastructure: Governing Data Center Growth," Journal of the American Planning Association, 2026. <a href="https://doi.org/10.1080/01944363.2026.2720635">JAPA</a></p>
+    <p id="s-mystery">32. "A Mysterious Company Came to Town With a $165 Billion Idea," Doña Ana County, N.M., 2025. <a href="https://www.nytimes.com/2025/12/07/business/boarderplex-new-mexico-data-center.html">NYT</a></p>
+    <p id="s-wri2">33. World Resources Institute, "Powering Progress: How Community Benefits Agreements Can Drive Responsible Data Center Development," 2026. <a href="https://www.wri.org/technical-perspectives/community-benefits-data-centers">wri.org</a></p>
+    <p id="s-elec">34. "Electricians Love Data Centers. You Should Too" (opinion, construction-jobs case), 2026. <a href="https://www.nytimes.com/2026/08/21/opinion/data-centers-electricians-jobs.html">NYT</a></p>
+    <p id="s-zim">35. "Zimbabwe: AI's Volatile Power Demand Is Damaging Its Own Data Centres," 2026. allAfrica.</p>
+  </div>
+</footer>
+
+<!-- ============ PRINT TOOLBAR ============ -->
+<div class="toolbar" id="toolbar" aria-label="Print options">
+  <button class="tb-collapse" id="tbCollapse" title="Minimize" aria-label="Minimize print panel">&minus;</button>
+  <div class="tb-body">
+    <div class="tb-h">Print / Save PDF</div>
+    <button data-print="1">1-page brief<span>Executive summary only</span></button>
+    <button data-print="5">5-page briefing<span>Summary + all four sections</span></button>
+    <button data-print="10">10-page full report<span>Everything, with sources</span></button>
+  </div>
+  <button class="tb-open" id="tbOpen">Print &#9662;</button>
+</div>
+
+<script>
+(function(){
+  // ---- Tabs ----
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  function show(id){
+    panels.forEach(function(p){p.classList.toggle('active', p.id===id);});
+    btns.forEach(function(b){
+      var on = b.getAttribute('data-tab')===id;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true':'false');
+    });
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-tab')); });
+  });
+  // exec-summary card links
+  document.querySelectorAll('[data-goto]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); show(a.getAttribute('data-goto')); });
+  });
+  // in-text ref + source anchors: jump to sources (which live in footer, always rendered)
+  document.querySelectorAll('.ref a, a[href^="#s-"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var tgt = document.querySelector(a.getAttribute('href'));
+      if(tgt){ e.preventDefault(); tgt.scrollIntoView({behavior:'smooth', block:'center'});
+        tgt.style.transition='background .2s'; tgt.style.background='var(--amber-soft)';
+        setTimeout(function(){ tgt.style.background=''; }, 1400);
+      }
+    });
+  });
+
+  // ---- Print modes ----
+  function doPrint(mode){
+    document.body.classList.remove('print-1','print-5');
+    if(mode==='1') document.body.classList.add('print-1');
+    if(mode==='5') document.body.classList.add('print-5');
+    // ensure all panels visible for print handled by CSS; just print
+    window.print();
+    setTimeout(function(){ document.body.classList.remove('print-1','print-5'); }, 400);
+  }
+  document.querySelectorAll('[data-print]').forEach(function(b){
+    b.addEventListener('click', function(){ doPrint(b.getAttribute('data-print')); });
+  });
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('print-1','print-5');
+  });
+
+  // ---- Toolbar collapse ----
+  var tb = document.getElementById('toolbar');
+  document.getElementById('tbCollapse').addEventListener('click', function(){ tb.classList.add('min'); });
+  document.getElementById('tbOpen').addEventListener('click', function(){ tb.classList.remove('min'); });
+})();
+</script>
+</body>
+</html>

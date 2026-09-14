@@ -1,0 +1,831 @@
+<title>Farm Out Capstone</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    /* neutral carries the page; blue and gold are highlights only */
+    --paper:        #F6F6F3;
+    --paper-raised: #FCFCFA;
+    --ink:          #14171B;
+    --ink-soft:     #545B63;
+    --rule:         #D4D6D0;
+    --rule-soft:    #E4E5E0;
+    --blue:         #123F6B;
+    --blue-quiet:   #4A6E93;
+    --gold:         #9A6F0B;
+
+    --display: "Zilla Slab", "Bitter", Georgia, serif;
+    --body: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    --data: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+
+    --measure: 64ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:        #101316;
+      --paper-raised: #191D21;
+      --ink:          #E8EAE5;
+      --ink-soft:     #9AA1A9;
+      --rule:         #2D333A;
+      --rule-soft:    #23282D;
+      --blue:         #8FB9E0;
+      --blue-quiet:   #7C9AB8;
+      --gold:         #D9A93C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:        #101316;
+    --paper-raised: #191D21;
+    --ink:          #E8EAE5;
+    --ink-soft:     #9AA1A9;
+    --rule:         #2D333A;
+    --rule-soft:    #23282D;
+    --blue:         #8FB9E0;
+    --blue-quiet:   #7C9AB8;
+    --gold:         #D9A93C;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 60px) clamp(20px, 5vw, 56px) 80px;
+  }
+
+  /* ---- masthead ---- */
+
+  .masthead {
+    border-top: 3px solid var(--blue);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .slugline {
+    font-family: var(--data);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--blue-quiet);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 0;
+  }
+  .slugline span:first-child { color: var(--gold); font-weight: 600; }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(28px, 4.6vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    max-width: var(--measure);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---- figures strip ---- */
+
+  .ledger {
+    margin: 30px 0 0;
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+  .ledger div {
+    padding: 12px 14px 13px;
+    border-right: 1px solid var(--rule-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .ledger div:last-child { border-right: 0; }
+  .ledger .k {
+    font-family: var(--data);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .ledger .v {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    color: var(--blue);
+  }
+
+  /* ---- links bar ---- */
+
+  .start {
+    margin: 14px 0 0;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--gold);
+    background: var(--paper-raised);
+    padding: 14px 18px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 28px;
+    align-items: baseline;
+  }
+  .start .lead {
+    font-family: var(--data);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--gold);
+    width: 100%;
+  }
+  .start a { font-family: var(--data); font-size: 13px; word-break: break-all; }
+
+  /* ---- sections ---- */
+
+  section { max-width: var(--measure); }
+  .wide { max-width: none; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(21px, 3vw, 26px);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin: 0 0 4px;
+    color: var(--blue);
+    text-wrap: balance;
+  }
+  .eyebrow {
+    font-family: var(--data);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 10px;
+  }
+  p { margin: 0 0 1.05em; }
+  section > p:last-child { margin-bottom: 0; }
+
+  .stack { display: flex; flex-direction: column; gap: 42px; margin-top: 42px; }
+
+  .dinkus {
+    text-align: center;
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 0.5em;
+    margin: 0;
+    user-select: none;
+  }
+
+  blockquote {
+    margin: 0;
+    padding-left: 20px;
+    border-left: 3px solid var(--gold);
+    font-family: var(--display);
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--data);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ---- the four kinds of work: each builds on the last, so numbered ---- */
+
+  ol.work {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  ol.work > li {
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 0 22px;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 6px 18px;
+    align-items: baseline;
+  }
+  ol.work .n {
+    font-family: var(--data);
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--gold);
+    padding-top: 4px;
+  }
+  ol.work h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.24;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  ol.work p { margin: 0 0 0.7em; font-size: 16px; line-height: 1.55; }
+  ol.work p:last-child { margin-bottom: 0; }
+  ol.work .who {
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue-quiet);
+    display: block;
+    margin-top: 9px;
+  }
+  @media (max-width: 560px) {
+    ol.work > li { grid-template-columns: 32px minmax(0, 1fr); gap: 4px 12px; }
+  }
+
+  /* ---- the agent's six operations ---- */
+
+  ol.pipeline {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  ol.pipeline > li {
+    border-bottom: 1px solid var(--rule-soft);
+    padding: 14px 0 15px;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) minmax(0, 205px);
+    gap: 4px 16px;
+    align-items: baseline;
+  }
+  .step {
+    font-family: var(--data);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--gold);
+    padding-top: 3px;
+  }
+  .stage h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 17.5px;
+    line-height: 1.25;
+    margin: 0 0 3px;
+  }
+  .stage p { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--ink-soft); }
+  .of-record {
+    font-family: var(--data);
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--blue-quiet);
+    word-break: break-word;
+  }
+  @media (max-width: 620px) {
+    ol.pipeline > li { grid-template-columns: 30px minmax(0, 1fr); }
+    .of-record { grid-column: 2; }
+  }
+
+  pre {
+    font-family: var(--data);
+    font-size: 12.5px;
+    line-height: 1.65;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--blue);
+    padding: 16px 18px;
+    margin: 18px 0 0;
+    overflow-x: auto;
+  }
+  pre .key { color: var(--blue); }
+  pre .cm  { color: var(--ink-soft); }
+
+  dl.open { margin: 18px 0 0; display: flex; flex-direction: column; gap: 16px; }
+  dl.open dt {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 2px;
+  }
+  dl.open dd { margin: 0; font-size: 16px; color: var(--ink-soft); }
+  dl.open code, p code, dd code, .stage code, li code {
+    font-family: var(--data);
+    font-size: 0.85em;
+    color: var(--blue);
+  }
+
+  /* ---- sourcing panel ---- */
+
+  .provenance {
+    max-width: var(--measure);
+    border-top: 2px solid var(--gold);
+    padding-top: 18px;
+  }
+  .provenance dl {
+    margin: 16px 0 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 12px 20px;
+  }
+  .provenance dt {
+    font-family: var(--data);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    padding-top: 4px;
+  }
+  .provenance dd { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+  @media (max-width: 560px) {
+    .provenance dl { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+    .provenance dt { padding-top: 10px; }
+  }
+
+  /* ---- fourth-track panel: deliberately not a card ---- */
+
+  .ethics { max-width: var(--measure); border-top: 2px solid var(--blue); padding-top: 18px; }
+  .ethics ul {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ethics li {
+    padding-left: 18px;
+    border-left: 1px solid var(--rule);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .ethics li strong {
+    display: block;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  footer {
+    margin-top: 52px;
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    font-family: var(--data);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+  a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <p class="slugline">
+      <span>Capstone projects</span>
+      <span>Information Design + Technology</span>
+      <span>SUNY Polytechnic Institute</span>
+      <span>Cherry Valley, N.Y.</span>
+    </p>
+    <h1>Capstone work in the Farm Out archive</h1>
+    <p class="standfirst">
+      Students in the IDT program may find a capstone project in this archive. There are several,
+      and they are different kinds of work &mdash; producing text from a static scan archive,
+      interpreting it into indices and a navigable repository, reading the whole run as a slice of
+      community history, or talking to the people the columns touched. What follows describes the
+      archive, its current state, and the four kinds of work in roughly the order they build on
+      each other.
+    </p>
+  </header>
+
+  <div class="ledger">
+    <div><span class="k">Scans span</span><span class="v">1974&ndash;85</span></div>
+    <div><span class="k">Page scans held</span><span class="v">~135</span></div>
+    <div><span class="k">Indexed hits</span><span class="v">99+</span></div>
+    <div><span class="k">Published as text</span><span class="v">12</span></div>
+    <div><span class="k">Transcripts kept</span><span class="v">3</span></div>
+  </div>
+
+  <div class="start">
+    <span class="lead">Repository and live site</span>
+    <a href="https://github.com/cherryvalley-farmout/cherryvalley-farmout.github.io">github.com/cherryvalley-farmout</a>
+    <a href="https://cherryvalley-farmout.github.io/">cherryvalley-farmout.github.io</a>
+  </div>
+
+  <div class="stack">
+
+    <section class="wide">
+      <p class="eyebrow">The work</p>
+      <h2>Four kinds, roughly in order</h2>
+      <p style="max-width:var(--measure)">
+        Each one is a capstone on its own. Each also produces what the next one needs, so a
+        student picking up number two inherits number one&rsquo;s output rather than starting
+        over. Nobody is expected to do all four.
+      </p>
+      <ol class="work">
+        <li>
+          <span class="n">01</span>
+          <div>
+            <h3>Produce the text from a static scan archive</h3>
+            <p>
+              The archive is about 135 newspaper page scans and nothing else. Turning them into
+              readable, citable text is a production problem, and an LLM does the transcription
+              pass. The design work is the process around it: where a person checks, what gets
+              recorded as uncertain rather than resolved, how a reader verifies a line against the
+              scan it came from.
+            </p>
+            <p>
+              Twelve columns are already done and carry instructive defects. Roughly a hundred and
+              twenty are unread.
+            </p>
+            <span class="who">Information Design + Technology</span>
+          </div>
+        </li>
+        <li>
+          <span class="n">02</span>
+          <div>
+            <h3>Interpret it into indices and a repository</h3>
+            <p>
+              Text alone is a list of pages. What makes an archive usable is the interpretive
+              layer: subject and thematic indices, a chronology, registers of people and animals
+              and places, search, cross-references. The output could be a browsable repository or
+              a wiki.
+            </p>
+            <p>
+              The interpretive decisions are the substance here, not the plumbing. What counts as
+              a subject, how a passage gets tagged, and which of two readings of a paragraph you
+              index it under are all editorial acts that a later reader inherits.
+            </p>
+            <span class="who">Information Design + Technology</span>
+          </div>
+        </li>
+        <li>
+          <span class="n">03</span>
+          <div>
+            <h3>Read the run as community ethnography</h3>
+            <p>
+              Eleven years of weekly reporting on one village is a slice of time. Farm economics,
+              wildlife, school funding, village events, and back-to-the-land households arriving
+              in an old dairy community.
+            </p>
+            <p>
+              The newspaper pages themselves are context. What ran beside the column, what was
+              advertised, what the rest of the paper counted as news that week &mdash; the scans
+              hold all of it, and the column is one voice on a page full of others. This work is
+              entirely documentary. No human subjects, no review board.
+            </p>
+            <span class="who">IDT, or a social science department</span>
+          </div>
+        </li>
+        <li>
+          <span class="n">04</span>
+          <div>
+            <h3>Talk to the people the columns touched</h3>
+            <p>
+              Subjects and readers are living and many are findable. Interviews, recollection, and
+              correction &mdash; and correction matters, because the people who can check these
+              transcriptions are alive and the archive has no way to accept what they know.
+            </p>
+            <p>
+              This is the only track that involves human subjects, and it carries obligations the
+              other three do not. Details below.
+            </p>
+            <span class="who">Nursing or community behavioral health</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section>
+      <p class="eyebrow">The material</p>
+      <h2>What the columns contain</h2>
+      <p>
+        From 1974 to 1985, &ldquo;Farm Out&rdquo; ran in <em>The Freeman&rsquo;s Journal</em> in
+        Cooperstown, written by Melissa Horvath and Doris Lange. It reported on a dairy farm in
+        Cherry Valley. Each column runs in short passages: the herd, then a poem, then a
+        reader&rsquo;s letter, then a village notice. The column of August 31, 1983 moves from the
+        economics of culling an unproductive cow, to skunks eating peanut butter off crackers on
+        the porch, to a two-year-old finding a dead woodchuck on the lawn.
+      </p>
+      <blockquote>
+        A cow is an economic unit.
+        <cite>&ldquo;Farm Out,&rdquo; August 31, 1983</cite>
+      </blockquote>
+      <p style="margin-top:1.05em">
+        Other columns cover fifteen White Leghorns that roosted in an apple tree instead of the
+        coop, a drake that behaved like a chicken, four years of Cherry Valley Art Day, homemade
+        methane gas, and whether the school district should fund sports for girls. The recurring
+        subjects are farm labor, local wildlife, village events, and household life.
+      </p>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section>
+      <p class="eyebrow">How it was written</p>
+      <h2>Two writers, one page, a mark in the middle</h2>
+      <p>
+        The two women met weekly, on Tuesday afternoons from about two until four, and wrote in
+        longhand on legal pads over beer or wine. In good weather they moved to the porch afterward
+        and drank with whoever came by. The column was a standing appointment, and part of the
+        social life of the place it describes.
+      </p>
+      <p>
+        They did not co-write. Every column divides in the middle at a row of asterisks, and each
+        woman wrote one half. A reader who knew them could usually tell which half was whose. That
+        divider is the most important structural feature of the run, and it is the one the current
+        archive loses: the transcription renders it as a decorative mark, the same mark used at the
+        top and bottom of the page, so a boundary between two authors reads as ornament.
+      </p>
+      <p>
+        Per-half attribution is an open question with a real method behind it. Byline order may
+        track the order of the halves &mdash; the August 31, 1983 column is signed Doris Lange
+        first and opens with the culling passage &mdash; but that is a hypothesis to test across
+        the run, not a finding. Voice, subject matter, and living memory are the other available
+        evidence.
+      </p>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section class="wide">
+      <p class="eyebrow">Current state</p>
+      <h2>How the twelve columns were made</h2>
+      <p style="max-width:var(--measure)">
+        There is no team of transcribers and no editor. An automated agent session produced them,
+        working from two standing instructions in the repository: only the Horvath &amp; Lange
+        column, and always review the text. One pass runs from newspaper scan to committed HTML.
+        The steps below are the agent&rsquo;s, not a person&rsquo;s.
+      </p>
+      <ol class="pipeline">
+        <li>
+          <span class="step">01</span>
+          <div class="stage">
+            <h3>Search and enumerate</h3>
+            <p>Full-text search of NYS Historic Newspapers, scoped to the <code>frjb</code>
+            Freeman&rsquo;s Journal run, exported to a candidate list. &ldquo;Farm out&rdquo; is
+            also an ordinary phrase, so the list holds false positives. The first row is dated
+            1941, thirty-three years before the column began.</p>
+          </div>
+          <div class="of-record">raw-data-files/<br>farmout-results-1-99.csv<br>n, doc_id, page, date, url</div>
+        </li>
+        <li>
+          <span class="step">02</span>
+          <div class="stage">
+            <h3>Fetch the page images</h3>
+            <p>One full newspaper page per hit. The date-and-page filenames are the whole filing
+            system. No manifest ties a scan to the search row it came from, or to the column built
+            from it.</p>
+          </div>
+          <div class="of-record">farmout-raw-jpegs/<br>&ldquo;August 31, 1983, Page 6&hellip;.jpg&rdquo;</div>
+        </li>
+        <li>
+          <span class="step">03</span>
+          <div class="stage">
+            <h3>Locate the column on the page</h3>
+            <p>The scans are whole pages, not clippings. Something has to decide which part of the
+            page is &ldquo;Farm Out&rdquo; and where it ends. This is where the largest errors are
+            likely, and the repository keeps no record of the decision.</p>
+          </div>
+          <div class="of-record">full-page JPEG in,<br>column text out</div>
+        </li>
+        <li>
+          <span class="step">04</span>
+          <div class="stage">
+            <h3>Transcribe</h3>
+            <p>Vision transcription gets most of a column right. Where it goes wrong cannot be
+            determined from the repository, because inputs and outputs are not paired: nine of the
+            twelve published columns have no surviving transcript to compare against a scan.
+            &ldquo;Always review the text&rdquo; asks the agent to check its own work.</p>
+          </div>
+          <div class="of-record">columns/raw-markdown/<br>farm_out_1983-08-31.md<br><em>3 of 12 kept</em></div>
+        </li>
+        <li>
+          <span class="step">05</span>
+          <div class="stage">
+            <h3>Headline, blurb, formatting</h3>
+            <p>Every published column has a headline and a one-sentence blurb, with passages set
+            off by a dinkus and poems set as verse. Which of those came from the original page and
+            which were supplied afterward is not recorded. The authorship divider is set in the
+            same mark as the ornament, so it stops being legible as a divider.</p>
+          </div>
+          <div class="of-record">columns/*.html</div>
+        </li>
+        <li>
+          <span class="step">06</span>
+          <div class="stage">
+            <h3>Write the page and commit</h3>
+            <p>Standalone HTML per column, a card added to the listing, pushed to <code>main</code>.
+            Pages redeploys on commit. No build step and no database, so the archive stays readable
+            as plain files.</p>
+          </div>
+          <div class="of-record">index.html<br>GitHub Pages &larr; main</div>
+        </li>
+      </ol>
+      <p style="max-width:var(--measure); margin-top:22px">
+        Nothing enters the repository with a record of where it came from. There is no front
+        matter, no per-column metadata, no citation to the source scan, and no field for a word
+        that is a guess. The listing page is prose, not a view generated from data. A metadata
+        record per column would address most of this, and is where work in track two begins. One
+        possible shape:
+      </p>
+      <pre><span class="cm"># columns/1983-08-31.md</span>
+<span class="key">id</span>: fo-1983-08-31
+<span class="key">date</span>: 1983-08-31
+<span class="key">title</span>: "Mazie Is Culled from the Herd&hellip;"
+<span class="key">title_source</span>: unknown        <span class="cm"># original | supplied | unknown</span>
+<span class="key">byline</span>: [Doris Lange, Melissa Horvath]   <span class="cm"># order as printed</span>
+<span class="key">structure</span>: two-part        <span class="cm"># one author per half, split at the asterisks</span>
+<span class="key">source</span>:
+  <span class="key">publication</span>: The Freeman's Journal
+  <span class="key">page</span>: 6
+  <span class="key">doc_id</span>: frjb19830831-01.1.6
+  <span class="key">scan</span>: farmout-raw-jpegs/August 31, 1983, Page 6&hellip;.jpg
+<span class="key">status</span>: transcribed        <span class="cm"># transcribed | reviewed | community-verified</span>
+<span class="key">uncertain</span>:
+  - "Maizie / Mazie &mdash; spelling varies within the original"
+<span class="key">halves</span>:
+  - <span class="key">id</span>: fo-1983-08-31-h1
+    <span class="key">author</span>: Doris Lange
+    <span class="key">attribution</span>: inferred     <span class="cm"># stated | inferred | remembered | unknown</span>
+    <span class="key">basis</span>: byline order       <span class="cm"># untested across the run</span>
+    <span class="key">topic</span>: culling a cow
+  - <span class="key">id</span>: fo-1983-08-31-h2
+    <span class="key">author</span>: Melissa Horvath
+    <span class="key">attribution</span>: inferred
+    <span class="key">basis</span>: byline order
+    <span class="key">topic</span>: wildlife at the house
+    <span class="key">people</span>: [Nora, Laura, Ben]
+    <span class="key">animals</span>: [woodchuck, skunks, ducks]</pre>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section>
+      <p class="eyebrow">Known defects</p>
+      <h2>Problems in the current archive</h2>
+      <p>
+        All of these are visible in the repository without opening a scan. Twelve columns exist
+        because of the automation and would not exist otherwise. What the pipeline lacks is a
+        verification step, and these are the symptoms.
+      </p>
+      <dl class="open">
+        <dt>The authorship divider is rendered as decoration.</dt>
+        <dd>The row of asterisks that splits a column between its two authors is set in the same
+        mark used to ornament the top and bottom of the page. The most significant piece of
+        structure in the run is invisible in the output, and no published column records which
+        author wrote which half.</dd>
+
+        <dt>Two columns claim the same week.</dt>
+        <dd>The listing has a May 28 and a May 29, 1974 column, both about Art Day and the duck.
+        The paper was a weekly and the results file records one issue that week. A third Art Day
+        column is dated May 28, 1975. Nothing in the repository can tell which date is wrong.</dd>
+
+        <dt>The masthead disagrees with itself.</dt>
+        <dd>One transcript is headed <em>The Farmer&rsquo;s Journal</em>. The published page says
+        <em>The Freeman&rsquo;s Journal</em>. A misreading survived into publication.</dd>
+
+        <dt>A reader cannot check the work.</dt>
+        <dd>No published column links to its scan, cites its page, or shows the original beside
+        the text. Page images sit in <code>new-pix/</code> unused.</dd>
+
+        <dt>The middle of the pipeline leaks.</dt>
+        <dd>Twelve columns published, three transcripts kept. Nine have no intermediate state to
+        audit. A duplicate copy of one column sits in a second directory.</dd>
+
+        <dt>Whole years are unread.</dt>
+        <dd>1976&ndash;1979 and 1983&ndash;1985 are almost entirely untouched. The results file is
+        named <code>1-99</code>, so later pages of search results were never harvested.</dd>
+      </dl>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section class="provenance">
+      <p class="eyebrow">Sourcing</p>
+      <h2>What is checked and what is not</h2>
+      <p>
+        These notes were assembled by reading the repository and the live site. The claims in them
+        fall into four kinds, and they do not carry equal weight.
+      </p>
+      <dl>
+        <dt>Verified</dt>
+        <dd>Read directly from the repository or the live site: the file inventory, the twelve
+        published columns, the three transcripts, the 99-row results file, the two standing
+        instructions, the date collision, the <em>Farmer&rsquo;s</em> /
+        <em>Freeman&rsquo;s</em> discrepancy, and the quoted line of August 31, 1983.</dd>
+
+        <dt>Arithmetic</dt>
+        <dd>Derived from filenames: roughly 135 page scans, a span of 1974 to 1985. Filenames can
+        be wrong and nothing cross-checks them.</dd>
+
+        <dt>Remembered</dt>
+        <dd>The writing sessions, the legal pads, the split at the asterisks, and the fact that the
+        halves were separately authored and usually distinguishable. This comes from Steve
+        Schneider, who knew both women and started the archive. It is first-hand and forty years
+        old.</dd>
+
+        <dt>Unresolved</dt>
+        <dd>Which woman wrote which half of any given column. Byline order is a hypothesis and has
+        not been tested across the run. Also open: which headlines are original, what the 1941 row
+        is, and whether any of the twelve transcriptions are accurate.</dd>
+      </dl>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section class="ethics">
+      <p class="eyebrow">Track four</p>
+      <h2>If you work with people</h2>
+      <p>
+        Tracks one through three are documentary. They can be done from the repository with no
+        contact with any person and no human-subjects review. Track four is different.
+      </p>
+      <p>
+        One member of the household is ninety, frail, and living with dementia. That opens work
+        beyond interviewing: structured reminiscence is a recognized practice, and it usually runs
+        on borrowed material &mdash; era photographs, period music, generic farm scenes. Here there
+        is a weekly written record of one household&rsquo;s animals, neighbors and kitchen, dated
+        to the week and already in short passages. Whether it helps anyone is unknown.
+      </p>
+      <p>
+        Contact runs through Steve Schneider, who started the archive and can introduce you to the
+        family. He is a member of that family and not a neutral party in it. The human-subjects
+        questions &mdash; consent, capacity, IRB &mdash; go to Professor Stam rather than to him.
+        Four things to settle first.
+      </p>
+      <ul>
+        <li><strong>Consent and capacity.</strong> The columns are published public record.
+        Working with a person is not. That needs proxy consent, assent renegotiated at each visit,
+        and a written plan for the days she does not want to.</li>
+
+        <li><strong>Third parties.</strong> The columns name children who are now in middle age
+        and neighbors whose families still live nearby. A 1983 paragraph about a two-year-old
+        reads differently when that person is forty-five and searchable.</li>
+
+        <li><strong>Framing.</strong> A diagnosis should not become the subject. The material is
+        writing about a working farm.</li>
+
+        <li><strong>Custody.</strong> If the village contributes memory, someone holds it in ten
+        years. Decide who can correct it, who can remove it, and what happens after graduation,
+        before collecting anything.</li>
+      </ul>
+    </section>
+
+    <p class="dinkus">&#10086;</p>
+
+    <section>
+      <p class="eyebrow">First task</p>
+      <h2>Where to start</h2>
+      <p>
+        Read the twelve published columns. It is about an hour, and it is the basis for deciding
+        whether any of this is of interest. A semester on an archive whose material bores you is a
+        long semester. Nothing else matters until that question is settled.
+      </p>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>The Farm Out Archive</span>
+    <span><a href="https://cherryvalley-farmout.github.io/">cherryvalley-farmout.github.io</a></span>
+    <span>Scans: NYS Historic Newspapers</span>
+    <span>&#10086;</span>
+  </footer>
+
+</div>
