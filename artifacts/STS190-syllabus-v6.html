@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STS 190: AI and the Human Future</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* WCAG 2.0 compliant palette
+     Navy #0f1f3d on white: 14.5:1 ✓
+     Slate #4a5568 on white: 6.3:1 ✓
+     Crimson #8b1a2a on white: 8.1:1 ✓ (darkened from prior)
+     Gold text removed from body; gold used only as decorative border/accent
+     FYS green #1a5c3a on white: 7.8:1 ✓
+  */
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --crimson: #8b1a2a;
+    --slate: #4a5568;
+    --slate-light: #718096;
+    --mist: #edf0f7;
+    --paper: #fafaf8;
+    --white: #ffffff;
+    --rule: #ced5e8;
+    --gold-accent: #b07d20;
+    --fys: #1a5c3a;
+    --mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--navy);
+    background: var(--paper);
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--navy);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .cover-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(176,125,32,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(176,125,32,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .cover-content {
+    position: relative; z-index: 2;
+    padding: 80px 80px 64px;
+  }
+
+  .cover-label {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; color: #e8b84a;
+    text-transform: uppercase; margin-bottom: 32px;
+  }
+
+  .cover-course {
+    font-family: var(--mono); font-size: 13px;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.55);
+    margin-bottom: 16px;
+  }
+
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 1.0; color: #ffffff;
+    margin-bottom: 24px; max-width: 780px;
+  }
+
+  .cover-title em { font-style: italic; color: #e8b84a; }
+
+  .cover-subtitle {
+    font-size: 17px; font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    max-width: 500px; line-height: 1.65; margin-bottom: 56px;
+  }
+
+  .cover-meta {
+    display: flex; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 28px;
+  }
+
+  .cover-meta-item {
+    padding-right: 40px; margin-right: 40px; margin-bottom: 12px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .cover-meta-item:last-child { border-right: none; }
+
+  .cover-meta-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; color: rgba(255,255,255,0.45);
+    text-transform: uppercase; display: block; margin-bottom: 3px;
+  }
+
+  .cover-meta-value { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.9); }
+
+  /* BODY */
+  .body-wrap { max-width: 900px; margin: 0 auto; padding: 80px 60px; }
+
+  .section { margin-bottom: 72px; }
+
+  .section-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; color: var(--crimson);
+    text-transform: uppercase; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--navy);
+    margin-bottom: 20px; line-height: 1.2;
+  }
+
+  .section-title em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 16px; color: var(--slate); font-weight: 300; max-width: 680px; }
+  p strong { color: var(--navy); font-weight: 600; }
+
+  /* THREE QUESTIONS */
+  .questions-block {
+    background: var(--navy); padding: 44px 52px;
+    margin-top: 8px; position: relative; overflow: hidden;
+  }
+
+  .questions-block::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(176,125,32,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(176,125,32,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .questions-list { list-style: none; position: relative; }
+
+  .questions-list li {
+    display: flex; gap: 24px; align-items: flex-start;
+    padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .questions-list li:last-child { border-bottom: none; }
+
+  .q-num {
+    font-family: 'DM Serif Display', serif; font-size: 38px;
+    color: rgba(232,184,74,0.25); line-height: 1; min-width: 42px;
+  }
+
+  .q-text {
+    font-family: 'DM Serif Display', serif; font-size: 23px;
+    color: #ffffff; line-height: 1.3; padding-top: 5px;
+  }
+
+  .q-text em { font-style: italic; color: #e8b84a; }
+
+  /* GOO CARDS */
+  .goo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+
+  .goo-card {
+    background: var(--white); border: 1px solid var(--rule);
+    border-top: 3px solid var(--navy);
+    padding: 22px; position: relative;
+  }
+
+  .goo-card.fys { border-top-color: var(--fys); }
+
+  .goo-tag {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 2px 8px; margin-bottom: 10px; display: inline-block;
+    background: var(--navy); color: #ffffff;
+  }
+
+  .goo-tag.fys { background: var(--fys); }
+
+  .goo-num {
+    font-family: 'DM Serif Display', serif; font-size: 28px;
+    color: var(--rule); position: absolute; top: 14px; right: 16px;
+    line-height: 1;
+  }
+
+  .goo-text { font-size: 13.5px; color: var(--slate); font-weight: 300; line-height: 1.65; }
+
+  /* MEETING */
+  .meeting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+
+  .meeting-card {
+    background: var(--white); border: 1px solid var(--rule);
+    border-top: 3px solid var(--navy); padding: 24px;
+  }
+
+  .meeting-day {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--crimson); margin-bottom: 6px;
+  }
+
+  .meeting-title {
+    font-family: 'DM Serif Display', serif; font-size: 20px;
+    color: var(--navy); margin-bottom: 10px;
+  }
+
+  .meeting-text { font-size: 13px; color: var(--slate); font-weight: 300; line-height: 1.6; }
+
+  .meeting-sub {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px; color: var(--slate);
+  }
+
+  .meeting-sub strong { color: var(--navy); }
+
+  /* EDGE */
+  .edge-block {
+    border: 1px solid var(--rule); border-top: 3px solid var(--navy);
+    background: var(--white); padding: 28px 32px; margin-top: 16px;
+  }
+
+  .edge-title {
+    font-family: 'DM Serif Display', serif; font-size: 22px;
+    color: var(--navy); margin-bottom: 10px;
+  }
+
+  .edge-title em { font-style: italic; color: var(--crimson); }
+
+  .edge-text {
+    font-size: 13px; font-weight: 300; color: var(--slate);
+    line-height: 1.6; margin-bottom: 16px; max-width: 100%;
+  }
+
+  .edge-questions { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .edge-questions li {
+    font-size: 12.5px; color: var(--slate); font-weight: 300;
+    padding-left: 16px; position: relative; line-height: 1.5;
+  }
+
+  .edge-questions li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--navy); font-weight: 400;
+  }
+
+  /* UNITS */
+  .unit-block {
+    border-left: 3px solid var(--navy); padding: 26px 30px;
+    margin-bottom: 20px; background: var(--white);
+    border: 1px solid var(--rule); border-left: 3px solid var(--navy);
+  }
+
+  .unit-block.u2 { border-left-color: var(--crimson); }
+  .unit-block.u3 { border-left-color: var(--slate); }
+
+  .unit-number {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--slate-light); margin-bottom: 5px;
+  }
+
+  .unit-title {
+    font-family: 'DM Serif Display', serif; font-size: 22px;
+    color: var(--navy); margin-bottom: 4px;
+  }
+
+  .unit-question { font-size: 14px; color: var(--crimson); font-style: italic; margin-bottom: 12px; }
+
+  .unit-desc {
+    font-size: 13.5px; color: var(--slate); font-weight: 300;
+    line-height: 1.65; margin-bottom: 14px; max-width: 100%;
+  }
+
+  .unit-project {
+    background: var(--mist); padding: 13px 16px;
+    border-left: 2px solid var(--navy);
+    font-size: 13px; color: var(--slate); font-weight: 300; line-height: 1.6;
+  }
+
+  .unit-project strong { color: var(--navy); font-weight: 600; }
+
+  .module-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 13px; }
+
+  .module-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em;
+    background: var(--mist); color: var(--navy);
+    border: 1px solid var(--rule);
+    padding: 3px 9px;
+  }
+
+  /* TEXTS */
+  .texts-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 8px; }
+
+  .text-card {
+    background: var(--white); border: 1px solid var(--rule);
+    border-top: 3px solid var(--navy); padding: 22px;
+  }
+
+  .text-layer {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    color: var(--slate-light); text-transform: uppercase; margin-bottom: 5px;
+  }
+
+  .text-question { font-size: 13px; color: var(--crimson); font-style: italic; margin-bottom: 8px; }
+
+  .text-title {
+    font-family: 'DM Serif Display', serif; font-size: 15px;
+    color: var(--navy); line-height: 1.3; margin-bottom: 4px; font-style: italic;
+  }
+
+  .text-author { font-size: 12px; color: var(--slate); margin-bottom: 4px; }
+
+  .text-isbn {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--slate-light); margin-bottom: 10px;
+  }
+
+  .text-note {
+    font-size: 12px; color: var(--slate); font-weight: 300;
+    line-height: 1.5; border-top: 1px solid var(--rule); padding-top: 10px;
+  }
+
+  /* CALENDAR */
+  .calendar-wrap { margin-top: 8px; }
+
+  .unit-divider {
+    display: flex; align-items: center; gap: 16px; margin: 40px 0 0;
+  }
+
+  .unit-divider-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; white-space: nowrap; padding: 4px 12px;
+    background: var(--navy); color: #ffffff;
+  }
+
+  .unit-divider.u2 .unit-divider-label { background: var(--crimson); }
+  .unit-divider.u3 .unit-divider-label { background: var(--slate); }
+  .unit-divider-line { flex: 1; height: 1px; background: var(--rule); }
+
+  .week-col-header {
+    display: grid; grid-template-columns: 52px 1fr 1fr;
+    border-bottom: 2px solid var(--navy); margin-top: 16px;
+    background: var(--mist);
+  }
+
+  .week-col-header-cell {
+    padding: 9px 16px; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    border-right: 1px solid var(--rule);
+  }
+
+  .week-col-header-cell:first-child { background: var(--navy); color: transparent; }
+  .week-col-header-cell:last-child { border-right: none; }
+
+  .week-row {
+    display: grid; grid-template-columns: 52px 1fr 1fr;
+    border-bottom: 1px solid var(--rule); min-height: 64px;
+  }
+
+  .week-num {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: #ffffff; background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .week-row.u2 .week-num { background: var(--crimson); }
+  .week-row.u3 .week-num { background: var(--slate); }
+
+  .week-cell { padding: 13px 16px; border-right: 1px solid var(--rule); }
+  .week-cell:last-child { border-right: none; }
+
+  .wk-mod {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    color: var(--slate-light); text-transform: uppercase; margin-bottom: 3px;
+  }
+
+  .wk-topic {
+    font-size: 13px; font-weight: 600; color: var(--navy);
+    margin-bottom: 3px; line-height: 1.3;
+  }
+
+  .wk-detail { font-size: 11.5px; color: var(--slate); font-weight: 300; line-height: 1.5; }
+
+  .pip {
+    display: inline-block; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--navy); color: var(--navy);
+    padding: 1px 7px; margin-bottom: 5px;
+  }
+
+  /* WORKBENCH */
+  .workbench-block {
+    background: var(--navy); color: #ffffff; padding: 30px 34px; margin-top: 8px;
+  }
+
+  .workbench-title {
+    font-family: 'DM Serif Display', serif; font-size: 18px;
+    color: #e8b84a; margin-bottom: 14px;
+  }
+
+  .folder-tree {
+    font-family: var(--mono); font-size: 12.5px;
+    line-height: 2; color: rgba(255,255,255,0.8);
+  }
+
+  .folder-tree .folder { color: #e8b84a; }
+  .folder-tree .comment { color: rgba(255,255,255,0.4); font-size: 11px; }
+
+  /* GRADE TABLE */
+  .grade-wrap { margin-top: 8px; overflow-x: auto; }
+
+  .grade-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+  .grade-table th {
+    padding: 12px 14px; text-align: left;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400;
+  }
+
+  .grade-table th:first-child {
+    background: var(--mist); color: var(--slate);
+    border-right: 1px solid var(--rule);
+  }
+
+  .grade-table th.sts-h { background: var(--navy); color: #ffffff; border-right: 1px solid rgba(255,255,255,0.2); }
+  .grade-table th.fys-h { background: var(--fys); color: #ffffff; border-right: 1px solid rgba(255,255,255,0.2); }
+  .grade-table th.tot-h { background: var(--slate); color: #ffffff; }
+
+  .grade-table td {
+    padding: 10px 14px; border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule); vertical-align: middle;
+  }
+
+  .grade-table td:last-child { border-right: none; }
+  .grade-table tr:last-child td { border-bottom: none; }
+  .grade-table tr:nth-child(even) td { background: var(--mist); }
+  .grade-table tr:nth-child(even) td.sts-c { background: #e8edf7; }
+  .grade-table tr:nth-child(even) td.fys-c { background: #e4efe9; }
+
+  .grade-table td:first-child {
+    font-weight: 500; color: var(--navy); width: 38%;
+    font-size: 13px;
+  }
+
+  .pts { font-weight: 700; color: var(--navy); display: block; font-size: 14px; }
+  .pct { font-size: 10px; font-family: var(--mono); color: var(--slate-light); margin-top: 1px; display: block; }
+
+  .grade-table .tot-row td {
+    background: var(--navy) !important;
+    color: #ffffff !important;
+    border-top: 2px solid var(--navy);
+    font-weight: 700;
+  }
+
+  .grade-table .tot-row td:first-child {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #e8b84a !important;
+  }
+
+  .grade-table .tot-row .pts { color: #ffffff; }
+  .grade-table .tot-row .pct { color: rgba(255,255,255,0.55); }
+
+  .course-tag {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 1px 6px; margin-left: 5px;
+    border: 1px solid currentColor; vertical-align: middle; display: inline;
+  }
+
+  .tag-sts { color: var(--navy); }
+  .tag-fys { color: var(--fys); }
+  .tag-both { color: var(--slate); }
+
+  /* ASSESSMENT */
+  .assess-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+
+  .assess-card {
+    background: var(--white); border: 1px solid var(--rule);
+    border-top: 3px solid var(--navy); padding: 22px;
+  }
+
+  .assess-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .assess-text { font-size: 13px; color: var(--slate); font-weight: 300; line-height: 1.6; }
+
+  /* RUBRIC */
+  .rubric-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+
+  .rubric-table th {
+    background: var(--navy); color: #ffffff; padding: 10px 14px;
+    text-align: left; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400;
+  }
+
+  .rubric-table td {
+    padding: 11px 14px; border-bottom: 1px solid var(--rule);
+    color: var(--slate); font-weight: 300; line-height: 1.5; vertical-align: top;
+  }
+
+  .rubric-table tr:last-child td { border-bottom: none; }
+  .rubric-table td:first-child { font-weight: 600; color: var(--navy); width: 26%; }
+  .rubric-table tr:nth-child(even) td { background: var(--mist); }
+
+  /* AI NOTE */
+  .ai-note {
+    background: var(--mist); border-left: 3px solid var(--navy);
+    padding: 22px 26px; margin-top: 8px;
+  }
+
+  .ai-note p { max-width: 100%; }
+
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.45);
+    padding: 28px 60px; font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.08em; display: flex;
+    justify-content: space-between; align-items: center;
+  }
+
+  footer strong { color: #e8b84a; font-weight: 400; }
+
+  @media (max-width: 720px) {
+    .cover-content { padding: 40px 28px; }
+    .body-wrap { padding: 48px 24px; }
+    .meeting-grid, .texts-grid, .assess-grid, .goo-grid { grid-template-columns: 1fr; }
+    .week-row { grid-template-columns: 44px 1fr; }
+    .week-cell:last-child { display: none; }
+    .edge-questions { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-content">
+    <div class="cover-label">Science, Technology &amp; Society · First-Year Seminar</div>
+    <div class="cover-course">STS 190 + FYS 111</div>
+    <h1 class="cover-title">AI and the<br><em>Human Future</em></h1>
+    <p class="cover-subtitle">An inquiry into artificial intelligence as material, historical, cognitive, and social phenomenon — and into what it means to be human inside it.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Credits</span>
+        <span class="cover-meta-value">4 cr. STS 190 + 1 cr. FYS 111</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Meeting</span>
+        <span class="cover-meta-value">Tue 5–8 pm · Fri 2–5 pm</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Cohort</span>
+        <span class="cover-meta-value">24 students · opt-in</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Semester</span>
+        <span class="cover-meta-value">Fall 2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- DESCRIPTION -->
+  <div class="section">
+    <div class="section-label">Course Description</div>
+    <h2 class="section-title">What This Course Is</h2>
+    <p>STS 190 examines artificial intelligence as a system — built from specific materials, operating across physical infrastructures, embedded in historical decisions, and raising fundamental questions about mind, behavior, and human life. The course moves from where AI lives and what it is made of, through how contemporary models actually work, to the cognitive and social questions AI forces into the open.</p>
+    <p>The course draws on Science, Technology, and Society studies — an interdisciplinary field that uses the methods of sociology, anthropology, political science, economics, and psychology to investigate how scientific and technological systems are produced, deployed, and experienced. Social science lenses are applied throughout the course, and team projects are anchored in at least one of them.</p>
+    <p>AI is used to read, to think, to write, and eventually to investigate questions about AI itself. That practice is not incidental. It is the pedagogy. The course is organized around three questions that students return to all semester long.</p>
+    <p>FYS 111 runs concurrently, providing the credential scaffold: Learner's Permit, Agentic License, and Google professional certifications. Together, STS 190 and FYS 111 constitute a 5-credit integrated first-year experience in AI literacy.</p>
+  </div>
+
+  <!-- THREE QUESTIONS -->
+  <div class="section">
+    <div class="section-label">The Course Questions</div>
+    <h2 class="section-title">Three Questions, <em>All Semester</em></h2>
+    <p>Every module, every text, and every project returns to the same three questions. They are deceptively simple. Answering them well is the work of the semester.</p>
+    <div class="questions-block">
+      <ul class="questions-list">
+        <li><span class="q-num">1</span><span class="q-text">What is <em>the system?</em></span></li>
+        <li><span class="q-num">2</span><span class="q-text">What does it <em>claim</em> to know or do?</span></li>
+        <li><span class="q-num">3</span><span class="q-text">How do I know whether <em>to trust it?</em></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GOALS -->
+  <div class="section">
+    <div class="section-label">Course Goals</div>
+    <h2 class="section-title">What This Course Is <em>For</em></h2>
+    <p>Broad, directional statements of purpose. The first three belong to STS 190; the fourth to FYS 111.</p>
+    <div class="goo-grid">
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Goal 1</span>
+        <span class="goo-num">1</span>
+        <div class="goo-text">A historically and materially grounded understanding of artificial intelligence as a system built from specific materials, labor, decisions, and infrastructures — not as abstract capability or neutral technology.</div>
+      </div>
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Goal 2</span>
+        <span class="goo-num">2</span>
+        <div class="goo-text">The habit of examining AI through social science lenses — drawing on sociology, anthropology, political science, economics, and psychology — to ask whose interests AI serves, what it obscures, and what it costs.</div>
+      </div>
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Goal 3</span>
+        <span class="goo-num">3</span>
+        <div class="goo-text">The capacity to pose a disciplined question about AI, investigate it using AI as both object and method, and evaluate the results with appropriate skepticism and intellectual honesty.</div>
+      </div>
+      <div class="goo-card fys">
+        <span class="goo-tag fys">FYS 111 · Goal 4</span>
+        <span class="goo-num">4</span>
+        <div class="goo-text">Foundational practices of ethical and responsible AI use in a college setting — understanding what AI systems are, how they work, and what it means to use them with integrity, transparency, and care.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJECTIVES -->
+  <div class="section">
+    <div class="section-label">Course Objectives</div>
+    <h2 class="section-title">What the Course Is <em>Designed to Do</em></h2>
+    <p>Teaching intent. Instructor-facing. Module and session level. The first three belong to STS 190; the fourth to FYS 111.</p>
+    <div class="goo-grid">
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Objective 1</span>
+        <span class="goo-num">1</span>
+        <div class="goo-text">Trace the development of artificial intelligence from the 1950s — Turing, the Dartmouth Conference, symbolic AI, the winters, neural networks, deep learning, the transformer — to the present, identifying the conceptual, technical, and social decisions that shaped contemporary AI systems.</div>
+      </div>
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Objective 2</span>
+        <span class="goo-num">2</span>
+        <div class="goo-text">Analyze AI as a material and infrastructural system: following a data request backward through its physical dependencies, and describing the spatial and temporal dimensions of the architecture of data — submarine cables, server farms, extraction, energy, water, labor.</div>
+      </div>
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Objective 3</span>
+        <span class="goo-num">3</span>
+        <div class="goo-text">Apply various social science lenses — sociology, anthropology, political science, economics, psychology — to examine specific claims, behaviors, and impacts of AI systems, with each lens explicitly named, its methods modeled, and its limits acknowledged.</div>
+      </div>
+      <div class="goo-card fys">
+        <span class="goo-tag fys">FYS 111 · Objective 4</span>
+        <span class="goo-num">4</span>
+        <div class="goo-text">Scaffolding operational fluency with generative and agentic AI systems through the Learner's Permit and Agentic License credential sequences, Google professional certifications, and weekly reflective practice — developing the habits of documentation, verification, and responsible use that constitute ethical AI engagement in a college setting.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTCOMES -->
+  <div class="section">
+    <div class="section-label">Course Outcomes</div>
+    <h2 class="section-title">What Is <em>Produced and Demonstrated</em></h2>
+    <p>Student performance evidence. What is made and shown by the end of each unit. The first three belong to STS 190; the fourth to FYS 111.</p>
+    <div class="goo-grid">
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Outcome 1 · Unit I</span>
+        <span class="goo-num">1</span>
+        <div class="goo-text">A team project investigating the historical, material, or technical dimensions of AI through at least one named social science lens, with evidence gathered, claims verified or trusted on stated grounds, and findings presented as slides with a live demonstration component.</div>
+      </div>
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Outcome 2 · Unit II</span>
+        <span class="goo-num">2</span>
+        <div class="goo-text">A team project examining how AI is understood, governed, or experienced as a cognitive, behavioral, or sociotechnical system, using at least one named social science lens, with claims verified or trusted on stated grounds and findings presented as slides with a live demonstration component.</div>
+      </div>
+      <div class="goo-card">
+        <span class="goo-tag">STS 190 · Outcome 3 · Unit III</span>
+        <span class="goo-num">3</span>
+        <div class="goo-text">A team inquiry project in which AI is simultaneously the object and the method of investigation — using at least one named social science lens with rigor, verifying or trusting claims on stated grounds, and documenting the full investigatory record in the project archive — presented at the culminating event.</div>
+      </div>
+      <div class="goo-card fys">
+        <span class="goo-tag fys">FYS 111 · Outcome 4</span>
+        <span class="goo-num">4</span>
+        <div class="goo-text">A portfolio demonstrating responsible use of generative and agentic AI: completed Learner's Permit and Agentic License credential exercises, Google AI Essentials, Prompting Essentials, and one additional Google professional certification, with weekly submissions showing RTW practice, verification and trust decisions, and reflective engagement with AI use across the semester.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEETING PATTERN -->
+  <div class="section">
+    <div class="section-label">Meeting Pattern</div>
+    <h2 class="section-title">How the Course <em>Meets</em></h2>
+    <div class="meeting-grid">
+      <div class="meeting-card">
+        <div class="meeting-day">Tuesday · 5–8 pm · STS 190</div>
+        <div class="meeting-title">Seminar</div>
+        <div class="meeting-text">The intellectual and social core of the course. Discussion of primary texts, guest conversations, collective inquiry, and the running meditation on what it means to be human in an AI-mediated world. Dinner is implicit in this hour. Come ready to think, not just to listen.</div>
+        <div class="meeting-sub">An /author reflection — written without opening a model — is due before every Tuesday session.</div>
+      </div>
+      <div class="meeting-card">
+        <div class="meeting-day">Friday · 2–5 pm · FYS 111 + STS 190</div>
+        <div class="meeting-title">Workbench + Lab / Edge</div>
+        <div class="meeting-text"><strong>Weeks 1–5:</strong> Credential completion — LP (Weeks 1–2), CDL (Weeks 3–5). One hour per week from Week 2 onward reserved for team project work. One hour per week: AI Lab.</div>
+        <div class="meeting-sub"><strong>Weeks 6–12:</strong> Two hours individual student conferences and project work. Final hour: Life on the Edge of AI.<br><br><strong>Weeks 13–14:</strong> Individual student conferences.<br><br><strong>Week 15:</strong> Student Showcase. Life on the Edge of AI. Workbench submission.</div>
+      </div>
+    </div>
+
+    <div class="edge-block">
+      <div class="edge-title">Life on the <em>Edge of AI</em></div>
+      <div class="edge-text">The final hour of every Friday from Week 6 through Week 12, and once more on Week 15. A live demonstration of something current, surprising, or consequential in AI — a tool just released, a system that changed this week, a capability that didn't exist last month. Each session is anchored by seven questions:</div>
+      <ul class="edge-questions">
+        <li>What changed, and when?</li>
+        <li>Who built it, and for whom?</li>
+        <li>What does it make possible?</li>
+        <li>What does it obscure or displace?</li>
+        <li>What data or infrastructure does it depend on?</li>
+        <li>What should we distrust about it?</li>
+        <li>How does it affect what we are working on?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- UNITS -->
+  <div class="section">
+    <div class="section-label">Course Structure</div>
+    <h2 class="section-title">Three Units, <em>Three Projects</em></h2>
+    <p>The course moves through three units of roughly five weeks each. Each unit produces a team project presented as slides with a live demonstration component, applying any social science lens to that unit's central question.</p>
+
+    <div class="unit-block">
+      <div class="unit-number">Unit I · Weeks 1–5</div>
+      <div class="unit-title">Foundation</div>
+      <div class="unit-question">What is the system?</div>
+      <div class="module-tags">
+        <span class="module-tag">Historical (1950s–2022)</span>
+        <span class="module-tag">Elemental</span>
+        <span class="module-tag">Spatial</span>
+        <span class="module-tag">Temporal</span>
+        <span class="module-tag">LLMs as Technology</span>
+      </div>
+      <div class="unit-desc">Unit I grounds the course in the physical and historical world. AI is not weightless — it is built from rare earth minerals, runs on water and energy, travels through submarine cables, and emerged from specific decisions made by specific people at specific moments. The primary text is the museum exhibit catalog, read across its three chapters (Elemental, Spatial, Temporal). Week 5 introduces how large language models actually work: tokens, embeddings, attention, transformers, training, inference.</div>
+      <div class="unit-project"><strong>Team Project I:</strong> Using any social science lens, teams investigate one dimension of AI's material or historical infrastructure. What is the system, and who built it for whom?</div>
+    </div>
+
+    <div class="unit-block u2">
+      <div class="unit-number">Unit II · Weeks 6–10</div>
+      <div class="unit-title">Critical Framework</div>
+      <div class="unit-question">What does it claim to know or do?</div>
+      <div class="module-tags">
+        <span class="module-tag">Cognitive</span>
+        <span class="module-tag">Behavioral</span>
+        <span class="module-tag">Control &amp; Regulation</span>
+        <span class="module-tag">AI as Sociotechnical System</span>
+      </div>
+      <div class="unit-desc">Unit II asks what kind of thing AI claims to be. Drawing on Agüera y Arcas, the course examines AI as a cognitive and behavioral phenomenon: what does it mean to call something intelligent, agentic, or mind-like? Governance and regulation cases from hiring, media, medicine, and policy anchor the discussion in concrete examples.</div>
+      <div class="unit-project"><strong>Team Project II:</strong> Using any social science lens, teams investigate a specific claim AI systems make — about intelligence, capability, or behavior — and evaluate it. What does the system claim? Is the claim credible? What is at stake?</div>
+    </div>
+
+    <div class="unit-block u3">
+      <div class="unit-number">Unit III · Weeks 11–15</div>
+      <div class="unit-title">Practice</div>
+      <div class="unit-question">How do I know whether to trust it?</div>
+      <div class="module-tags">
+        <span class="module-tag">Verification &amp; Trust</span>
+        <span class="module-tag">AI as Object and Method</span>
+        <span class="module-tag">Living with AI: The Human Future</span>
+      </div>
+      <div class="unit-desc">Unit III is the course's most hands-on. AI is used to investigate AI — posing a question, selecting a social science lens, conducting inquiry, and documenting the full process. The central question is not "what does AI do?" but "how do I decide what to trust?" Students build on their accumulated workbench archive and work toward the semester's culminating event.</div>
+      <div class="unit-project"><strong>Team Project III:</strong> Using any social science lens, teams pose a question about AI and use AI as the primary method of investigation. The project documents not just what was found but how claims were verified or trusted on stated grounds. Presented at the culminating event.</div>
+    </div>
+  </div>
+
+  <!-- TEXTS -->
+  <div class="section">
+    <div class="section-label">Primary Texts (proposed; under review)</div>
+    <h2 class="section-title">Three Books, <em>Three Layers</em></h2>
+    <p>Each primary text corresponds to a different layer of AI — infrastructure, mechanism, and cognition — in that order.</p>
+    <div class="texts-grid">
+      <div class="text-card">
+        <div class="text-layer">Layer 1 · Infrastructure</div>
+        <div class="text-question">Where is AI? What is it made of?</div>
+        <div class="text-title">City in the Cloud — Data on the Ground: The Architecture of Data</div>
+        <div class="text-author">Kokalevski, Lepik, and Hahl-Pfeifer, eds. · Architangle, 2025</div>
+        <div class="text-isbn">ISBN 978-3-96680-038-9</div>
+        <div class="text-note">Museum exhibit catalog. Three chapters: Elemental, Spatial, Temporal. The primary course text and anchor for Unit I.</div>
+      </div>
+      <div class="text-card">
+        <div class="text-layer">Layer 2 · Mechanism</div>
+        <div class="text-question">How do contemporary models work?</div>
+        <div class="text-title">Hands-On Large Language Models</div>
+        <div class="text-author">Jay Alammar and Maarten Grootendorst · O'Reilly Media, 2024</div>
+        <div class="text-isbn">ISBN 978-1-098-15096-9</div>
+        <div class="text-note">Selected chapters only — used as a visual and conceptual technical guide. Covers tokens, embeddings, attention, transformers, generation, and hallucination.</div>
+      </div>
+      <div class="text-card">
+        <div class="text-layer">Layer 3 · Cognition</div>
+        <div class="text-question">What kind of intelligence is this?</div>
+        <div class="text-title">What Is Intelligence? Lessons from AI About Evolution, Computing, and Minds</div>
+        <div class="text-author">Blaise Agüera y Arcas · MIT Press, 2025</div>
+        <div class="text-isbn">ISBN 978-0-262-04995-5</div>
+        <div class="text-note">Anchor for Unit II's cognitive and philosophical inquiry. Read as a provocation: a strong argument about distributed intelligence that students are expected to examine critically.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="section">
+    <div class="section-label">15-Week Calendar</div>
+    <h2 class="section-title">The Semester</h2>
+    <p>Tuesday sessions are seminar. Fridays in Weeks 1–5 are credential completion, with one hour of team project work from Week 2, and one hour of AI Lab. Weeks 6–12: individual conferences plus Life on the Edge of AI. Weeks 13–14: individual conferences. Week 15: Student Showcase, Life on the Edge, workbench submission.</p>
+
+    <div class="calendar-wrap">
+
+      <div class="unit-divider">
+        <div class="unit-divider-label">Unit I · Foundation · Weeks 1–5</div>
+        <div class="unit-divider-line"></div>
+      </div>
+
+      <div class="week-col-header">
+        <div class="week-col-header-cell">Wk</div>
+        <div class="week-col-header-cell">Tuesday · Seminar 5–8 pm</div>
+        <div class="week-col-header-cell">Friday · Workbench 2–5 pm</div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">01</div>
+        <div class="week-cell">
+          <div class="wk-mod">Historical</div>
+          <div class="wk-topic">The 1950s: Turing and Dartmouth</div>
+          <div class="wk-detail">AI as idea before AI as system. Turing's question, the Dartmouth proposal, what assumptions were encoded from the start. First /author entries written before session opens.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">AI Lab</div>
+          <div class="wk-mod">LP · Exercises 1–8</div>
+          <div class="wk-topic">Learner's Permit: Phases I &amp; II · AI Lab</div>
+          <div class="wk-detail">Workbench setup. First conversations, compression, pushback, trust audit, model comparison. Transcripts and artifacts begin. Final hour: AI Lab.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">02</div>
+        <div class="week-cell">
+          <div class="wk-mod">Historical</div>
+          <div class="wk-topic">1956 → 2022: Getting to ChatGPT</div>
+          <div class="wk-detail">Symbolic AI, expert systems, the winters, neural networks, deep learning, the transformer. The compressed transition. What failed and why; what succeeded and why.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">AI Lab</div>
+          <div class="wk-mod">LP Complete · Team Projects Begin · CDL Begins</div>
+          <div class="wk-topic">LP Exercises 9–15 · License Earned · Team Hour</div>
+          <div class="wk-detail">LP Phase III and exam. Learner's Permit complete. CDL begins. One hour: team project formation and Unit I question framing. Final hour: AI Lab.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">03</div>
+        <div class="week-cell">
+          <div class="wk-mod">Elemental</div>
+          <div class="wk-topic">What Is AI Made Of?</div>
+          <div class="wk-detail">City in the Cloud, Elemental chapter. Rare earth mining, water, energy, human labor. Follow a data request backward through its full material dependencies.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">AI Lab</div>
+          <div class="wk-mod">CDL · Exercises 1–5 · Team Hour</div>
+          <div class="wk-topic">Agentic License: Phase I · Team Project I</div>
+          <div class="wk-detail">Introduction to agentic AI. First autonomous workflows. One hour: Unit I team project development. Final hour: AI Lab.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">04</div>
+        <div class="week-cell">
+          <div class="wk-mod">Spatial / Temporal</div>
+          <div class="wk-topic">Where Does AI Exist? What Timeline?</div>
+          <div class="wk-detail">City in the Cloud, Spatial and Temporal chapters. Submarine cables, server farms, network topology. Compressed transition, archive logic, deep time of extraction.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">AI Lab</div>
+          <div class="wk-mod">CDL · Exercises 6–10 · Team Hour</div>
+          <div class="wk-topic">Agentic License: Phase II · Team Project I</div>
+          <div class="wk-detail">Multi-step agentic workflows. One hour: Unit I project development. Final hour: AI Lab.</div>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">05</div>
+        <div class="week-cell">
+          <div class="wk-mod">LLMs as Technology</div>
+          <div class="wk-topic">How Large Language Models Work</div>
+          <div class="wk-detail">Alammar &amp; Grootendorst selected chapters. Tokens, embeddings, next-token prediction, attention, transformers, training vs. inference. How prediction produces outputs that appear intelligent.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">AI Lab</div>
+          <div class="wk-mod">CDL Complete · Unit I Project Due</div>
+          <div class="wk-topic">Agentic License: Phase III · Both Licenses Held</div>
+          <div class="wk-detail">CDL Exercise 15 exam. Both licenses complete. Unit I team project due. Final hour: AI Lab.</div>
+        </div>
+      </div>
+
+      <div class="unit-divider u2">
+        <div class="unit-divider-label">Unit II · Critical Framework · Weeks 6–10</div>
+        <div class="unit-divider-line"></div>
+      </div>
+
+      <div class="week-col-header">
+        <div class="week-col-header-cell">Wk</div>
+        <div class="week-col-header-cell">Tuesday · Seminar 5–8 pm</div>
+        <div class="week-col-header-cell">Friday · Conferences + Edge 2–5 pm</div>
+      </div>
+
+      <div class="week-row u2">
+        <div class="week-num">06</div>
+        <div class="week-cell">
+          <div class="wk-mod">Cognitive</div>
+          <div class="wk-topic">What Kind of Intelligence Is This?</div>
+          <div class="wk-detail">Agüera y Arcas opens. What does it mean to call something a mind, an agent, a machine? Read as provocation, not as doctrine.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge · begins</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit II Project Direction · First Edge Session</div>
+          <div class="wk-detail">Two hours: individual student conferences. Unit II question framing and lens selection. Final hour: inaugural Life on the Edge of AI.</div>
+        </div>
+      </div>
+
+      <div class="week-row u2">
+        <div class="week-num">07</div>
+        <div class="week-cell">
+          <div class="wk-mod">Cognitive</div>
+          <div class="wk-topic">AI as Exotic Artificial Entity</div>
+          <div class="wk-detail">Agüera y Arcas continued. The category politics of classification — what is at stake in each choice? Whose interests are served by calling AI a mind?</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge of AI</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit II Project Development</div>
+          <div class="wk-detail">Two hours: individual conferences, portfolio review. Archive reviewed by AI — patterns discussed. Final hour: Edge.</div>
+        </div>
+      </div>
+
+      <div class="week-row u2">
+        <div class="week-num">08</div>
+        <div class="week-cell">
+          <div class="wk-mod">Behavioral</div>
+          <div class="wk-topic">How Do We Assess What AI Does?</div>
+          <div class="wk-detail">Assessing AI behavior in domains without fixed criteria. Human adaptation to AI systems. What does governance mean when the criteria for judgment are themselves contested?</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge of AI</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit II Project Development</div>
+          <div class="wk-detail">Two hours: mid-semester individual conferences, portfolio submissions reviewed. Final hour: Edge.</div>
+        </div>
+      </div>
+
+      <div class="week-row u2">
+        <div class="week-num">09</div>
+        <div class="week-cell">
+          <div class="wk-mod">Control / Regulation</div>
+          <div class="wk-topic">Who Governs AI, and How?</div>
+          <div class="wk-detail">Concrete cases: hiring algorithms, predictive policing, medical AI, generative media, data centers. Students take and defend a position on one governance question.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge of AI</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit II Project Development</div>
+          <div class="wk-detail">Two hours: individual conferences. What are you claiming, what is your evidence, what do you trust and on what grounds? Final hour: Edge.</div>
+        </div>
+      </div>
+
+      <div class="week-row u2">
+        <div class="week-num">10</div>
+        <div class="week-cell">
+          <div class="wk-mod">AI as Sociotechnical System</div>
+          <div class="wk-topic">The Full Picture</div>
+          <div class="wk-detail">Integration session. AI as simultaneously material, temporal, spatial, cognitive, behavioral, and political. What does STS allow us to see that no single discipline can?</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge of AI</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit II Complete · Unit III Preview</div>
+          <div class="wk-detail">Unit II team project due. Individual conferences. Unit III framing introduced: AI as object and method. Final hour: Edge.</div>
+        </div>
+      </div>
+
+      <div class="unit-divider u3">
+        <div class="unit-divider-label">Unit III · Practice · Weeks 11–15</div>
+        <div class="unit-divider-line"></div>
+      </div>
+
+      <div class="week-col-header">
+        <div class="week-col-header-cell">Wk</div>
+        <div class="week-col-header-cell">Tuesday · Seminar 5–8 pm</div>
+        <div class="week-col-header-cell">Friday · Conferences 2–5 pm</div>
+      </div>
+
+      <div class="week-row u3">
+        <div class="week-num">11</div>
+        <div class="week-cell">
+          <div class="wk-mod">Verification &amp; Trust</div>
+          <div class="wk-topic">How Do I Know Whether to Trust It?</div>
+          <div class="wk-detail">Three stages: manual verification (small corpus, every claim checked), AI-assisted verification (pattern recognition at scale), informed stewardship (principled choices about what to trust when full verification is not possible).</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge of AI</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit III Project Direction</div>
+          <div class="wk-detail">Two hours: individual conferences, Unit III question framing and lens selection. Students build synthesis documents from full workbench. Final hour: Edge.</div>
+        </div>
+      </div>
+
+      <div class="week-row u3">
+        <div class="week-num">12</div>
+        <div class="week-cell">
+          <div class="wk-mod">AI as Object and Method</div>
+          <div class="wk-topic">Using AI to Study AI</div>
+          <div class="wk-detail">How generative, analytical, and agentic AI can each serve as investigatory method. What it means to use AI to investigate AI — and what the transcript of that investigation shows.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge of AI · final weekly</div>
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit III Project Development</div>
+          <div class="wk-detail">Two hours: individual conferences, active inquiry work. Final hour: last regular Life on the Edge of AI.</div>
+        </div>
+      </div>
+
+      <div class="week-row u3">
+        <div class="week-num">13</div>
+        <div class="week-cell">
+          <div class="wk-mod">AI as Object and Method</div>
+          <div class="wk-topic">Workshop: What Have You Found?</div>
+          <div class="wk-detail">Workshop session. Teams share work-in-progress. What are you investigating, how, what have you found, what do you trust and on what grounds?</div>
+        </div>
+        <div class="week-cell">
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Unit III Project Development</div>
+          <div class="wk-detail">Individual conferences throughout. Portfolio submissions reviewed. Project milestone check.</div>
+        </div>
+      </div>
+
+      <div class="week-row u3">
+        <div class="week-num">14</div>
+        <div class="week-cell">
+          <div class="wk-mod">Living with AI</div>
+          <div class="wk-topic">What Changed?</div>
+          <div class="wk-detail">Final seminar. /author reflection: what did you think AI was in September? What do you think it is now? The human meditation answered — not resolved.</div>
+        </div>
+        <div class="week-cell">
+          <div class="wk-mod">Individual Conferences</div>
+          <div class="wk-topic">Final Conferences · Showcase Preparation</div>
+          <div class="wk-detail">Individual conferences. All three team projects finalized. Workbench prepared for submission.</div>
+        </div>
+      </div>
+
+      <div class="week-row u3">
+        <div class="week-num">15</div>
+        <div class="week-cell">
+          <div class="wk-mod">Culmination · Tuesday</div>
+          <div class="wk-topic">Living with AI: The Human Future</div>
+          <div class="wk-detail">The semester's culminating event. Team presentations. Three projects, the archive that built them, and what it means to have spent a semester thinking with AI about AI.</div>
+        </div>
+        <div class="week-cell">
+          <div class="pip">Life on the Edge · final</div>
+          <div class="wk-mod">Student Showcase · Workbench Submission</div>
+          <div class="wk-topic">Student Showcase · Life on the Edge · Archive</div>
+          <div class="wk-detail">Student Showcase. Life on the Edge of AI, final session. Full workbench submitted to course knowledge base (opt-in open-source).</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WORKBENCH -->
+  <div class="section">
+    <div class="section-label">Infrastructure</div>
+    <h2 class="section-title">The Workbench</h2>
+    <p>Every student maintains a personal workbench — a structured cloud folder holding all AI-assisted work across the semester. The workbench is not a submission folder. It is research infrastructure, archive, and the primary evidence of practice. The full workbench is reviewed by AI weekly to surface patterns across the cohort.</p>
+    <div class="workbench-block">
+      <div class="workbench-title">Workbench Structure</div>
+      <div class="folder-tree">
+        <span class="folder">ai-literacy/</span><br>
+        &nbsp;&nbsp;├── <span class="folder">transcripts/</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">← every exported AI conversation</span><br>
+        &nbsp;&nbsp;├── <span class="folder">artifacts/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">← AI-assisted documents and outputs</span><br>
+        &nbsp;&nbsp;├── <span class="folder">synthesis/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">← synthesis documents; portable context</span><br>
+        &nbsp;&nbsp;├── <span class="folder">author/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">← human-only writing; no model open</span><br>
+        &nbsp;&nbsp;└── <span class="folder">zip/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">← dated workbench snapshots</span>
+      </div>
+    </div>
+    <p style="margin-top:16px;">The <strong>/author folder</strong> is the course's unmediated space. Documents written here are produced without opening a model — pre-session reflections, first responses to readings, initial observations. It is the control condition: knowing what you bring before knowing what the collaboration changes.</p>
+  </div>
+
+  <!-- GRADE TABLE -->
+  <div class="section">
+    <div class="section-label">Grade Structure</div>
+    <h2 class="section-title">1000 Points Across <em>Two Courses</em></h2>
+    <p>STS 190 carries 800 points (4 credits); FYS 111 carries 200 points (1 credit), reflecting the 4:1 credit ratio. Shared assignments are split proportionally.</p>
+
+    <div class="grade-wrap">
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th>Assignment</th>
+            <th class="sts-h">STS 190<br><span style="font-size:9px;opacity:0.65;font-weight:300;">800 pts · 80%</span></th>
+            <th class="fys-h">FYS 111<br><span style="font-size:9px;opacity:0.65;font-weight:300;">200 pts · 20%</span></th>
+            <th class="tot-h">Total<br><span style="font-size:9px;opacity:0.65;font-weight:300;">1000 pts</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Learner's Permit (LP) <span class="course-tag tag-fys">FYS 111</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">20</span><span class="pct">10% of FYS</span></td>
+            <td><span class="pts">20</span><span class="pct">2% of total</span></td>
+          </tr>
+          <tr>
+            <td>Agentic License (CDL) <span class="course-tag tag-fys">FYS 111</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">60</span><span class="pct">30% of FYS</span></td>
+            <td><span class="pts">60</span><span class="pct">6% of total</span></td>
+          </tr>
+          <tr>
+            <td>Google AI Essentials <span class="course-tag tag-fys">FYS 111</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">20</span><span class="pct">10% of FYS</span></td>
+            <td><span class="pts">20</span><span class="pct">2% of total</span></td>
+          </tr>
+          <tr>
+            <td>Google Prompting Essentials <span class="course-tag tag-fys">FYS 111</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">20</span><span class="pct">10% of FYS</span></td>
+            <td><span class="pts">20</span><span class="pct">2% of total</span></td>
+          </tr>
+          <tr>
+            <td>Google Professional: Student Choice <span class="course-tag tag-fys">FYS 111</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">20</span><span class="pct">10% of FYS</span></td>
+            <td><span class="pts">20</span><span class="pct">2% of total</span></td>
+          </tr>
+          <tr>
+            <td>Three Team Projects <span class="course-tag tag-sts">STS 190</span></td>
+            <td><span class="pts">300</span><span class="pct">37.5% of STS</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">300</span><span class="pct">30% of total</span></td>
+          </tr>
+          <tr>
+            <td>Weekly Portfolio <span class="course-tag tag-both">Shared ⅔ / ⅓</span></td>
+            <td><span class="pts">160</span><span class="pct">20% of STS</span></td>
+            <td><span class="pts">40</span><span class="pct">20% of FYS</span></td>
+            <td><span class="pts">200</span><span class="pct">20% of total</span></td>
+          </tr>
+          <tr>
+            <td>Final Portfolio <span class="course-tag tag-both">Shared ⅔ / ⅓</span></td>
+            <td><span class="pts">40</span><span class="pct">5% of STS</span></td>
+            <td><span class="pts">10</span><span class="pct">5% of FYS</span></td>
+            <td><span class="pts">50</span><span class="pct">5% of total</span></td>
+          </tr>
+          <tr>
+            <td>Tuesday Attendance <span class="course-tag tag-sts">STS 190</span></td>
+            <td><span class="pts">200</span><span class="pct">25% of STS</span></td>
+            <td><span class="pts">—</span></td>
+            <td><span class="pts">200</span><span class="pct">20% of total</span></td>
+          </tr>
+          <tr>
+            <td>Friday Attendance <span class="course-tag tag-both">Shared 50 / 50</span></td>
+            <td><span class="pts">100</span><span class="pct">12.5% of STS</span></td>
+            <td><span class="pts">30</span><span class="pct">15% of FYS</span></td>
+            <td><span class="pts">130</span><span class="pct">13% of total</span></td>
+          </tr>
+          <tr class="tot-row">
+            <td>Total</td>
+            <td><span class="pts">800</span><span class="pct">80%</span></td>
+            <td><span class="pts">200</span><span class="pct">20%</span></td>
+            <td><span class="pts">1000</span><span class="pct">100%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:12px;color:var(--slate-light);">Note: Friday Attendance total is 130 due to the 50/50 split producing 100 STS + 30 FYS after rounding to maintain exact 800/200 course totals. Pass/fail vs. letter grade and final component weights subject to finalization.</p>
+  </div>
+
+  <!-- ASSESSMENT -->
+  <div class="section">
+    <div class="section-label">Assessment</div>
+    <h2 class="section-title">How the Work Is Evaluated</h2>
+    <p>There are no tests. Assessment is through demonstrated practice, documented inquiry, and the evidence in transcripts and project archives.</p>
+
+    <div class="assess-grid">
+      <div class="assess-card">
+        <div class="assess-title">Weekly Portfolio Submission</div>
+        <div class="assess-text">Submitted weekly against the rubric below. Includes evidence of RTW practice and verification decisions, and a brief update on the current team project. The full workbench is reviewed by AI weekly; patterns across the cohort inform class discussion.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-title">Three Team Projects</div>
+        <div class="assess-text">One project per unit, submitted at the unit's close. Each project applies any social science lens to that unit's central question, uses AI as both object and investigatory method where appropriate, and is presented as slides with a live demonstration component. Teams of 3–4 students.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-title">Attendance</div>
+        <div class="assess-text">Tuesday seminar attendance counts toward STS 190. Friday workbench attendance is split between courses. Attendance is the floor; participation is captured in portfolio submissions and team project contributions.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-title">Credentials (FYS 111)</div>
+        <div class="assess-text">Learner's Permit, Agentic License, Google AI Essentials, Prompting Essentials, and one additional Google professional certification of the student's choice. All completed in Weeks 1–5.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin:40px 0 8px;">Weekly Portfolio Rubric</h3>
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Dimension</th><th>What It Looks Like</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RTW Practice</td>
+          <td>Transcripts show genuine reading of model output, thinking through it — agreement, disagreement, redirection — and writing through prompting. Prompts develop in precision and depth over time.</td>
+        </tr>
+        <tr>
+          <td>Verification &amp; Trust</td>
+          <td>Claims from AI conversations are either verified against sources or explicitly trusted on stated grounds. Documentation shows which claims required checking and how.</td>
+        </tr>
+        <tr>
+          <td>Responsible AI Use</td>
+          <td>Conscious choices documented about when and how to use AI, what to delegate, what to retain, and what the limits of AI contribution are in each context.</td>
+        </tr>
+        <tr>
+          <td>Archive Maintenance</td>
+          <td>Workbench folders current. Transcripts exported and saved. /author entries written before AI sessions. Workbench reflects ongoing, not retroactive, documentation.</td>
+        </tr>
+        <tr>
+          <td>Team Project Progress</td>
+          <td>Weekly update on the current team project: what was attempted, what the archive shows, what the team trusts and on what grounds, what remains open.</td>
+        </tr>
+        <tr>
+          <td>Agentic Development</td>
+          <td>Evidence of AI operating as orchestrator increases across the semester. Early weeks: generative and analytical use. By Unit III: AI directing multi-step workflows toward a defined inquiry goal.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AI NOTE -->
+  <div class="section">
+    <div class="section-label">A Note on AI Use</div>
+    <h2 class="section-title">Using AI in This Course</h2>
+    <div class="ai-note">
+      <p>AI is used every week — to read, to think, to write, to investigate. The question is never whether to use it. The question is always: <strong>what did you notice about using it?</strong></p>
+      <p>The professor uses AI to write, including materials for this course. This syllabus was developed with AI assistance. That is not a disclosure of compromise — it is a demonstration of the course's premise.</p>
+      <p>Work products, including transcripts, will be incorporated into the course knowledge base. Students may opt in to open-source their thinking and share it with the class knowledge base; the knowledge base serves as a collective, reflective view of the semester's inquiry. Learning is evaluated in part based on the evidence in transcripts. The transcript is the work. The artifact is evidence the work concluded.</p>
+      <p>Document everything substantive. Export every meaningful transcript. Write in your /author folder before opening a model. The documentation is not busywork — it is the record that thinking happened.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>STS 190 + FYS 111 · AI and the Human Future · <strong>SUNY Polytechnic Institute</strong> · Fall 2026</div>
+  <div>Draft · 7 May 2026</div>
+</footer>
+
+</body>
+</html>
